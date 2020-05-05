@@ -30,6 +30,8 @@ namespace RollingPlaces.Web.Data.Entities
 
         public ICollection<PhotoEntity> Photos { get; set; }
 
+        public UserEntity User { get; set; }
+
         public CategoryEntity Category { get; set; }
 
         public CityEntity City { get; set; }

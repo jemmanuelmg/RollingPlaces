@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RollingPlaces.Web.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace RollingPlaces.Web.Data
 {
-    public class DataContext : DbContext
+    public class DataContext : IdentityDbContext<UserEntity>
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {

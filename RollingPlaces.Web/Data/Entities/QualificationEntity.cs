@@ -24,6 +24,8 @@ namespace RollingPlaces.Web.Data.Entities
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = false)]
         public DateTime CreatedDate { get; set; }
 
+        public UserEntity User { get; set; }
+
         public PlaceEntity Place { get; set; }
 
     }
