@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/dae9b555-a92f-412f-a762-2610f9c6a63f/resourceGroups/RollingPlacesResources/providers/Microsoft.Sql/servers/rollingplacesdbserver/databases/RollingPlaces_db",
+      "type": "mssql.azure",
+      "connectionId": "DefaultConnection",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}
