@@ -13,8 +13,6 @@ namespace RollingPlaces.Web.Data.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public PlaceEntity Place { get; set; }
-
         [Required(ErrorMessage = "The field {0} is mandatory.")]
         public int Value { get; set; }
 
@@ -25,6 +23,8 @@ namespace RollingPlaces.Web.Data.Entities
         [Display(Name = "Created Date")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = false)]
         public DateTime CreatedDate { get; set; }
+
+        public PlaceEntity Place { get; set; }
 
     }
 }

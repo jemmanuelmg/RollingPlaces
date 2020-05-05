@@ -32,7 +32,7 @@ namespace RollingPlaces.Web.Data.Entities
 
         public CategoryEntity Category { get; set; }
 
-        public CategoryEntity City { get; set; }
+        public CityEntity City { get; set; }
 
     }
 }

@@ -13,12 +13,12 @@ namespace RollingPlaces.Web.Data.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public PlaceEntity Place { get; set; }
-
         [Display(Name = "Photo Path")]
         public String PhotoPath { get; set; }
 
         public String Description { get; set; }
+
+        public PlaceEntity Place { get; set; }
 
     }
 }
