@@ -53,5 +53,10 @@ namespace RollingPlaces.Web.Helpers
             return await _userManager.IsInRoleAsync(user, roleName);
         }
 
+        public async Task<UserEntity> GetUserAsync(string email)
+        {
+            return await _userManager.FindByEmailAsync(email);
+        }
+
     }
 }

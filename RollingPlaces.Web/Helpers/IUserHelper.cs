@@ -20,6 +20,8 @@ namespace RollingPlaces.Web.Helpers
 
         Task<bool> IsUserInRoleAsync(UserEntity user, string roleName);
 
+        Task<UserEntity> GetUserAsync(string email);
+
     }
 }
 
