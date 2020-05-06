@@ -119,6 +119,7 @@ namespace RollingPlaces.Web.Data
                     Longitude = 234.1234567891827,
                     Category = category1,
                     City = city1,
+                    User = user1,
                     Qualifications = new List<QualificationEntity>
                     {
                         new QualificationEntity
@@ -159,6 +160,7 @@ namespace RollingPlaces.Web.Data
                     Longitude = 210.1234567891827,
                     Category = category2,
                     City = city1,
+                    User = user1,
                     Qualifications = new List<QualificationEntity>
                     {
                         new QualificationEntity
@@ -199,6 +201,7 @@ namespace RollingPlaces.Web.Data
                     Longitude = 120.1234567891827,
                     Category = category3,
                     City = city1,
+                    User = user2,
                     Qualifications = new List<QualificationEntity>
                     {
                         new QualificationEntity
@@ -239,6 +242,7 @@ namespace RollingPlaces.Web.Data
                     Longitude = 150.1234567891827,
                     Category = category3,
                     City = city1,
+                    User = user2,
                     Qualifications = new List<QualificationEntity>
                     {
                         new QualificationEntity
