@@ -117,5 +117,20 @@ namespace RollingPlaces.Web.Helpers
             return await _signInManager.CheckPasswordSignInAsync(user, password, false);
         }
 
+        public async Task<IdentityResult> ConfirmEmailAsync(UserEntity user, string token)
+        {
+            return await _userManager.ConfirmEmailAsync(user, token);
+        }
+
+        public async Task<string> GenerateEmailConfirmationTokenAsync(UserEntity user)
+        {
+            return await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        }
+
+        public async Task<UserEntity> GetUserAsync(Guid userId)
+        {
+            return await _userManager.FindByIdAsync(userId.ToString());
+        }
+
     }
 }

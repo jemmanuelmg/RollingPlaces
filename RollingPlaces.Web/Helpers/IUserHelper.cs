@@ -32,6 +32,12 @@ namespace RollingPlaces.Web.Helpers
 
         Task<SignInResult> ValidatePasswordAsync(UserEntity user, string password);
 
+        Task<string> GenerateEmailConfirmationTokenAsync(UserEntity user);
+
+        Task<IdentityResult> ConfirmEmailAsync(UserEntity user, string token);
+
+        Task<UserEntity> GetUserAsync(Guid userId);
+
         Task LogoutAsync();
 
 
