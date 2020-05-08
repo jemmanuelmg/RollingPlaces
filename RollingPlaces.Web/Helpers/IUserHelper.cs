@@ -38,6 +38,10 @@ namespace RollingPlaces.Web.Helpers
 
         Task<UserEntity> GetUserAsync(Guid userId);
 
+        Task<string> GeneratePasswordResetTokenAsync(UserEntity user);
+
+        Task<IdentityResult> ResetPasswordAsync(UserEntity user, string token, string password);
+
         Task LogoutAsync();
 
 
