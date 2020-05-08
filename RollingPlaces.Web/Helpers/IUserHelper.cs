@@ -26,6 +26,10 @@ namespace RollingPlaces.Web.Helpers
 
         Task<UserEntity> AddUserAsync(AddUserViewModel model, string path);
 
+        Task<IdentityResult> ChangePasswordAsync(UserEntity user, string oldPassword, string newPassword);
+
+        Task<IdentityResult> UpdateUserAsync(UserEntity user);
+
         Task LogoutAsync();
 
 
