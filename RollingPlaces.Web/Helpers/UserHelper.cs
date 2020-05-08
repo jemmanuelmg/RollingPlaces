@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using RollingPlaces.Web.Data.Entities;
+using RollingPlaces.Web.Models;
+using RollingPlaces.Common.Enums;
 
 
 namespace RollingPlaces.Web.Helpers
@@ -13,13 +15,17 @@ namespace RollingPlaces.Web.Helpers
     {
         private readonly UserManager<UserEntity> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly SignInManager<UserEntity> _signInManager;
+
 
         public UserHelper(
-            UserManager<UserEntity> userManager,
-            RoleManager<IdentityRole> roleManager)
+            UserManager<UserEntity> userManager, RoleManager<IdentityRole> roleManager, SignInManager<UserEntity> signInManager
+)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManager;
+
         }
         public async Task<IdentityResult> AddUserAsync(UserEntity user, string password)
         {
@@ -57,6 +63,45 @@ namespace RollingPlaces.Web.Helpers
         {
             return await _userManager.FindByEmailAsync(email);
         }
+
+        public async Task<SignInResult> LoginAsync(LoginViewModel model)
+        {
+            return await _signInManager.PasswordSignInAsync(
+                model.Username,
+                model.Password,
+                model.RememberMe,
+                false);
+        }
+
+        public async Task LogoutAsync()
+        {
+            await _signInManager.SignOutAsync();
+        }
+
+        public async Task<UserEntity> AddUserAsync(AddUserViewModel model, string path)
+        {
+            UserEntity userEntity = new UserEntity
+            {
+                Email = model.Username,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                PicturePath = path,
+                PhoneNumber = model.PhoneNumber,
+                UserName = model.Username,
+                UserType = UserType.User
+            };
+
+            IdentityResult result = await _userManager.CreateAsync(userEntity, model.Password);
+            if (result != IdentityResult.Success)
+            {
+                return null;
+            }
+
+            UserEntity newUser = await GetUserByEmailAsync(model.Username);
+            await AddUserToRoleAsync(newUser, userEntity.UserType.ToString());
+            return newUser;
+        }
+
 
     }
 }

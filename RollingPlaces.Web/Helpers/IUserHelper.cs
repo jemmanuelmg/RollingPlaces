@@ -22,6 +22,13 @@ namespace RollingPlaces.Web.Helpers
 
         Task<UserEntity> GetUserAsync(string email);
 
+        Task<SignInResult> LoginAsync(LoginViewModel model);
+
+        Task<UserEntity> AddUserAsync(AddUserViewModel model, string path);
+
+        Task LogoutAsync();
+
+
     }
 }
 

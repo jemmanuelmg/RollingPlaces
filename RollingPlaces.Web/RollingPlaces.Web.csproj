@@ -14,4 +14,8 @@
     <ProjectReference Include="..\RollingPlaces.Common\RollingPlaces.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\Users\" />
+  </ItemGroup>
+
 </Project>
