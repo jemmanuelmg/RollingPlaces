@@ -5,6 +5,7 @@ using Prism.Navigation;
 
 namespace RollingPlaces.Prism.ViewModels
 {
+
     public class MenuItemViewModel : Menu
     {
         private readonly INavigationService _navigationService;
