@@ -1,5 +1,6 @@
 ﻿using Prism;
 using Prism.Ioc;
+using RollingPlaces.Common.Services;
 using RollingPlaces.Prism.ViewModels;
 using RollingPlaces.Prism.Views;
 using Xamarin.Forms;
@@ -23,13 +24,21 @@ namespace RollingPlaces.Prism
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/HomePage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.Register<IGeolocatorService, GeolocatorService>();
+            containerRegistry.Register<IApiService, ApiService>();
+
+            containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
+            containerRegistry.RegisterForNavigation<RollingPlacesMasterDetailPage, RollingPlacesMasterDetailPageViewModel>();
+            containerRegistry.RegisterForNavigation<PlaceHistoryPage, PlaceHistoryPageViewModel>();
+            containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
+            containerRegistry.RegisterForNavigation<ReportPage, ReportPageViewModel>();
+            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
         }
     }
 }

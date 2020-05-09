@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="RollingPlaces.Prism.Views.PlaceHistoryPage"
+             Title="{Binding Title}">
+
+    <StackLayout Padding="5">
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Name"
+                   VerticalOptions="Center"/>
+            <Entry HorizontalOptions="FillAndExpand" 
+                   Placeholder="Enter name..." 
+                   Text="{Binding Name}"
+                   VerticalOptions="Center"/>
+            <Button BackgroundColor="Navy"
+                    Command="{Binding CheckNameCommand}"
+                    CornerRadius="20"
+                    HeightRequest="40"
+                    Margin="10,0"
+                    Text="Check Name"
+                    TextColor="White"/>
+        </StackLayout>
+        <Label FontAttributes="Bold" 
+               FontSize="48"
+               HorizontalOptions="Center"
+               Text="{Binding Place.Name, StringFormat='{0:N2}'}"/>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Created Date"/>
+            <Label Text="{Binding Place.CreatedDate, StringFormat='{0:N0}'}"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Driver:"/>
+            <Label Text="{Binding Place.City.Name, StringFormat='{0:N0}'}"/>
+        </StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Driver:"/>
+            <Label Text="{Binding Place.Category.Name, StringFormat='{0:N0}'}"/>
+        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="48" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0"
+                   FontAttributes="Bold"
+                   Text="Descripción"/>
+            
+        </Grid>
+
+        <CollectionView ItemsSource="{Binding Place}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0"
+                               Text="{Binding Description, StringFormat='{0:N2}'}"
+                               VerticalOptions="Center"/>
+                        <Image Grid.Column="3" 
+                               Source="ic_more_vert"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>
