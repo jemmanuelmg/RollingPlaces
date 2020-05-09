@@ -3,11 +3,23 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using RollingPlaces.Common.Models;
+using Plugin.Connectivity;
 
 namespace RollingPlaces.Common.Services
 {
     public class ApiService : IApiService
     {
+        public async Task<bool> CheckConnectionAsync(string url)
+        {
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                return false;
+            }
+
+            return await CrossConnectivity.Current.IsRemoteReachable(url);
+        }
+
+
         public async Task<Response> GetPlaceAsync(string name, string urlBase, string servicePrefix, string controller)
         {
             try

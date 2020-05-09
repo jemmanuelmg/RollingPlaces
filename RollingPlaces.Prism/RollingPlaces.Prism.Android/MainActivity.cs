@@ -5,6 +5,8 @@ using Plugin.CurrentActivity;
 using Plugin.Permissions;
 using Prism;
 using Prism.Ioc;
+using Syncfusion.SfBusyIndicator.XForms.Droid;
+using Syncfusion.SfRating.XForms.Droid;
 
 namespace RollingPlaces.Prism.Droid
 {
@@ -20,7 +22,8 @@ namespace RollingPlaces.Prism.Droid
 
             base.OnCreate(bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            
+            new SfBusyIndicatorRenderer();
+            new SfRatingRenderer();
             LoadApplication(new App(new AndroidInitializer()));
         }
 

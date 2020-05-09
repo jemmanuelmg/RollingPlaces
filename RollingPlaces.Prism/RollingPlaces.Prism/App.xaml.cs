@@ -3,6 +3,7 @@ using Prism.Ioc;
 using RollingPlaces.Common.Services;
 using RollingPlaces.Prism.ViewModels;
 using RollingPlaces.Prism.Views;
+using Syncfusion.Licensing;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -22,8 +23,8 @@ namespace RollingPlaces.Prism
 
         protected override async void OnInitialized()
         {
+            SyncfusionLicenseProvider.RegisterLicense("MjM1MDA1QDMxMzgyZTMxMmUzME81YmZCTldtMklhcDZQRkVoMThKQUJ2M3FLYVpzTkd4K0FLa1FJRmt4N289");
             InitializeComponent();
-
             await NavigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/HomePage");
         }
 

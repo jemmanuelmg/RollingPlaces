@@ -2,12 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RollingPlaces.Prism.Views.PlaceHistoryPage"
              Title="{Binding Title}">
-
-    <StackLayout Padding="5">
-        <StackLayout Orientation="Horizontal">
+    <AbsoluteLayout>
+        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All" 
+                     Padding="5">
+            <StackLayout Orientation="Horizontal">
             <Label Text="Name"
                    VerticalOptions="Center"/>
             <Entry HorizontalOptions="FillAndExpand" 
@@ -22,6 +26,15 @@
                     Text="Check Name"
                     TextColor="White"/>
         </StackLayout>
+        <rating:SfRating HorizontalOptions="Center" 
+                         IsEnabled="False"
+                             Margin="0,5"
+                             Precision="Exact"
+                             Value="{Binding Place.Qualification}" />
+        <Label FontAttributes="Bold" 
+                   FontSize="Large"
+                   HorizontalOptions="Center"
+                   Text="{Binding Place.Qualification, StringFormat='Qualification: {0:N2}'}"/>
         <Label FontAttributes="Bold" 
                FontSize="48"
                HorizontalOptions="Center"
@@ -73,4 +86,16 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
     </StackLayout>
-</ContentPage>
+        <busyindicator:SfBusyIndicator AnimationType="Globe" 
+                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                   AbsoluteLayout.LayoutFlags="All"
+                	                   BackgroundColor="Silver"
+                	                   HorizontalOptions="Center"
+                	                   TextColor="White"
+                	                   IsVisible="{Binding IsRunning}"
+                	                   Title="Loading..."
+                	                   VerticalOptions="Center"
+                	                   ViewBoxWidth="80"
+                	                   ViewBoxHeight="80" />
+                       </AbsoluteLayout>
+                    </ContentPage>
