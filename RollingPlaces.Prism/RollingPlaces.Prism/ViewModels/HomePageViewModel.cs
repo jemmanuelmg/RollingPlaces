@@ -12,7 +12,6 @@ namespace RollingPlaces.Prism.ViewModels
         public HomePageViewModel(INavigationService navigationService)
             : base(navigationService)
         {
-
             Title = "Rolling Places";
         }
     }
