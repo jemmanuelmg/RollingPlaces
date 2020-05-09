@@ -6,32 +6,34 @@
              xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RollingPlaces.Prism.Views.PlaceHistoryPage"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             BackgroundColor="{StaticResource ColorBackgroud}">
     <AbsoluteLayout>
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
             <StackLayout Orientation="Horizontal">
-            <Label Text="Name"
+                <Label Text="Name"
                    VerticalOptions="Center"/>
-            <Entry HorizontalOptions="FillAndExpand" 
+                <Entry HorizontalOptions="FillAndExpand" 
                    Placeholder="Enter name..." 
                    Text="{Binding Name}"
-                   VerticalOptions="Center"/>
-            <Button BackgroundColor="Navy"
+                   VerticalOptions="Center"
+                      Style="{StaticResource SecondaryButton}"/>
+                <Button 
                     Command="{Binding CheckNameCommand}"
-                    CornerRadius="20"
-                    HeightRequest="40"
-                    Margin="10,0"
-                    Text="Check Name"
-                    TextColor="White"/>
-        </StackLayout>
-        <rating:SfRating HorizontalOptions="Center" 
+                    Text="Check Name"/>
+            </StackLayout>
+            <rating:SfRating HorizontalOptions="Center" 
                          IsEnabled="False"
                              Margin="0,5"
                              Precision="Exact"
-                             Value="{Binding Place.Qualification}" />
-        <Label FontAttributes="Bold" 
+                             Value="{Binding Place.Qualification}">
+                <rating:SfRating.RatingSettings>
+                <rating:SfRatingSettings RatedFill="{StaticResource ColorDanger}"/>
+            </rating:SfRating.RatingSettings>
+            </rating:SfRating>
+            <Label FontAttributes="Bold" 
                    FontSize="Large"
                    HorizontalOptions="Center"
                    Text="{Binding Place.Qualification, StringFormat='Qualification: {0:N2}'}"/>
@@ -89,13 +91,13 @@
         <busyindicator:SfBusyIndicator AnimationType="Globe" 
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
                 	                   AbsoluteLayout.LayoutFlags="All"
-                	                   BackgroundColor="Silver"
-                	                   HorizontalOptions="Center"
-                	                   TextColor="White"
-                	                   IsVisible="{Binding IsRunning}"
-                	                   Title="Loading..."
-                	                   VerticalOptions="Center"
-                	                   ViewBoxWidth="80"
-                	                   ViewBoxHeight="80" />
-                       </AbsoluteLayout>
+                	                  BackgroundColor="{StaticResource ColorDanger}"
+                	                HorizontalOptions="Center"
+                	                TextColor="{StaticResource ColorFontInverse}"
+                	                IsVisible="{Binding IsRunning}"
+                	                Title="Loading"
+                	                VerticalOptions="Center"
+                	                ViewBoxWidth="80"
+                	                ViewBoxHeight="80" />
+                             </AbsoluteLayout>
                     </ContentPage>
