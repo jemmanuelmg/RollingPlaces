@@ -16,6 +16,7 @@ namespace RollingPlaces.Prism.ViewModels
             INavigationService navigationService,
             IApiService apiService) : base(navigationService)
         {
+
             _apiService = apiService;
             Title = "Place Information";
         }
