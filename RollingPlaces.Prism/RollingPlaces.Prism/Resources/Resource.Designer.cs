@@ -403,6 +403,15 @@ namespace RollingPlaces.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Home.
+        /// </summary>
+        public static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Id.
         /// </summary>
         public static string Id {
@@ -678,6 +687,15 @@ namespace RollingPlaces.Prism.Resources {
         public static string PlaceHistory {
             get {
                 return ResourceManager.GetString("PlaceHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter Name Place....
+        /// </summary>
+        public static string PlacePlaceHolder {
+            get {
+                return ResourceManager.GetString("PlacePlaceHolder", resourceCulture);
             }
         }
         

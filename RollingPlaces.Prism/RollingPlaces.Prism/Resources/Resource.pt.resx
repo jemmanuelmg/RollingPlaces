@@ -387,4 +387,10 @@
   <data name="PlaceError2" xml:space="preserve">
     <value>Vovce endriot exist pas</value>
   </data>
+  <data name="PlacePlaceHolder" xml:space="preserve">
+    <value>Digite o nome do local ...</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Homao</value>
+  </data>
 </root>

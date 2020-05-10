@@ -231,6 +231,9 @@
   <data name="FromGallery" xml:space="preserve">
     <value>From gallery</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
   <data name="Id" xml:space="preserve">
     <value>Id</value>
   </data>
@@ -323,6 +326,9 @@
   </data>
   <data name="PlaceHistory" xml:space="preserve">
     <value>Place History</value>
+  </data>
+  <data name="PlacePlaceHolder" xml:space="preserve">
+    <value>Enter Name Place...</value>
   </data>
   <data name="Qualification" xml:space="preserve">
     <value>Qualification</value>

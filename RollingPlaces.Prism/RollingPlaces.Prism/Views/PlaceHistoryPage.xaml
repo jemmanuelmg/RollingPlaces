@@ -4,6 +4,7 @@
              xmlns:prism="http://prismlibrary.com"
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             xmlns:i18n="clr-namespace:RollingPlaces.Prism.Helpers"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RollingPlaces.Prism.Views.PlaceHistoryPage"
              Title="{Binding Title}"
@@ -13,16 +14,19 @@
                      AbsoluteLayout.LayoutFlags="All" 
                      Padding="5">
             <StackLayout Orientation="Horizontal">
-                <Label Text="Name"
+                <Label Text="{i18n:Translate NamePlace}"
+
                    VerticalOptions="Center"/>
                 <Entry HorizontalOptions="FillAndExpand" 
-                   Placeholder="Enter name..." 
+                       
+                    Placeholder="{i18n:Translate PlacePlaceHolder}" 
+
                    Text="{Binding Name}"
                    VerticalOptions="Center"
                       Style="{StaticResource SecondaryButton}"/>
                 <Button 
                     Command="{Binding CheckNameCommand}"
-                    Text="Check Name"/>
+                   Text="{i18n:Translate CheckName}"/>
             </StackLayout>
             <rating:SfRating HorizontalOptions="Center" 
                          IsEnabled="False"
@@ -33,25 +37,31 @@
                 <rating:SfRatingSettings RatedFill="{StaticResource ColorDanger}"/>
             </rating:SfRating.RatingSettings>
             </rating:SfRating>
+            <StackLayout HorizontalOptions="Center" 
+                         Orientation="Horizontal">
+                <Label FontAttributes="Bold" 
+                       FontSize="Large"
+                       Text="{i18n:Translate Qualification}"/>
+                <Label FontAttributes="Bold" 
+                       FontSize="Large"
+                       Text="{Binding RollingPlaces.Qualification, StringFormat='{0:N2}'}"/>
+            </StackLayout>
+
             <Label FontAttributes="Bold" 
-                   FontSize="Large"
-                   HorizontalOptions="Center"
-                   Text="{Binding Place.Qualification, StringFormat='Qualification: {0:N2}'}"/>
-        <Label FontAttributes="Bold" 
                FontSize="48"
                HorizontalOptions="Center"
                Text="{Binding Place.Name, StringFormat='{0:N2}'}"/>
         <StackLayout Orientation="Horizontal">
-            <Label Text="Created Date"/>
-            <Label Text="{Binding Place.CreatedDate, StringFormat='{0:N0}'}"/>
+                <Label  Text="{i18n:Translate CreateDate}"/>
+                <Label Text="{Binding Place.CreatedDate, StringFormat='{0:N0}'}"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-            <Label Text="Driver:"/>
-            <Label Text="{Binding Place.City.Name, StringFormat='{0:N0}'}"/>
+                <Label  Text="{i18n:Translate City}"/>
+                <Label Text="{Binding Place.City.Name, StringFormat='{0:N0}'}"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal">
-            <Label Text="Driver:"/>
-            <Label Text="{Binding Place.Category.Name, StringFormat='{0:N0}'}"/>
+                <Label  Text="{i18n:Translate Category}"/>
+                <Label Text="{Binding Place.Category.Name, StringFormat='{0:N0}'}"/>
         </StackLayout>
         <Grid>
             <Grid.RowDefinitions>
@@ -63,7 +73,7 @@
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0"
                    FontAttributes="Bold"
-                   Text="Descripción"/>
+                    Text="{i18n:Translate Description}"/>
             
         </Grid>
 
@@ -95,7 +105,7 @@
                 	                HorizontalOptions="Center"
                 	                TextColor="{StaticResource ColorFontInverse}"
                 	                IsVisible="{Binding IsRunning}"
-                	                Title="Loading"
+                	                Title="{i18n:Translate Loading}"
                 	                VerticalOptions="Center"
                 	                ViewBoxWidth="80"
                 	                ViewBoxHeight="80" />

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
          	 xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"    
+             xmlns:i18n="clr-namespace:RollingPlaces.Prism.Helpers"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RollingPlaces.Prism.Views.HomePage"
              Title="{Binding Title}"
@@ -13,7 +14,7 @@
                   MapType="Street"/>
         <StackLayout Padding="5">
             <Button Margin="10,0"
-                    Text="Find A Specific Place"/>
+                   Text="{i18n:Translate FindASpecificPlace}"/>
         </StackLayout>
     </StackLayout>
 

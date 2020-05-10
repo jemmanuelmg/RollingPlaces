@@ -387,4 +387,10 @@
   <data name="PlaceError2" xml:space="preserve">
     <value>El lugar no existe</value>
   </data>
+  <data name="PlacePlaceHolder" xml:space="preserve">
+    <value>Ingres el nombre del lugar...</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Casa</value>
+  </data>
 </root>

@@ -106,5 +106,8 @@ namespace RollingPlaces.Prism.Helpers
         public static string City => Resource.City;
         public static string PlaceError1 => Resource.PlaceError1;
         public static string PlaceError2 => Resource.PlaceError2;
-}
+        public static string PlacePlaceHolder => Resource.PlacePlaceHolder;
+        public static string Home => Resource.Home;
+
+    }
 }
