@@ -26,7 +26,8 @@ namespace RollingPlaces.Prism
         {
             InitializeComponent();
             SyncfusionLicenseProvider.RegisterLicense("MjU0NjcyQDMxMzgyZTMxMmUzMGJ1T1hnaWw4dzJJODVuZm1PaFJYTlIxLy9uNHg4cEh3NCtCRzBJSjd2ZkE9");
-            await NavigationService.NavigateAsync("NavigationPage/LoginPage");
+            //await NavigationService.NavigateAsync("NavigationPage/LoginPage");
+            await NavigationService.NavigateAsync("NavigationPage/ModifyUserPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -38,6 +39,10 @@ namespace RollingPlaces.Prism
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
+            containerRegistry.RegisterForNavigation<RememberPasswordPage, RememberPasswordPageViewModel>();
+            containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
+            containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
+            containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
         }
     }
 }

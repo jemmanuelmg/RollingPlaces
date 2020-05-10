@@ -44,18 +44,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-
-                        <Label Grid.Row="0"
-                               Grid.Column="0"
-                               Text="Documento"
-                               VerticalOptions="Center"/>
-                        <Entry Grid.Row="0"
-                               Grid.Column="1"
-                               Keyboard="Numeric"
-                               Placeholder="Número de documento"
-                               Text="{Binding User.Document}"/>
 
                         <Label Grid.Row="0"
                                Grid.Column="0"

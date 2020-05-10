@@ -123,7 +123,6 @@ namespace RollingPlaces.Prism.ViewModels
             IsEnabled = true;
 
             await App.Current.MainPage.DisplayAlert("Ok", "Sesion iniciada correctamente", "Aceptar");
-            //await _navigationService.NavigateAsync("/TravelMasterDetailPage/NavigationPage/HomePage");
             await _navigationService.NavigateAsync("NavigationPage/MainPage");
             Password = string.Empty;
         }

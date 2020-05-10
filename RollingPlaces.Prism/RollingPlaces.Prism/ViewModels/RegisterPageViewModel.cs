@@ -105,9 +105,9 @@ namespace RollingPlaces.Prism.ViewModels
                 return;
             }
 
-            await App.Current.MainPage.DisplayAlert("Completado", response.Message, "Aceptar");
+            await App.Current.MainPage.DisplayAlert("Ok", response.Message, "Aceptar");
             //await _navigationService.GoBackAsync();
-            await _navigationService.NavigateAsync("/TravelMasterDetailPage/NavigationPage/HomePage");
+            await _navigationService.NavigateAsync("NavigationPage/MainPage");
 
 
         }
