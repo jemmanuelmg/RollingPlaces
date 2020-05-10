@@ -28,7 +28,7 @@ namespace RollingPlaces.Prism.ViewModels
 
         public string Name { get; set; }
 
-        public DelegateCommand CheckPlaqueCommand => _checkNameCommand ?? (_checkNameCommand = new DelegateCommand(CheckNameAsync));
+        public DelegateCommand CheckNameCommand => _checkNameCommand ?? (_checkNameCommand = new DelegateCommand(CheckNameAsync));
 
         private async void CheckNameAsync()
         {
@@ -41,7 +41,7 @@ namespace RollingPlaces.Prism.ViewModels
                 return;
             }
 
-            Regex regex = new Regex(@"^([A-Za-z]{3}\d{3})$");
+            /*Regex regex = new Regex(@"^([A-Za-z]{3}\d{3})$");
             if (!regex.IsMatch(Name))
             {
                 await App.Current.MainPage.DisplayAlert(
@@ -49,7 +49,7 @@ namespace RollingPlaces.Prism.ViewModels
                     "This place doesn't exist",
                     "Accept");
                 return;
-            }
+            }*/
 
             string url = App.Current.Resources["UrlAPI"].ToString();
             Response response = await _apiService.GetPlaceAsync(Name, url, "api", "/Places");
@@ -63,6 +63,10 @@ namespace RollingPlaces.Prism.ViewModels
             }
 
             Place = (PlaceResponse)response.Result;
+
+            int a = 1;
+            int b = 1;
+            int c = 1;
         }
     }
 }

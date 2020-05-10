@@ -274,6 +274,47 @@ namespace RollingPlaces.Web.Data
 
                 });
 
+                _dataContext.Places.Add(new PlaceEntity
+                {
+                    Name = "HeyCoffe",
+                    CreatedDate = DateTime.Now,
+                    Description = "Restaurante Doris Bill desde 1989. Los mejores almuerzos al mejor precio. Horario de atención: Lunes a Sabado de 8:00 am a 9:00 pm. Domingos y festivos: 8:00 am a 12:00 m. Servicio a Domicilio",
+                    Latitude = -179.1234567891982,
+                    Longitude = 234.1234567891827,
+                    Category = category1,
+                    City = city1,
+                    User = user1,
+                    Qualifications = new List<QualificationEntity>
+                    {
+                        new QualificationEntity
+                        {
+                            CreatedDate = DateTime.Now,
+                            User = user1,
+                            Value = 4,
+                            Comment = "Es un excelente restaurante, muy buena atención y buena comida. Me gustaría ver mas variadad en el menu pero me gusto mucho"
+                        },
+                        new QualificationEntity
+                        {
+                            CreatedDate = DateTime.Now,
+                            User = user1,
+                            Value = 5,
+                            Comment = "Buena atención y preparan los platos sin demora."
+                        }
+                    },
+                    Photos = new List<PhotoEntity>
+                    {
+                        new PhotoEntity
+                        {
+                            PhotoPath = "/wwwroot/images/place-photos/120924993.jpg"
+                        },
+                        new PhotoEntity
+                        {
+                            PhotoPath = "/wwwroot/images/place-photos/120924993.jpg"
+                        }
+                    }
+
+                });
+
                 await _dataContext.SaveChangesAsync();
 
             }

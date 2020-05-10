@@ -28,49 +28,12 @@
                Text="{Binding Place.Name, StringFormat='{0:N2}'}"/>
         <StackLayout Orientation="Horizontal">
             <Label Text="Created Date"/>
-            <Label Text="{Binding Place.CreatedDate, StringFormat='{0:N0}'}"/>
+            <Label Text="{Binding Place.CreatedDate, StringFormat='{0:yyyy/MM/dd HH:mm}'}"/>
         </StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Driver:"/>
-            <Label Text="{Binding Place.City.Name, StringFormat='{0:N0}'}"/>
-        </StackLayout>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Driver:"/>
-            <Label Text="{Binding Place.Category.Name, StringFormat='{0:N0}'}"/>
-        </StackLayout>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="48" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0"
-                   FontAttributes="Bold"
-                   Text="Descripción"/>
-            
-        </Grid>
 
-        <CollectionView ItemsSource="{Binding Place}">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0"
-                               Text="{Binding Description, StringFormat='{0:N2}'}"
-                               VerticalOptions="Center"/>
-                        <Image Grid.Column="3" 
-                               Source="ic_more_vert"/>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Description"/>
+            <Label Text="{Binding Place.Description, StringFormat='{0:N0}'}"/>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

@@ -18,7 +18,7 @@ namespace RollingPlaces.Web.Controllers.API
         }
 
         [HttpGet("{name}")]
-        public async Task<IActionResult> GetPlaceEntity([FromBody] string name)
+        public async Task<IActionResult> GetPlaceEntity([FromRoute] string name)
         {
             if (!ModelState.IsValid)
             {
