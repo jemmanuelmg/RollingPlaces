@@ -3,6 +3,7 @@ using Prism.Navigation;
 using System.Text.RegularExpressions;
 using RollingPlaces.Common.Models;
 using RollingPlaces.Common.Services;
+using RollingPlaces.Prism.Helpers;
 
 namespace RollingPlaces.Prism.ViewModels
 {
@@ -24,7 +25,7 @@ namespace RollingPlaces.Prism.ViewModels
             IApiService apiService) : base(navigationService)
         {
             _apiService = apiService;
-            Title = "Place Information";
+            Title = Languages.PlaceHistory;
         }
 
         public PlaceResponse Place
@@ -42,9 +43,10 @@ namespace RollingPlaces.Prism.ViewModels
             if (string.IsNullOrEmpty(Name))
             {
                 await App.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter a name.",
-                    "Accept");
+                      Languages.Error,
+                    Languages.PlaceError1,
+                    Languages.Accept);
+
                 return;
             }
 
@@ -52,9 +54,9 @@ namespace RollingPlaces.Prism.ViewModels
             if (!regex.IsMatch(Name))
             {
                 await App.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "This place doesn't exist",
-                    "Accept");
+                     Languages.Error,
+                    Languages.PlaceError2,
+                    Languages.Accept);
                 return;
             }
             IsRunning = true;
@@ -63,7 +65,10 @@ namespace RollingPlaces.Prism.ViewModels
             if (!connection)
             {
                 IsRunning = false;
-                await App.Current.MainPage.DisplayAlert("Error", "Check the internet connection.", "Accept");
+                await App.Current.MainPage.DisplayAlert(Languages.Error,
+                    Languages.ConnectionError,
+                    Languages.Accept);
+
                 return;
             }
 
@@ -74,9 +79,10 @@ namespace RollingPlaces.Prism.ViewModels
             if (!response.IsSuccess)
             {
                 await App.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     response.Message,
-                    "Accept");
+                    Languages.Accept);
+
                 return;
             }
 
