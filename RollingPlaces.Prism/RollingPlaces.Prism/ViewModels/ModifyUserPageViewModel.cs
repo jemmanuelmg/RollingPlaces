@@ -1,4 +1,5 @@
 ﻿using Prism.Navigation;
+using RollingPlaces.Prism.Helpers;
 
 namespace RollingPlaces.Prism.ViewModels
 {
@@ -6,7 +7,7 @@ namespace RollingPlaces.Prism.ViewModels
     {
         public ModifyUserPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Title = "Modify User";
+            Title = Languages.ModifyUser;
         }
     }
 }
