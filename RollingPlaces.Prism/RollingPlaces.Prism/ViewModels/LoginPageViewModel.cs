@@ -47,9 +47,8 @@ namespace RollingPlaces.Prism.ViewModels
             set => SetProperty(ref _isEnabled, value);
         }
 
-        //Cuando solo me interesa tomar este valor de la vista, lo hago asi
         public string Email { get; set; }
-        //Cuando me interesa tomar el valor de la vista y tambien setearlo o cambiarlo, lo hago asi
+
         public string Password
         {
             get => _password;
@@ -109,7 +108,7 @@ namespace RollingPlaces.Prism.ViewModels
             TokenResponse token = (TokenResponse)response.Result;
             EmailRequest emailRequest = new EmailRequest
             {
-                CultureInfo = Languages.Culture,
+                CultureInfo = "es",
                 Email = Email
             };
 
@@ -124,18 +123,19 @@ namespace RollingPlaces.Prism.ViewModels
             IsEnabled = true;
 
             await App.Current.MainPage.DisplayAlert("Ok", "Sesion iniciada correctamente", "Aceptar");
-            await _navigationService.NavigateAsync("/TravelMasterDetailPage/NavigationPage/HomePage");
+            //await _navigationService.NavigateAsync("/TravelMasterDetailPage/NavigationPage/HomePage");
+            await _navigationService.NavigateAsync("NavigationPage/MainPage");
             Password = string.Empty;
         }
 
         private async void RegisterAsync()
         {
-            await _navigationService.NavigateAsync("/TravelMasterDetailPage/NavigationPage/RegisterPage");
+            await _navigationService.NavigateAsync("NavigationPage/RegisterPage");
         }
 
         private async void ForgotPasswordAsync()
         {
-            await _navigationService.NavigateAsync("/TravelMasterDetailPage/NavigationPage/RememberPasswordPage");
+            await _navigationService.NavigateAsync("NavigationPage/RememberPasswordPage");
         }
 
 

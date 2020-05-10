@@ -5,6 +5,8 @@ using RollingPlaces.Prism.Views;
 using Syncfusion.Licensing;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using RollingPlaces.Common.Helpers;
+using RollingPlaces.Common.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace RollingPlaces.Prism
@@ -23,12 +25,15 @@ namespace RollingPlaces.Prism
         protected override async void OnInitialized()
         {
             InitializeComponent();
-            SyncfusionLicenseProvider.RegisterLicense("MjQzMjMxQDMxMzgyZTMxMmUzMGF1bmlMLyt2NE1tK0J1OFNkYjJDZkl2Z1BLYSs0VXBqWTY4ZUMxR3BYc289");
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            SyncfusionLicenseProvider.RegisterLicense("MjU0NjcyQDMxMzgyZTMxMmUzMGJ1T1hnaWw4dzJJODVuZm1PaFJYTlIxLy9uNHg4cEh3NCtCRzBJSjd2ZkE9");
+            await NavigationService.NavigateAsync("NavigationPage/LoginPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<IApiService, ApiService>();
+            containerRegistry.Register<IFilesHelper, FilesHelper>();
+            containerRegistry.Register<IRegexHelper, RegexHelper>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();

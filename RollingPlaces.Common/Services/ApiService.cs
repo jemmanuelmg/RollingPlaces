@@ -17,9 +17,6 @@ namespace RollingPlaces.Common.Services
         {
             try
             {
-                /*Para pasar dtos a un llamado API usando HTTP primero crear un requestString, luego
-                 StringContent que contenga ese request string, y finalmente pasar ese StringContent llamado content
-                 a el metodo PostAsync() del cliente HTTP creado*/
 
                 string requestString = JsonConvert.SerializeObject(request);
                 StringContent content = new StringContent(requestString, Encoding.UTF8, "application/json");

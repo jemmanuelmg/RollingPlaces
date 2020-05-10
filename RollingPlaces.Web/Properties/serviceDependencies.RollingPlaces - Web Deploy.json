@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/74f28eae-3537-40f4-9957-7790263d6ee0/resourceGroups/ProgramacionDistribuida/providers/Microsoft.Sql/servers/bdrollingplacesdbserver2/databases/BDRollingPlaces",
+      "type": "mssql.azure",
+      "connectionId": "DefaultConnection",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

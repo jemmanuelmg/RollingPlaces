@@ -8,8 +8,8 @@
         <ResourceDictionary>
 
             <!-- Parameters -->
-            <x:String x:Key="UrlAPI">https://rollingplacesweb.azurewebsites.net/</x:String>
-            <x:String x:Key="UrlNoImage">https://rollingplacesweb.azurewebsites.net/images/noimage.png</x:String>
+            <x:String x:Key="UrlAPI">https://rollingplaces.azurewebsites.net/</x:String>
+            <x:String x:Key="UrlNoImage">https://rollingplaces.azurewebsites.net/images/noimage.png</x:String>
 
             <!-- Colors -->
             <Color x:Key="ColorBackgroud">#FFFFFF</Color>
@@ -43,9 +43,7 @@
             <Style x:Key="DangerButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{StaticResource ColorDanger}" />
             </Style>
-
-
+          
         </ResourceDictionary>
-
     </Application.Resources>
 </prism:PrismApplication>
