@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-﻿using RollingPlaces.Common.Models;
 using System.Threading.Tasks;
-=======
-﻿using System.Threading.Tasks;
 using RollingPlaces.Common.Models;
 >>>>>>> RamaEmmanuel
 
@@ -10,10 +6,8 @@ namespace RollingPlaces.Common.Services
 {
     public interface IApiService
     {
-<<<<<<< HEAD
         Task<Response> GetPlaceAsync(string name, string urlBase, string servicePrefix, string controller);
-    }
-=======
+
         Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, TokenRequest request);
 
         Task<Response> GetUserByEmail(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, EmailRequest request);
@@ -29,6 +23,5 @@ namespace RollingPlaces.Common.Services
         Task<Response> ChangePasswordAsync(string urlBase, string servicePrefix, string controller, ChangePasswordRequest changePasswordRequest, string tokenType, string accessToken);
 
     }
-
->>>>>>> RamaEmmanuel
+    
 }
