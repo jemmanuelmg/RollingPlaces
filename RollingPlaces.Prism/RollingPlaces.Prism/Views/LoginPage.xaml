@@ -2,13 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
-<<<<<<< HEAD
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="RollingPlaces.Prism.Views.LoginPage"
-             Title="{Binding Title}">
-
-</ContentPage>
-=======
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RollingPlaces.Prism.Views.LoginPage"
@@ -97,5 +90,3 @@
 
     </AbsoluteLayout>
 </ContentPage>
-
->>>>>>> RamaEmmanuel
