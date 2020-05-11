@@ -72,8 +72,8 @@ namespace RollingPlaces.Prism.ViewModels
 
                 return;
             }*/
-
-           Response response = await _apiService.GetPlaceAsync(Name, url, "api", "/Taxis");
+            var url = App.Current.Resources["UrlAPI"].ToString();
+           Response response = await _apiService.GetPlaceAsync(Name,url, "api", "/Place");
          
             IsRunning = false;
 

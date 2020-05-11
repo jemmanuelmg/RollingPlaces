@@ -7,7 +7,7 @@ using Prism;
 using Prism.Ioc;
 using Syncfusion.SfBusyIndicator.XForms.Droid;
 using Syncfusion.SfRating.XForms.Droid;
-
+using Xamarin.Forms;
 
 namespace RollingPlaces.Prism.Droid
 {

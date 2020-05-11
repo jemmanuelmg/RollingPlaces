@@ -145,16 +145,7 @@ namespace RollingPlaces.Common.Services
             }
         }
 
-        public async Task<bool> CheckConnectionAsync(string url)
-        {
-            if (!CrossConnectivity.Current.IsConnected)
-            {
-                return false;
-            }
-
-            return await CrossConnectivity.Current.IsRemoteReachable(url);
-        }
-
+       
         public async Task<Response> RegisterUserAsync(string urlBase, string servicePrefix, string controller, UserRequest userRequest)
         {
             try
