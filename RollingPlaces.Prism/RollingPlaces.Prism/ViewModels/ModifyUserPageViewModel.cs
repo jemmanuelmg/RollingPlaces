@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 using Newtonsoft.Json;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -11,10 +11,7 @@ using RollingPlaces.Common.Services;
 using RollingPlaces.Prism.Helpers;
 using RollingPlaces.Prism.Views;
 using Xamarin.Forms;
-=======
-﻿using Prism.Navigation;
-using RollingPlaces.Prism.Helpers;
->>>>>>> RamaJulian
+
 
 namespace RollingPlaces.Prism.ViewModels
 {
@@ -39,7 +36,7 @@ namespace RollingPlaces.Prism.ViewModels
             _filesHelper = filesHelper;
             _apiService = apiService;
 
-            Title = "Modificar Usuario";
+          Title = Languages.ModifyUser;
             IsEnabled = true;
             User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
             Image = string.IsNullOrEmpty(User.PictureFullPath) ? App.Current.Resources["UrlNoImage"].ToString() : User.PictureFullPath;
@@ -62,12 +59,10 @@ namespace RollingPlaces.Prism.ViewModels
 
         public UserResponse User
         {
-<<<<<<< HEAD
+
             get => _user;
             set => SetProperty(ref _user, value);
-=======
-            Title = Languages.ModifyUser;
->>>>>>> RamaJulian
+
         }
 
         public bool IsRunning
