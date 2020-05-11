@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-﻿using Prism.Navigation;
-=======
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Prism.Commands;
@@ -14,20 +11,10 @@ using RollingPlaces.Prism.Helpers;
 using RollingPlaces.Prism.Views;
 using Xamarin.Forms;
 
-
->>>>>>> RamaEmmanuel
-
 namespace RollingPlaces.Prism.ViewModels
 {
     public class ModifyUserPageViewModel : ViewModelBase
     {
-<<<<<<< HEAD
-        public ModifyUserPageViewModel(INavigationService navigationService) : base(navigationService)
-        {
-            Title = "Modify User";
-        }
-    }
-=======
         private readonly INavigationService _navigationService;
         private readonly IFilesHelper _filesHelper;
         private readonly IApiService _apiService;
@@ -213,5 +200,4 @@ namespace RollingPlaces.Prism.ViewModels
 
     }
 
->>>>>>> RamaEmmanuel
 }
