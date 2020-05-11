@@ -13,8 +13,6 @@ namespace RollingPlaces.Common.Services
 {
     public class ApiService : IApiService
     {
-<<<<<<< HEAD
-=======
         public async Task<bool> CheckConnectionAsync(string url)
         {
             if (!CrossConnectivity.Current.IsConnected)
@@ -24,9 +22,6 @@ namespace RollingPlaces.Common.Services
 
             return await CrossConnectivity.Current.IsRemoteReachable(url);
         }
-
->>>>>>> RamaJulian
-
         public async Task<Response> GetPlaceAsync(string name, string urlBase, string servicePrefix, string controller)
         {
             try
