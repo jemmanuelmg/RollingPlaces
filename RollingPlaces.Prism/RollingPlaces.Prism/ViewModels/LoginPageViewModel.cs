@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using RollingPlaces.Common.Helpers;
 using RollingPlaces.Common.Models;
 using RollingPlaces.Common.Services;
+=======
+﻿using Prism.Navigation;
+>>>>>>> RamaJulian
 using RollingPlaces.Prism.Helpers;
 
 namespace RollingPlaces.Prism.ViewModels
@@ -128,7 +132,11 @@ namespace RollingPlaces.Prism.ViewModels
 
         private async void RegisterAsync()
         {
+<<<<<<< HEAD
             await _navigationService.NavigateAsync("NavigationPage/RegisterPage");
+=======
+            Title = Languages.LogIn;
+>>>>>>> RamaJulian
         }
 
         private async void ForgotPasswordAsync()

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using Newtonsoft.Json;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
@@ -10,6 +11,10 @@ using RollingPlaces.Common.Services;
 using RollingPlaces.Prism.Helpers;
 using RollingPlaces.Prism.Views;
 using Xamarin.Forms;
+=======
+﻿using Prism.Navigation;
+using RollingPlaces.Prism.Helpers;
+>>>>>>> RamaJulian
 
 namespace RollingPlaces.Prism.ViewModels
 {
@@ -57,8 +62,12 @@ namespace RollingPlaces.Prism.ViewModels
 
         public UserResponse User
         {
+<<<<<<< HEAD
             get => _user;
             set => SetProperty(ref _user, value);
+=======
+            Title = Languages.ModifyUser;
+>>>>>>> RamaJulian
         }
 
         public bool IsRunning

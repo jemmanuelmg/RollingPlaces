@@ -5,8 +5,13 @@
              xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RollingPlaces.Prism.Views.LoginPage"
+<<<<<<< HEAD
              BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
+=======
+             Title="{Binding Title}"
+             BackgroundColor="{StaticResource ColorBackgroud}">
+>>>>>>> RamaJulian
 
     <AbsoluteLayout>
 

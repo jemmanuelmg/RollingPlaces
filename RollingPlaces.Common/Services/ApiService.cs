@@ -7,11 +7,25 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using RollingPlaces.Common.Models;
+using Plugin.Connectivity;
 
 namespace RollingPlaces.Common.Services
 {
     public class ApiService : IApiService
     {
+<<<<<<< HEAD
+=======
+        public async Task<bool> CheckConnectionAsync(string url)
+        {
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                return false;
+            }
+
+            return await CrossConnectivity.Current.IsRemoteReachable(url);
+        }
+
+>>>>>>> RamaJulian
 
         public async Task<Response> GetPlaceAsync(string name, string urlBase, string servicePrefix, string controller)
         {

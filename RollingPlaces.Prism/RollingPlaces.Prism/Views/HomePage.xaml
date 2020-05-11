@@ -3,19 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
          	 xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"    
+             xmlns:i18n="clr-namespace:RollingPlaces.Prism.Helpers"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RollingPlaces.Prism.Views.HomePage"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             BackgroundColor="{StaticResource ColorBackgroud}">
+    
     <StackLayout>
         <maps:Map x:Name="MyMap"
                   MapType="Street"/>
         <StackLayout Padding="5">
-            <Button BackgroundColor="Green"
-                    CornerRadius="20"
-                    HeightRequest="40"
-                    Margin="10,0"
-                    Text="Find A Specific Place"
-                    TextColor="White"/>
+            <Button Margin="10,0"
+                   Text="{i18n:Translate FindASpecificPlace}"/>
         </StackLayout>
     </StackLayout>
 

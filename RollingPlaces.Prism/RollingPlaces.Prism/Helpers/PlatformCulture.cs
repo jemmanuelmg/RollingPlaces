@@ -1,4 +1,9 @@
 ﻿using System;
+<<<<<<< HEAD
+=======
+using System.Collections.Generic;
+using System.Text;
+>>>>>>> RamaJulian
 
 namespace RollingPlaces.Prism.Helpers
 {
@@ -37,4 +42,9 @@ namespace RollingPlaces.Prism.Helpers
             return PlatformString;
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> RamaJulian

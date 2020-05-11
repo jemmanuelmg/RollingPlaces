@@ -1,8 +1,18 @@
+<<<<<<< HEAD
 ﻿using System;
 using System.Globalization;
 using System.Reflection;
 using System.Resources;
 using RollingPlaces.Prism.Interfaces;
+=======
+﻿using RollingPlaces.Prism.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Reflection;
+using System.Resources;
+using System.Text;
+>>>>>>> RamaJulian
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,7 +22,11 @@ namespace RollingPlaces.Prism.Helpers
     public class TranslateExtension : IMarkupExtension
     {
         private readonly CultureInfo ci;
+<<<<<<< HEAD
         private const string ResourceId = "TravelExpenses.Prism.Resources.Resource";
+=======
+        private const string ResourceId = "RollingPlaces.Prism.Resources.Resource";
+>>>>>>> RamaJulian
         private static readonly Lazy<ResourceManager> ResMgr =
             new Lazy<ResourceManager>(() => new ResourceManager(
                 ResourceId,
@@ -49,4 +63,9 @@ namespace RollingPlaces.Prism.Helpers
             return translation;
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> RamaJulian

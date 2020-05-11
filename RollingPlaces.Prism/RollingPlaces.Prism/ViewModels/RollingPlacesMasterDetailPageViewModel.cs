@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using RollingPlaces.Common.Models;
+using RollingPlaces.Prism.Helpers;
+
 
 namespace RollingPlaces.Prism.ViewModels
 {
@@ -26,31 +28,32 @@ namespace RollingPlaces.Prism.ViewModels
                 {
                     Icon = "ic_airport_shuttle",
                     PageName = "HomePage",
-                    Title = "Home"
+                       Title = Languages.Home
+
                 },
                 new Menu
                 {
                     Icon = "ic_local_taxi",
                     PageName = "PlaceHistoryPage",
-                    Title = "See place information"
+                     Title = Languages.SeePlaceHistory
                 },
                 new Menu
                 {
                     Icon = "ic_account_circle",
                     PageName = "ModifyUserPage",
-                    Title = "Modify User"
+                   Title = Languages.ModifyUser
                 },
                 new Menu
                 {
                     Icon = "ic_report",
                     PageName = "ReportPage",
-                    Title = "Report an incident"
+                   Title = Languages.ReportanIncident
                 },
                 new Menu
                 {
                     Icon = "ic_exit_to_app",
                     PageName = "LoginPage",
-                    Title = "Log in"
+                   Title = Languages.LogIn
                 }
             };
 

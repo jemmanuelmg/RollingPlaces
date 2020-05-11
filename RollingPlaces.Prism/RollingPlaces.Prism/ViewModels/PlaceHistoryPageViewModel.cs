@@ -3,6 +3,7 @@ using Prism.Navigation;
 using System.Text.RegularExpressions;
 using RollingPlaces.Common.Models;
 using RollingPlaces.Common.Services;
+using RollingPlaces.Prism.Helpers;
 
 namespace RollingPlaces.Prism.ViewModels
 {
@@ -11,6 +12,13 @@ namespace RollingPlaces.Prism.ViewModels
         private readonly IApiService _apiService;
         private PlaceResponse _place;
         private DelegateCommand _checkNameCommand;
+        private bool _isRunning;
+
+        public bool IsRunning
+        {
+            get => _isRunning;
+            set => SetProperty(ref _isRunning, value);
+        }
 
         public PlaceHistoryPageViewModel(
             INavigationService navigationService,
@@ -18,7 +26,7 @@ namespace RollingPlaces.Prism.ViewModels
         {
 
             _apiService = apiService;
-            Title = "Place Information";
+            Title = Languages.PlaceHistory;
         }
 
         public PlaceResponse Place
@@ -36,9 +44,10 @@ namespace RollingPlaces.Prism.ViewModels
             if (string.IsNullOrEmpty(Name))
             {
                 await App.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter a name.",
-                    "Accept");
+                      Languages.Error,
+                    Languages.PlaceError1,
+                    Languages.Accept);
+
                 return;
             }
 
@@ -46,20 +55,35 @@ namespace RollingPlaces.Prism.ViewModels
             if (!regex.IsMatch(Name))
             {
                 await App.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "This place doesn't exist",
-                    "Accept");
+                     Languages.Error,
+                    Languages.PlaceError2,
+                    Languages.Accept);
+                return;
+            }
+            IsRunning = true;
+            var url = App.Current.Resources["UrlAPI"].ToString();
+            var connection = await _apiService.CheckConnectionAsync(url);
+            if (!connection)
+            {
+                IsRunning = false;
+                await App.Current.MainPage.DisplayAlert(Languages.Error,
+                    Languages.ConnectionError,
+                    Languages.Accept);
+
                 return;
             }*/
 
-            string url = App.Current.Resources["UrlAPI"].ToString();
-            Response response = await _apiService.GetPlaceAsync(Name, url, "api", "/Places");
+           Response response = await _apiService.GetPlaceAsync(Name, url, "api", "/Taxis");
+         
+            IsRunning = false;
+
             if (!response.IsSuccess)
             {
                 await App.Current.MainPage.DisplayAlert(
-                    "Error",
+                    Languages.Error,
                     response.Message,
-                    "Accept");
+                    Languages.Accept);
+
                 return;
             }
 

@@ -6,6 +6,8 @@ namespace RollingPlaces.Common.Services
 {
     public interface IApiService
     {
+        Task<bool> CheckConnectionAsync(string url);
+
         Task<Response> GetPlaceAsync(string name, string urlBase, string servicePrefix, string controller);
 
         Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, TokenRequest request);

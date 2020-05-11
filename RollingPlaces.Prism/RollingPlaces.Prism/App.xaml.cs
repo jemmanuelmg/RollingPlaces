@@ -25,6 +25,7 @@ namespace RollingPlaces.Prism
 
         protected override async void OnInitialized()
         {
+            SyncfusionLicenseProvider.RegisterLicense("MjM1MDA1QDMxMzgyZTMxMmUzME81YmZCTldtMklhcDZQRkVoMThKQUJ2M3FLYVpzTkd4K0FLa1FJRmt4N289");
             InitializeComponent();
             await NavigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/HomePage");
             SyncfusionLicenseProvider.RegisterLicense("MjU0NjcyQDMxMzgyZTMxMmUzMGJ1T1hnaWw4dzJJODVuZm1PaFJYTlIxLy9uNHg4cEh3NCtCRzBJSjd2ZkE9");

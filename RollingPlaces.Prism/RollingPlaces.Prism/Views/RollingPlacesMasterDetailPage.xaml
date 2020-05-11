@@ -3,7 +3,8 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:prism="http://prismlibrary.com"
                   prism:ViewModelLocator.AutowireViewModel="True"
-                  x:Class="RollingPlaces.Prism.Views.RollingPlacesMasterDetailPage">
+                  x:Class="RollingPlaces.Prism.Views.RollingPlacesMasterDetailPage"
+                    BackgroundColor="{StaticResource ColorBackgroud}">
 
     <MasterDetailPage.Master>
         <ContentPage Title="Menu">
