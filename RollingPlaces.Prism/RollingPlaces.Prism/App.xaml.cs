@@ -26,14 +26,9 @@ namespace RollingPlaces.Prism
         protected override async void OnInitialized()
         {
             InitializeComponent();
-<<<<<<< HEAD
-
             await NavigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/HomePage");
-=======
             SyncfusionLicenseProvider.RegisterLicense("MjU0NjcyQDMxMzgyZTMxMmUzMGJ1T1hnaWw4dzJJODVuZm1PaFJYTlIxLy9uNHg4cEh3NCtCRzBJSjd2ZkE9");
-            //await NavigationService.NavigateAsync("NavigationPage/LoginPage");
-            await NavigationService.NavigateAsync("NavigationPage/ModifyUserPage");
->>>>>>> RamaEmmanuel
+            
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -41,26 +36,19 @@ namespace RollingPlaces.Prism
             containerRegistry.Register<IApiService, ApiService>();
             containerRegistry.Register<IFilesHelper, FilesHelper>();
             containerRegistry.Register<IRegexHelper, RegexHelper>();
-            containerRegistry.RegisterForNavigation<NavigationPage>();
-<<<<<<< HEAD
             containerRegistry.Register<IGeolocatorService, GeolocatorService>();
             containerRegistry.Register<IApiService, ApiService>();
-
+            containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
             containerRegistry.RegisterForNavigation<RollingPlacesMasterDetailPage, RollingPlacesMasterDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<PlaceHistoryPage, PlaceHistoryPageViewModel>();
-            containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
             containerRegistry.RegisterForNavigation<ReportPage, ReportPageViewModel>();
             containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
-=======
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
-            containerRegistry.RegisterForNavigation<LoginPage, LoginPageViewModel>();
             containerRegistry.RegisterForNavigation<RegisterPage, RegisterPageViewModel>();
             containerRegistry.RegisterForNavigation<RememberPasswordPage, RememberPasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
             containerRegistry.RegisterForNavigation<ModifyUserPage, ModifyUserPageViewModel>();
-            containerRegistry.RegisterForNavigation<ChangePasswordPage, ChangePasswordPageViewModel>();
->>>>>>> RamaEmmanuel
         }
     }
 }
