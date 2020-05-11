@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-﻿using Prism.Navigation;
-=======
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 using Prism.Commands;
 using Prism.Navigation;
 using RollingPlaces.Common.Helpers;
@@ -9,20 +6,10 @@ using RollingPlaces.Common.Models;
 using RollingPlaces.Common.Services;
 using RollingPlaces.Prism.Helpers;
 
->>>>>>> RamaEmmanuel
-
 namespace RollingPlaces.Prism.ViewModels
 {
     public class LoginPageViewModel : ViewModelBase
     {
-<<<<<<< HEAD
-        public LoginPageViewModel(INavigationService navigationService) : base(navigationService)
-        {
-            Title = "Login";
-        }
-    }
-}
-=======
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
         private bool _isRunning;
@@ -149,11 +136,7 @@ namespace RollingPlaces.Prism.ViewModels
             await _navigationService.NavigateAsync("NavigationPage/RememberPasswordPage");
         }
 
-
-
     }
 
 }
 
-
->>>>>>> RamaEmmanuel
