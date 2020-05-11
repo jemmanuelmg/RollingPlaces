@@ -1,11 +1,4 @@
 ﻿using Newtonsoft.Json;
-<<<<<<< HEAD
-using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using RollingPlaces.Common.Models;
-
-=======
 using Plugin.Connectivity;
 using System;
 using System.Collections.Generic;
@@ -15,13 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using RollingPlaces.Common.Models;
 
-
->>>>>>> RamaEmmanuel
 namespace RollingPlaces.Common.Services
 {
     public class ApiService : IApiService
     {
-<<<<<<< HEAD
+
         public async Task<Response> GetPlaceAsync(string name, string urlBase, string servicePrefix, string controller)
         {
             try
@@ -33,7 +24,34 @@ namespace RollingPlaces.Common.Services
 
                 string url = $"{servicePrefix}{controller}/{name}";
                 HttpResponseMessage response = await client.GetAsync(url);
-=======
+                string result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = result,
+                    };
+                }
+
+                PlaceResponse model = JsonConvert.DeserializeObject<PlaceResponse>(result);
+                return new Response
+                {
+                    IsSuccess = true,
+                    Result = model
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
+        
         public async Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, TokenRequest request)
         {
             try
@@ -90,7 +108,6 @@ namespace RollingPlaces.Common.Services
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
                 string url = $"{servicePrefix}{controller}";
                 HttpResponseMessage response = await client.PostAsync(url, content);
->>>>>>> RamaEmmanuel
                 string result = await response.Content.ReadAsStringAsync();
 
                 if (!response.IsSuccessStatusCode)
@@ -102,19 +119,11 @@ namespace RollingPlaces.Common.Services
                     };
                 }
 
-<<<<<<< HEAD
-                PlaceResponse model = JsonConvert.DeserializeObject<PlaceResponse>(result);
-                return new Response
-                {
-                    IsSuccess = true,
-                    Result = model
-=======
                 UserResponse userResponse = JsonConvert.DeserializeObject<UserResponse>(result);
                 return new Response
                 {
                     IsSuccess = true,
                     Result = userResponse
->>>>>>> RamaEmmanuel
                 };
             }
             catch (Exception ex)
@@ -126,8 +135,6 @@ namespace RollingPlaces.Common.Services
                 };
             }
         }
-<<<<<<< HEAD
-=======
 
         public async Task<bool> CheckConnectionAsync(string url)
         {
@@ -262,6 +269,5 @@ namespace RollingPlaces.Common.Services
             }
         }
 
->>>>>>> RamaEmmanuel
     }
 }
