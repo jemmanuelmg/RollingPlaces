@@ -11401,7 +11401,6 @@ namespace RollingPlaces.Prism.Droid
 			
 			// aapt resource value: 0x7F030060
 			public const int cameraZoom = 2130903136;
-=======
 			public const int busyIndicatorAnimationTypes = 2130903116;
 			
 			// aapt resource value: 0x7F03004D
@@ -12735,7 +12734,7 @@ namespace RollingPlaces.Prism.Droid
 			
 			// aapt resource value: 0x7F030208
 			public const int zOrderOnTop = 2130903560;
-=======
+
 			public const int closeIcon = 2130903168;
 			
 			// aapt resource value: 0x7F030081
@@ -16032,7 +16031,7 @@ namespace RollingPlaces.Prism.Droid
 			
 			// aapt resource value: 0x7F070155
 			public const int tooltip_frame_light = 2131165525;
-=======
+
 			public const int Avatar11 = 2131165276;
 			
 			// aapt resource value: 0x7F07005D
@@ -17621,7 +17620,7 @@ namespace RollingPlaces.Prism.Droid
 			
 			// aapt resource value: 0x7F080107
 			public const int wrap_content = 2131230983;
-=======
+
 			public const int box = 2131230759;
 			
 			// aapt resource value: 0x7F080028
@@ -19020,7 +19019,7 @@ namespace RollingPlaces.Prism.Droid
 			
 			// aapt resource value: 0x7F0D005F
 			public const int status_bar_notification_info_overflow = 2131558495;
-=======
+			
 			public const int library_name = 2131558446;
 			
 			// aapt resource value: 0x7F0D002F
