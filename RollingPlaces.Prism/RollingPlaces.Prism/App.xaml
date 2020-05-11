@@ -9,9 +9,48 @@
 
             <!-- Parameters -->
             <x:String x:Key="UrlAPI">https://rollingplaces.azurewebsites.net/</x:String>
+<<<<<<< HEAD
 
         </ResourceDictionary>
 
 
+=======
+            <x:String x:Key="UrlNoImage">https://rollingplaces.azurewebsites.net/images/noimage.png</x:String>
+
+            <!-- Colors -->
+            <Color x:Key="ColorBackgroud">#FFFFFF</Color>
+            <Color x:Key="ColorPrimary">#0311FC</Color>
+            <Color x:Key="ColorSecondary">#505AFC</Color>
+            <Color x:Key="ColorDanger">#4048C9</Color>
+            <Color x:Key="ColorAccent">#0311FC</Color>
+            <Color x:Key="ColorFont">#01087C</Color>
+            <Color x:Key="ColorFontInverse">#FFFFFF</Color>
+
+            <!-- Styles -->
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorAccent}" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="TextColor" Value="{StaticResource ColorFontInverse}" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource ColorFont}" />
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorFontInverse}" />
+            </Style>
+
+            <Style x:Key="SecondaryButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorSecondary}" />
+            </Style>
+
+            <Style x:Key="DangerButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource ColorDanger}" />
+            </Style>
+          
+        </ResourceDictionary>
+>>>>>>> RamaEmmanuel
     </Application.Resources>
 </prism:PrismApplication>

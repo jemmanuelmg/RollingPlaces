@@ -2,8 +2,101 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
+             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RollingPlaces.Prism.Views.ModifyUserPage"
+             BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
+
+  <AbsoluteLayout>
+    <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                 AbsoluteLayout.LayoutFlags="All"
+                 Margin="15">
+      <ScrollView>
+        <StackLayout>
+          <ffimageloading:CachedImage Aspect="AspectFit"
+                                      Source="{Binding Image}"
+                                      CacheDuration= "50"
+                                      HeightRequest="150"
+                                      Margin="5"
+                                      RetryCount= "3"
+                                      RetryDelay= "600">
+            <ffimageloading:CachedImage.Transformations>
+              <fftransformations:CircleTransformation />
+            </ffimageloading:CachedImage.Transformations>
+            <ffimageloading:CachedImage.GestureRecognizers>
+              <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+            </ffimageloading:CachedImage.GestureRecognizers>
+          </ffimageloading:CachedImage>
+
+          <Label>Aquí puedes cambiar tus datos personales. Si deseas cambiar tu contraseña toca en el botón de la parte inferior.</Label>
+
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="*"/>
+              <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Text="Nombres"
+                   VerticalOptions="Center"/>
+            <Entry Grid.Row="0"
+                   Grid.Column="1"
+                   Placeholder="Ingrese aquí sus nombres"
+                   Text="{Binding User.FirstName}"/>
+
+            <Label Grid.Row="1"
+                   Grid.Column="0"
+                   Text="Apellidos"
+                   VerticalOptions="Center"/>
+            <Entry Grid.Row="1"
+                   Grid.Column="1"
+                   Placeholder="Ingrese aquí sus apellidos"
+                   Text="{Binding User.LastName}"/>
+
+            <Label Grid.Row="2"
+                   Grid.Column="0"
+                   Text="Teléfono"
+                   VerticalOptions="Center"/>
+            <Entry Grid.Row="2"
+                   Grid.Column="1"
+                   Keyboard="Telephone"
+                   Placeholder="Ingrese aquí su teléfono"
+                   Text="{Binding User.PhoneNumber}"/>
+          </Grid>
+        </StackLayout>
+      </ScrollView>
+      <StackLayout Orientation="Horizontal"
+                   VerticalOptions="EndAndExpand">
+        <Button Command="{Binding SaveCommand}"
+                IsEnabled="{Binding IsEnabled}"
+                Text="Guardar"/>
+        <Button Command="{Binding ChangePasswordCommand}"
+                IsEnabled="{Binding IsEnabled}"
+                Text="Cambiar Contraseña"
+                Style="{StaticResource DangerButton}"/>
+      </StackLayout>
+    </StackLayout>
+    <busyindicator:SfBusyIndicator AnimationType="Gear"
+                                   AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                                   AbsoluteLayout.LayoutFlags="All"
+                                   BackgroundColor="{StaticResource ColorAccent}"
+                                   HorizontalOptions="Center"
+                                   TextColor="{StaticResource ColorFontInverse}"
+                                   IsVisible="{Binding IsRunning}"
+                                   Title="Cargando..."
+                                   VerticalOptions="Center"
+                                   ViewBoxWidth="80"
+                                   ViewBoxHeight="80" />
+  </AbsoluteLayout>
 
 </ContentPage>

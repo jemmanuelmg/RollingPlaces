@@ -5,6 +5,8 @@ using Plugin.CurrentActivity;
 using Plugin.Permissions;
 using Prism;
 using Prism.Ioc;
+using Xamarin.Forms;
+using Syncfusion.SfBusyIndicator.XForms.Droid;
 
 namespace RollingPlaces.Prism.Droid
 {
@@ -13,6 +15,8 @@ namespace RollingPlaces.Prism.Droid
     {
         protected override void OnCreate(Bundle bundle)
         {
+            Forms.SetFlags("CollectionView_Experimental");
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
@@ -20,7 +24,12 @@ namespace RollingPlaces.Prism.Droid
 
             base.OnCreate(bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
+<<<<<<< HEAD
             
+=======
+            new SfBusyIndicatorRenderer();
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
+>>>>>>> RamaEmmanuel
             LoadApplication(new App(new AndroidInitializer()));
         }
 
