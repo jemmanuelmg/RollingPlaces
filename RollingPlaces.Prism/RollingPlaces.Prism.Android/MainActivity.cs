@@ -24,12 +24,9 @@ namespace RollingPlaces.Prism.Droid
 
             base.OnCreate(bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
-<<<<<<< HEAD
-            
-=======
+
             new SfBusyIndicatorRenderer();
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
->>>>>>> RamaEmmanuel
             LoadApplication(new App(new AndroidInitializer()));
         }
 
