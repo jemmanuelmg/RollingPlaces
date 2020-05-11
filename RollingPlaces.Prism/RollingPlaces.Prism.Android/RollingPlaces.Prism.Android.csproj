@@ -55,7 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <PackageReference Include="Plugin.CurrentActivity">
       <Version>2.1.0.4</Version>
     </PackageReference>
@@ -73,7 +72,6 @@
     <PackageReference Include="Xamarin.Forms.Maps">
       <Version>4.6.0.726</Version>
     </PackageReference>
-=======
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator">
       <Version>18.1.0.48</Version>
     </PackageReference>
@@ -97,7 +95,6 @@
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.1" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1367" />
->>>>>>> RamaEmmanuel
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -132,7 +129,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <AndroidResource Include="Resources\drawable\rollingplaces.png" />
   </ItemGroup>
   <ItemGroup>
@@ -149,7 +145,8 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_exit_to_app.png" />
-=======
+  </ItemGroup>
+  <ItemGroup>
     <AndroidResource Include="Resources\drawable\landscape1.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +160,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\xml\file_paths.xml" />
->>>>>>> RamaEmmanuel
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
