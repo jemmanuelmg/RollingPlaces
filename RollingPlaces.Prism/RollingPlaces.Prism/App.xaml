@@ -8,44 +8,9 @@
         <ResourceDictionary>
 
             <!-- Parameters -->
-<<<<<<< HEAD
+
             <x:String x:Key="UrlAPI">https://rollingplaces.azurewebsites.net/</x:String>
             <x:String x:Key="UrlNoImage">https://rollingplaces.azurewebsites.net/images/noimage.png</x:String>
-=======
-            <x:String x:Key="UrlAPI">https://taxiweb0.azurewebsites.net/</x:String>
-            <!-- Colors -->
-            <Color x:Key="ColorBackgroud">#909992</Color>
-            <Color x:Key="ColorPrimary">#1865FF</Color>
-            <Color x:Key="ColorSecondary">#FF7B00</Color>
-            <Color x:Key="ColorDanger">#FF3001</Color>
-            <Color x:Key="ColorAccent">#64FF5D</Color>
-            <Color x:Key="ColorFont">#3D3D3D</Color>
-            <Color x:Key="ColorFontInverse">#000000</Color>
-            
-            <!-- Styles -->
-            <Style TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{StaticResource ColorAccent}" />
-                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
-                <Setter Property="CornerRadius" Value="10" />
-                <Setter Property="TextColor" Value="{StaticResource ColorFontInverse}" />
-            </Style>
-
-            <Style TargetType="Label">
-                <Setter Property="TextColor" Value="{StaticResource ColorFont}" />
-            </Style>
-
-            <Style TargetType="Entry">
-                <Setter Property="BackgroundColor" Value="{StaticResource ColorFontInverse}" />
-            </Style>
-
-            <Style x:Key="SecondaryButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{StaticResource ColorSecondary}" />
-            </Style>
-
-            <Style x:Key="DangerButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{StaticResource ColorDanger}" />
-            </Style>
->>>>>>> RamaJulian
 
             <!-- Colors -->
             <Color x:Key="ColorBackgroud">#FFFFFF</Color>
