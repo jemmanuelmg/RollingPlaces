@@ -20,7 +20,6 @@ namespace RollingPlaces.Prism.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IFilesHelper _filesHelper;
         private readonly IApiService _apiService;
-
         private bool _isRunning;
         private bool _isEnabled;
         private ImageSource _image;
@@ -35,13 +34,10 @@ namespace RollingPlaces.Prism.ViewModels
             _navigationService = navigationService;
             _filesHelper = filesHelper;
             _apiService = apiService;
-
-          Title = Languages.ModifyUser;
+            Title = Languages.ModifyUser;
             IsEnabled = true;
             User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
             Image = string.IsNullOrEmpty(User.PictureFullPath) ? App.Current.Resources["UrlNoImage"].ToString() : User.PictureFullPath;
-            int a = 1;
-            int b = 2;
         }
 
         public DelegateCommand ChangeImageCommand => _changeImageCommand ?? (_changeImageCommand = new DelegateCommand(ChangeImageAsync));
@@ -124,7 +120,7 @@ namespace RollingPlaces.Prism.ViewModels
             }
 
             Settings.User = JsonConvert.SerializeObject(User);
-            //TravelMasterDetailPageViewModel.GetInstance().ReloadUser();
+            RollingPlacesMasterDetailPageViewModel.GetInstance().ReloadUser();
             await App.Current.MainPage.DisplayAlert("Ok", "El usuario se ha actualizado correctamente", "Aceptar");
 
         }

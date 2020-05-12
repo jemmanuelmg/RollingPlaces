@@ -86,7 +86,7 @@ namespace RollingPlaces.Prism.ViewModels
 
             await App.Current.MainPage.DisplayAlert("Ok", response.Message, "Aceptar");
 
-            await _navigationService.NavigateAsync("/NavigationPage/MainPage");
+            await _navigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/LoginPage");
         }
 
         private async Task<bool> ValidateData()

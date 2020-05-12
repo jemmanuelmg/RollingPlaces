@@ -51,17 +51,8 @@ namespace RollingPlaces.Prism.ViewModels
                 return;
             }
 
-            /*Regex regex = new Regex(@"^([A-Za-z]{3}\d{3})$");
-            if (!regex.IsMatch(Name))
-            {
-                await App.Current.MainPage.DisplayAlert(
-                     Languages.Error,
-                    Languages.PlaceError2,
-                    Languages.Accept);
-                return;
-            }
             IsRunning = true;
-            var url = App.Current.Resources["UrlAPI"].ToString();
+            string url = App.Current.Resources["UrlAPI"].ToString();
             var connection = await _apiService.CheckConnectionAsync(url);
             if (!connection)
             {
@@ -71,10 +62,9 @@ namespace RollingPlaces.Prism.ViewModels
                     Languages.Accept);
 
                 return;
-            }*/
-            var url = App.Current.Resources["UrlAPI"].ToString();
-           Response response = await _apiService.GetPlaceAsync(Name,url, "api", "/Place");
-         
+            }
+
+            Response response = await _apiService.GetPlaceAsync(Name,url, "api", "/Places");
             IsRunning = false;
 
             if (!response.IsSuccess)
@@ -88,10 +78,6 @@ namespace RollingPlaces.Prism.ViewModels
             }
 
             Place = (PlaceResponse)response.Result;
-
-            int a = 1;
-            int b = 1;
-            int c = 1;
         }
     }
 }

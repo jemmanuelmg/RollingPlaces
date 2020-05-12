@@ -7,6 +7,8 @@
              x:Class="RollingPlaces.Prism.Views.LoginPage"
              BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
+
+    <ScrollView>
     <AbsoluteLayout>
 
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
@@ -88,4 +90,5 @@
                                        ViewBoxHeight="80" />
 
     </AbsoluteLayout>
+    </ScrollView>
 </ContentPage>

@@ -14,11 +14,11 @@
 
             <!-- Colors -->
             <Color x:Key="ColorBackgroud">#FFFFFF</Color>
-            <Color x:Key="ColorPrimary">#0311FC</Color>
-            <Color x:Key="ColorSecondary">#505AFC</Color>
+            <Color x:Key="ColorPrimary">#1865FF</Color>
+            <Color x:Key="ColorSecondary">#FF7B00</Color>
             <Color x:Key="ColorDanger">#4048C9</Color>
             <Color x:Key="ColorAccent">#0311FC</Color>
-            <Color x:Key="ColorFont">#01087C</Color>
+            <Color x:Key="ColorFont">#3D3D3D</Color>
             <Color x:Key="ColorFontInverse">#FFFFFF</Color>
 
             <!-- Styles -->
@@ -34,11 +34,11 @@
             </Style>
 
             <Style TargetType="Entry">
-                <Setter Property="BackgroundColor" Value="{StaticResource ColorFontInverse}" />
+                <Setter Property="BackgroundColor" Value="#FFFFFF" />
             </Style>
 
             <Style x:Key="SecondaryButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{StaticResource ColorSecondary}" />
+                <Setter Property="BackgroundColor" Value="#FFFFFF" />
             </Style>
 
             <Style x:Key="DangerButton" TargetType="Button">

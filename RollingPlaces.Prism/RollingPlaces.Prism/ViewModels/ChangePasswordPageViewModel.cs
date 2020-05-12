@@ -83,7 +83,7 @@ namespace RollingPlaces.Prism.ViewModels
             }
 
             await App.Current.MainPage.DisplayAlert("Ok", response.Message, "Aceptar");
-            await _navigationService.NavigateAsync(nameof(LoginPage));
+            await _navigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/HomePage");
 
         }
 

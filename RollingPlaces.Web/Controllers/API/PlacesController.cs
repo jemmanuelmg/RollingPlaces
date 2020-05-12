@@ -24,16 +24,14 @@ namespace RollingPlaces.Web.Controllers.API
             {
                 return BadRequest(ModelState);
             }
-
-            
-            PlaceEntity placeEntity = await _context.Places.FirstOrDefaultAsync(t => t.Name == name);
-
-            if (placeEntity == null)
-            {
-                 _context.Places.Add(new PlaceEntity { Name = name });
-                 await _context.SaveChangesAsync();
-                 placeEntity = await _context.Places.FirstOrDefaultAsync(t => t.Name == name);              
-            }
+                        
+            PlaceEntity placeEntity = await _context.Places
+                .Include(t => t.User)
+                .Include(t => t.City)
+                .Include(t => t.Category)
+                .Include(t => t.Photos).
+                //FirstOrDefaultAsync(t => t.Name == name);
+                FirstOrDefaultAsync(t => t.Name.Contains(name) == true);
 
             return Ok(placeEntity);
         }

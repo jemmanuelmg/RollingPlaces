@@ -122,18 +122,18 @@ namespace RollingPlaces.Prism.ViewModels
             IsEnabled = true;
 
             await App.Current.MainPage.DisplayAlert("Ok", "Sesion iniciada correctamente", "Aceptar");
-            await _navigationService.NavigateAsync("NavigationPage/MainPage");
+            await _navigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/HomePage");
             Password = string.Empty;
         }
 
         private async void RegisterAsync()
         {
-            await _navigationService.NavigateAsync("NavigationPage/RegisterPage");
+            await _navigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/RegisterPage");
         }
 
         private async void ForgotPasswordAsync()
         {
-            await _navigationService.NavigateAsync("NavigationPage/RememberPasswordPage");
+            await _navigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/RememberPasswordPage");
         }
 
     }

@@ -10,6 +10,7 @@
              BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
 
+    <ScrollView>
     <AbsoluteLayout>
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All"
@@ -122,4 +123,5 @@
                                        ViewBoxWidth="80"
                                        ViewBoxHeight="80" />
     </AbsoluteLayout>
+    </ScrollView>
 </ContentPage>
