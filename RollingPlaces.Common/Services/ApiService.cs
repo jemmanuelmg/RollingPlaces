@@ -44,11 +44,11 @@ namespace RollingPlaces.Common.Services
                     };
                 }
 
-                PlaceResponse model = JsonConvert.DeserializeObject<PlaceResponse>(result);
+                List<PlaceResponse> places = JsonConvert.DeserializeObject<List<PlaceResponse>>(result);
                 return new Response
                 {
                     IsSuccess = true,
-                    Result = model
+                    Result = places
                 };
             }
             catch (Exception ex)

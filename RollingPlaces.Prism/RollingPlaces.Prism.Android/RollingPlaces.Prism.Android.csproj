@@ -170,5 +170,8 @@
     <AndroidResource Include="Resources\xml\file_paths.xml" />
     <AndroidResource Include="Resources\drawable\Places_Splash.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_arrow_forward_ios.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
