@@ -25,22 +25,66 @@ namespace RollingPlaces.Web.Controllers.API
             _converterHelper = converterHelper;
         }
 
-        [HttpGet("{phrase}")]
-        public async Task<IActionResult> GetPlaceEntity([FromRoute] string phrase)
+        [HttpPost]
+        [Route("GetPlaces")]
+        public async Task<IActionResult> GetPlaceEntity([FromBody] PlaceRequest placeRequest)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var placeEntities = await _context.Places
-                .Where(t => t.Name.Contains(phrase) == true)
+            var placeEntities = await _context.Places.ToListAsync();
+
+            if (string.IsNullOrEmpty(placeRequest.Keywords) && placeRequest.CategoryId == 777)
+            {
+                placeEntities = await _context.Places
+                .Where(t => t.City.Id == placeRequest.CityId)
                 .Include(t => t.User)
                 .Include(t => t.City)
                 .Include(t => t.Category)
                 .Include(t => t.Qualifications)
                 .Include(t => t.Photos)
                 .ToListAsync();
+
+            }
+            else if (!string.IsNullOrEmpty(placeRequest.Keywords) && placeRequest.CategoryId != 777)
+            {
+                placeEntities = await _context.Places
+               .Where(t => t.City.Id == placeRequest.CityId)
+               .Where(t => t.Category.Id == placeRequest.CategoryId)
+               .Where(t => t.Name.Contains(placeRequest.Keywords) == true)
+               .Include(t => t.User)
+               .Include(t => t.City)
+               .Include(t => t.Category)
+               .Include(t => t.Qualifications)
+               .Include(t => t.Photos)
+               .ToListAsync();
+            }
+            else if (string.IsNullOrEmpty(placeRequest.Keywords) && placeRequest.CategoryId != 777)
+            {
+                placeEntities = await _context.Places
+               .Where(t => t.City.Id == placeRequest.CityId)
+               .Where(t => t.Category.Id == placeRequest.CategoryId)
+               .Include(t => t.User)
+               .Include(t => t.City)
+               .Include(t => t.Category)
+               .Include(t => t.Qualifications)
+               .Include(t => t.Photos)
+               .ToListAsync();
+            }
+            else if (!string.IsNullOrEmpty(placeRequest.Keywords) && placeRequest.CategoryId == 777)
+            {
+                placeEntities = await _context.Places
+               .Where(t => t.City.Id == placeRequest.CityId)
+               .Where(t => t.Name.Contains(placeRequest.Keywords) == true)
+               .Include(t => t.User)
+               .Include(t => t.City)
+               .Include(t => t.Category)
+               .Include(t => t.Qualifications)
+               .Include(t => t.Photos)
+               .ToListAsync();
+            }
 
             List<PlaceResponse> placesList = new List<PlaceResponse>();
             foreach (PlaceEntity element in placeEntities)

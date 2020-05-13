@@ -1,10 +1,10 @@
 ﻿using Prism.Commands;
 using Prism.Navigation;
-using System.Text.RegularExpressions;
 using RollingPlaces.Common.Models;
 using RollingPlaces.Common.Services;
 using RollingPlaces.Prism.Helpers;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace RollingPlaces.Prism.ViewModels
@@ -13,10 +13,26 @@ namespace RollingPlaces.Prism.ViewModels
     {
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
-        private PlaceResponse _place;
         private DelegateCommand _checkNameCommand;
         private bool _isRunning;
         private List<PlaceItemViewModel> _places;
+        private ObservableCollection<PlaceCategory> _categories;
+        private ObservableCollection<PlaceCity> _cities;
+        private PlaceCategory _category;
+        private PlaceCity _city;
+
+
+        public PlaceHistoryPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
+        {
+            _navigationService = navigationService;
+            _apiService = apiService;
+            Categories = new ObservableCollection<PlaceCategory>(CombosHelper.GetPlaceCategories());
+            Cities = new ObservableCollection<PlaceCity>(CombosHelper.GetPlaceCities());
+            Category = new PlaceCategory() { Id = 777, Name = "Todas las categorías" };
+            City = new PlaceCity() { Id = 1, Name = "Medellín" };
+            Title = Languages.PlaceHistory;
+        }
+
 
         public bool IsRunning
         {
@@ -24,17 +40,34 @@ namespace RollingPlaces.Prism.ViewModels
             set => SetProperty(ref _isRunning, value);
         }
 
-        public PlaceHistoryPageViewModel(INavigationService navigationService, IApiService apiService) : base(navigationService)
-        {
-            _navigationService = navigationService;
-            _apiService = apiService;
-            Title = Languages.PlaceHistory;
-        }
-
         public List<PlaceItemViewModel> Places
         {
             get => _places;
             set => SetProperty(ref _places, value);
+        }
+
+        public PlaceCategory Category
+        {
+            get => _category;
+            set => SetProperty(ref _category, value);
+        }
+
+        public ObservableCollection<PlaceCategory> Categories
+        {
+            get => _categories;
+            set => SetProperty(ref _categories, value);
+        }
+
+        public PlaceCity City
+        {
+            get => _city;
+            set => SetProperty(ref _city, value);
+        }
+
+        public ObservableCollection<PlaceCity> Cities
+        {
+            get => _cities;
+            set => SetProperty(ref _cities, value);
         }
 
         public string Name { get; set; }
@@ -67,7 +100,8 @@ namespace RollingPlaces.Prism.ViewModels
                 return;
             }
 
-            Response response = await _apiService.GetPlaceAsync(Name, url, "api", "/Places");
+            PlaceRequest placeRequest = new PlaceRequest();
+            Response response = await _apiService.GetPlacesAsync(url, "api", "/Places/GetPlaces", placeRequest);
             IsRunning = false;
 
             if (!response.IsSuccess)
