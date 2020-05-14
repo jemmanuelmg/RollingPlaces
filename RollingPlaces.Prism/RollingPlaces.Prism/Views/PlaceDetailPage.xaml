@@ -3,36 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:badge ="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             x:Class="RollingPlaces.Prism.Views.PlaceDetailPage"
              ios:Page.UseSafeArea="true"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="RollingPlaces.Prism.Views.PlaceDetailPage"
-             xmlns:badge ="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
              BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
-
+    <ScrollView>
     <StackLayout Margin="15">
 
-        <Label Text="Detalles del Viaje" FontSize="Medium" FontAttributes="Bold"></Label>
+        <Label Text="{Binding Place.Name}" FontSize="40" FontAttributes="Italic"></Label>
 
-        <Label Text="Ciudad Destino" FontAttributes="Bold"/>
-        <Label Text="{Binding Travel.City}"/>
+        <rating:SfRating HorizontalOptions="Center" 
+                             IsEnabled="False"
+                             Margin="0,5"
+                             Precision="Exact"
+                             Value="{Binding Place.AverageScore}">
+            <rating:SfRating.RatingSettings>
+                <rating:SfRatingSettings RatedFill="{StaticResource ColorDanger}"/>
+            </rating:SfRating.RatingSettings>
+        </rating:SfRating>
 
-        <Label Text="Fecha de Inicio" FontAttributes="Bold"/>
-        <Label Text="{Binding Travel.StartDate}"/>
+        <Label Text="Descripción" FontAttributes="Bold"/>
+        <Label Text="{Binding Place.Description}"/>
 
-        <Label Text="Fecha de Finalización" FontAttributes="Bold"/>
-        <Label Text="{Binding Travel.EndDate}"/>
+        <Label Text="Ciudad" FontAttributes="Bold"/>
+        <Label Text="{Binding Place.City.Name}"/>
 
-        <Label Text="Total Gastos" FontAttributes="Bold"/>
+        <Label Text="Categoría" FontAttributes="Bold"/>
+        <Label Text="{Binding Place.Category.Name}"/>
+
+
+        <Label Text="Comentarios" FontSize="Medium" FontAttributes="Bold"></Label>
         <badge:SfBadgeView>
-            <badge:SfBadgeView BadgeText="{Binding Travel.TotalCost, StringFormat='${0}'}" HorizontalOptions="Start" />
+            <badge:SfBadgeView BadgeText="{Binding Place.QualificationCount, StringFormat='Calificaciones: {0}'}" HorizontalOptions="Start" />
         </badge:SfBadgeView>
-
-        <Label Text="Cantidad Gastos" FontAttributes="Bold"/>
-        <Label Text="{Binding Travel.ExpensesCount, StringFormat='{0} gastos'}"/>
-
-        <Label></Label>
-        <Label Text="Gastos relacionados" FontSize="Medium" FontAttributes="Bold"></Label>
 
         <Grid>
             <Grid.RowDefinitions>
@@ -40,18 +46,18 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
 
             <Label Grid.Column="0"
                        FontAttributes="Bold"
-                       Text="Valor"/>
+                       Text="Usuario"/>
 
             <Label Grid.Column="1"
                        FontAttributes="Bold"
-                       Text="Categoría"/>
+                       Text="Puntaje"/>
 
             <Label Grid.Column="2"
                        FontAttributes="Bold"
@@ -59,41 +65,39 @@
 
         </Grid>
 
-        <CollectionView ItemsSource="{Binding Travel.Expenses}">
+        <CollectionView ItemsSource="{Binding Places.Qualifications}">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="4*"/>
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0"
-                                   Text="{Binding Value, StringFormat='${0}'}"/>
+                                   Text="{Binding User.Name}"/>
                         <Label Grid.Column="1"
-                                   Text="{Binding ExpenseType.Name}"/>
+                                   Text="{Binding Value}"/>
                         <Label Grid.Column="2"
                                    LineBreakMode="TailTruncation"
                                    MaxLines="3"
                                    Text="{Binding Comment}"/>
-
                     </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             <CollectionView.EmptyView>
                 <StackLayout>
-                    <Label Text="No hay gastos registrados"
+                    <Label Text="No hay comentarios"
                        Margin="10,25,10,10"
                        FontAttributes="Bold"
                        FontSize="18"
                        HorizontalOptions="Fill"
                        HorizontalTextAlignment="Center" />
-                    <Label Text="Añade un nuevo gasto tocando en el botón"
+                    <Label Text="Se el primero en añadir un comentario a este lugar!"
                        FontAttributes="Italic"
                        FontSize="12"
                        HorizontalOptions="Fill"
@@ -103,11 +107,12 @@
         </CollectionView>
 
         <StackLayout>
-            <Button Command="{Binding NewExpenseCommand}" 
-                        Text="Agregar nuevo gasto"/>
+            <Button Command="{Binding GoToAddQualificationCommand}" 
+                        Text="Agregar nuevo comentario"/>
         </StackLayout>
 
 
     </StackLayout>
+    </ScrollView>
 
 </ContentPage>

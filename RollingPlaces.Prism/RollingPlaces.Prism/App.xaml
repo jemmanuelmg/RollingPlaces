@@ -14,7 +14,7 @@
 
             <!-- Colors -->
             <Color x:Key="ColorBackgroud">#FFFFFF</Color>
-            <Color x:Key="ColorPrimary">#1865FF</Color>
+            <Color x:Key="ColorPrimary">#FF7B00</Color>
             <Color x:Key="ColorSecondary">#FF7B00</Color>
             <Color x:Key="ColorDanger">#4048C9</Color>
             <Color x:Key="ColorAccent">#0311FC</Color>

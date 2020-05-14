@@ -29,7 +29,8 @@ namespace RollingPlaces.Prism
             InitializeComponent();
             await NavigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/HomePage");
             SyncfusionLicenseProvider.RegisterLicense("MjU0NjcyQDMxMzgyZTMxMmUzMGJ1T1hnaWw4dzJJODVuZm1PaFJYTlIxLy9uNHg4cEh3NCtCRzBJSjd2ZkE9");
-            
+            CrossCurrentActivity.Current.Activity.Window.SetStatusBarColor(androidColor);
+
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
