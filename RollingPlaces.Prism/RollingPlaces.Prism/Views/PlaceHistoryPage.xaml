@@ -16,12 +16,10 @@
             <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                          AbsoluteLayout.LayoutFlags="All">
                     <StackLayout Orientation="Horizontal">
-                        <Label Text="Palabras clave"
-                       VerticalOptions="Center"/>
 
                         <Entry HorizontalOptions="FillAndExpand"    
-                        Placeholder="{i18n:Translate PlacePlaceHolder}" 
-                        Text="{Binding Name}"
+                        Placeholder="Palabras clave" 
+                        Text="{Binding Keywords}"
                         VerticalOptions="Center"
                         Style="{StaticResource SecondaryButton}"/>
 
@@ -42,7 +40,7 @@
                     ItemDisplayBinding="{Binding Name}"
                     ItemsSource="{Binding Categories}"
                     SelectedItem="{Binding Category}"
-                    Title="Ciudad"/>
+                    Title="Categoria"/>
                 </StackLayout>
 
             <Grid>
@@ -52,8 +50,8 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
@@ -67,10 +65,10 @@
 
                 <Label Grid.Column="2"
                         FontAttributes="Bold"
-                        Text="Calificación"/>
+                        Text="Puntaje"/>
 
             </Grid>
-
+            <Label></Label>
             <CollectionView ItemsSource="{Binding Places}">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"/>
@@ -85,8 +83,8 @@
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
@@ -109,17 +107,17 @@
                 </CollectionView.ItemTemplate>
                 <CollectionView.EmptyView>
                     <StackLayout>
-                        <Label Text="No hay lugares"
-                        Margin="10,25,10,10"
-                        FontAttributes="Bold"
-                        FontSize="18"
-                        HorizontalOptions="Fill"
-                        HorizontalTextAlignment="Center" />
-                        <Label Text="No se encontraron lugares con estos criterios de búsqueda"
-                        FontAttributes="Italic"
-                        FontSize="12"
-                        HorizontalOptions="Fill"
-                        HorizontalTextAlignment="Center" />
+                        <Label Text="{Binding NoItemsTitle}"
+                            Margin="10,25,10,10"
+                            FontAttributes="Bold"
+                            FontSize="18"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center" />
+                        <Label Text="{Binding NoItemsMessage}"
+                            FontAttributes="Italic"
+                            FontSize="12"
+                            HorizontalOptions="Fill"
+                            HorizontalTextAlignment="Center" />
                     </StackLayout>
                 </CollectionView.EmptyView>
             </CollectionView>

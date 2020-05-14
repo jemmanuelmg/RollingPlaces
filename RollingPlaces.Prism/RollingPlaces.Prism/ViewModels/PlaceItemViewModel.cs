@@ -1,7 +1,5 @@
 ﻿using Prism.Commands;
 using Prism.Navigation;
-using RollingPlaces.Prism.Views;
-using RollingPlaces.Common.Models;
 using RollingPlaces.Common.Models;
 using RollingPlaces.Prism.Views;
 
@@ -23,7 +21,7 @@ namespace RollingPlaces.Prism.ViewModels
         {
             NavigationParameters parameters = new NavigationParameters
             {
-                { "travel", this }
+                { "place", this }
             };
 
             await _navigationService.NavigateAsync(nameof(PlaceDetailPage), parameters);

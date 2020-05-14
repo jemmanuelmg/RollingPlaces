@@ -89,9 +89,9 @@ namespace RollingPlaces.Prism.ViewModels
 
             menus.Add(new Menu
             {
-                Icon = "ic_local_taxi",
+                Icon = "ic_place",
                 PageName = "PlaceHistoryPage",
-                Title = Languages.SeePlaceHistory
+                Title = "Buscar Lugares"
             });
 
             menus.Add(new Menu

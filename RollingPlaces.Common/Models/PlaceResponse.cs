@@ -30,5 +30,7 @@ namespace RollingPlaces.Common.Models
         public CityResponse City { get; set; }
 
         public double AverageScore => Qualifications == null ? 0 : Qualifications.Average(q => q.Value);
+
+        public int QualificationCount => Qualifications == null ? 0 : Qualifications.Count;
     }
 }

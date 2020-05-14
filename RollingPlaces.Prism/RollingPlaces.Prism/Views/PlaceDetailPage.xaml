@@ -2,16 +2,112 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="http://prismlibrary.com"
-             xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RollingPlaces.Prism.Views.PlaceDetailPage"
+             xmlns:badge ="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
              BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
-    <ContentPage.Content>
+
+    <StackLayout Margin="15">
+
+        <Label Text="Detalles del Viaje" FontSize="Medium" FontAttributes="Bold"></Label>
+
+        <Label Text="Ciudad Destino" FontAttributes="Bold"/>
+        <Label Text="{Binding Travel.City}"/>
+
+        <Label Text="Fecha de Inicio" FontAttributes="Bold"/>
+        <Label Text="{Binding Travel.StartDate}"/>
+
+        <Label Text="Fecha de Finalización" FontAttributes="Bold"/>
+        <Label Text="{Binding Travel.EndDate}"/>
+
+        <Label Text="Total Gastos" FontAttributes="Bold"/>
+        <badge:SfBadgeView>
+            <badge:SfBadgeView BadgeText="{Binding Travel.TotalCost, StringFormat='${0}'}" HorizontalOptions="Start" />
+        </badge:SfBadgeView>
+
+        <Label Text="Cantidad Gastos" FontAttributes="Bold"/>
+        <Label Text="{Binding Travel.ExpensesCount, StringFormat='{0} gastos'}"/>
+
+        <Label></Label>
+        <Label Text="Gastos relacionados" FontSize="Medium" FontAttributes="Bold"></Label>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="0"
+                       FontAttributes="Bold"
+                       Text="Valor"/>
+
+            <Label Grid.Column="1"
+                       FontAttributes="Bold"
+                       Text="Categoría"/>
+
+            <Label Grid.Column="2"
+                       FontAttributes="Bold"
+                       Text="Comentario"/>
+
+        </Grid>
+
+        <CollectionView ItemsSource="{Binding Travel.Expenses}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="3*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0"
+                                   Text="{Binding Value, StringFormat='${0}'}"/>
+                        <Label Grid.Column="1"
+                                   Text="{Binding ExpenseType.Name}"/>
+                        <Label Grid.Column="2"
+                                   LineBreakMode="TailTruncation"
+                                   MaxLines="3"
+                                   Text="{Binding Comment}"/>
+
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+            <CollectionView.EmptyView>
+                <StackLayout>
+                    <Label Text="No hay gastos registrados"
+                       Margin="10,25,10,10"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       HorizontalOptions="Fill"
+                       HorizontalTextAlignment="Center" />
+                    <Label Text="Añade un nuevo gasto tocando en el botón"
+                       FontAttributes="Italic"
+                       FontSize="12"
+                       HorizontalOptions="Fill"
+                       HorizontalTextAlignment="Center" />
+                </StackLayout>
+            </CollectionView.EmptyView>
+        </CollectionView>
+
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Button Command="{Binding NewExpenseCommand}" 
+                        Text="Agregar nuevo gasto"/>
         </StackLayout>
-    </ContentPage.Content>
+
+
+    </StackLayout>
+
 </ContentPage>

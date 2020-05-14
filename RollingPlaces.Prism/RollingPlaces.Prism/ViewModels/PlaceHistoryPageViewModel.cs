@@ -28,11 +28,18 @@ namespace RollingPlaces.Prism.ViewModels
             _apiService = apiService;
             Categories = new ObservableCollection<PlaceCategory>(CombosHelper.GetPlaceCategories());
             Cities = new ObservableCollection<PlaceCity>(CombosHelper.GetPlaceCities());
-            Category = new PlaceCategory() { Id = 777, Name = "Todas las categorías" };
-            City = new PlaceCity() { Id = 1, Name = "Medellín" };
+            Category = new PlaceCategory() { Name = "Todas", Id = 777 };
+            City = null;
+            NoItemsTitle = "";
+            NoItemsMessage = "Busca lugares con palabras clave, por ciudad o por categoría.";
             Title = Languages.PlaceHistory;
         }
 
+        public string Keywords { get; set; }
+
+        public string NoItemsTitle { get; set; }
+
+        public string NoItemsMessage { get; set; }
 
         public bool IsRunning
         {
@@ -76,13 +83,12 @@ namespace RollingPlaces.Prism.ViewModels
 
         private async void GetPlacesAsync()
         {
-            if (string.IsNullOrEmpty(Name))
+            if (City == null)
             {
                 await App.Current.MainPage.DisplayAlert(
                     Languages.Error,
-                    Languages.PlaceError1,
+                    "Porfavor selecciona una ciudad",
                     Languages.Accept);
-
                 return;
             }
 
@@ -100,7 +106,13 @@ namespace RollingPlaces.Prism.ViewModels
                 return;
             }
 
-            PlaceRequest placeRequest = new PlaceRequest();
+            PlaceRequest placeRequest = new PlaceRequest() 
+            {
+                Keywords = Keywords,
+                CategoryId = Category.Id,
+                CityId = City.Id
+            };
+
             Response response = await _apiService.GetPlacesAsync(url, "api", "/Places/GetPlaces", placeRequest);
             IsRunning = false;
 
@@ -115,6 +127,11 @@ namespace RollingPlaces.Prism.ViewModels
             }
 
             List<PlaceResponse> places = (List<PlaceResponse>)response.Result;
+            if (places.Count == 0)
+            {
+                NoItemsTitle = "Sin resultados";
+                NoItemsMessage = "No se encontraron resultados. Introduce otros criterios de búsqueda diferentes.";
+            }
             Places = places.Select(t => new PlaceItemViewModel(_navigationService)
             {
                 Id = t.Id,
