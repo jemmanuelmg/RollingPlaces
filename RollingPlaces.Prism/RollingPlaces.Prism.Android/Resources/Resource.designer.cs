@@ -18002,16 +18002,34 @@ namespace RollingPlaces.Prism.Droid
 			public const int password = 2131165611;
 			
 			// aapt resource value: 0x7F0701AC
-			public const int Places_Splash = 2131165612;
+			public const int photo1 = 2131165612;
 			
 			// aapt resource value: 0x7F0701AD
-			public const int rollingplaces = 2131165613;
+			public const int photo2 = 2131165613;
 			
 			// aapt resource value: 0x7F0701AE
-			public const int tooltip_frame_dark = 2131165614;
+			public const int photo3 = 2131165614;
 			
 			// aapt resource value: 0x7F0701AF
-			public const int tooltip_frame_light = 2131165615;
+			public const int photo4 = 2131165615;
+			
+			// aapt resource value: 0x7F0701B0
+			public const int photo5 = 2131165616;
+			
+			// aapt resource value: 0x7F0701B1
+			public const int photo6 = 2131165617;
+			
+			// aapt resource value: 0x7F0701B2
+			public const int Places_Splash = 2131165618;
+			
+			// aapt resource value: 0x7F0701B3
+			public const int rollingplaces = 2131165619;
+			
+			// aapt resource value: 0x7F0701B4
+			public const int tooltip_frame_dark = 2131165620;
+			
+			// aapt resource value: 0x7F0701B5
+			public const int tooltip_frame_light = 2131165621;
 			
 			static Drawable()
 			{

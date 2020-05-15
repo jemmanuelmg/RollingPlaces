@@ -16,5 +16,7 @@ namespace RollingPlaces.Web.Helpers
         CategoryResponse ToCategoryResponse(CategoryEntity category);
 
         CityResponse ToCityResponse(CityEntity city);
+
+        QualificationResponse ToQualificationResponse(QualificationEntity qualification);
     }
 }

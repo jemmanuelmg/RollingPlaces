@@ -13,35 +13,24 @@
     <ScrollView>
     <AbsoluteLayout>
         <StackLayout Padding="15">
-            <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
-                         AbsoluteLayout.LayoutFlags="All">
-                    <StackLayout Orientation="Horizontal">
-
-                        <Entry HorizontalOptions="FillAndExpand"    
-                        Placeholder="Palabras clave" 
-                        Text="{Binding Keywords}"
-                        VerticalOptions="Center"
-                        Style="{StaticResource SecondaryButton}"/>
-
-                        <Button 
-                        Command="{Binding CheckNameCommand}"
-                        Text="Buscar"/>
-                    </StackLayout>
-            </StackLayout>
 
             <StackLayout>
-                    <Picker 
-                    ItemDisplayBinding="{Binding Name}"
+                <Entry HorizontalOptions="FillAndExpand"    
+                    Placeholder="Palabras clave" 
+                    Text="{Binding Keywords}"
+                    VerticalOptions="Center"
+                    Style="{StaticResource SecondaryButton}"/>
+                
+                <Picker ItemDisplayBinding="{Binding Name}"
                     ItemsSource="{Binding Cities}"
                     SelectedItem="{Binding City}"
                     Title="Ciudad"/>
                 
-                    <Picker 
-                    ItemDisplayBinding="{Binding Name}"
+                <Picker ItemDisplayBinding="{Binding Name}"
                     ItemsSource="{Binding Categories}"
                     SelectedItem="{Binding Category}"
                     Title="Categoria"/>
-                </StackLayout>
+            </StackLayout>
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -69,7 +58,7 @@
 
             </Grid>
             <Label></Label>
-            <CollectionView ItemsSource="{Binding Places}">
+            <CollectionView ItemsSource="{Binding Places}" HeightRequest="440">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
@@ -121,6 +110,12 @@
                     </StackLayout>
                 </CollectionView.EmptyView>
             </CollectionView>
+
+            <StackLayout>
+                <Button Command="{Binding CheckNameCommand}"
+                        Text="Buscar"/>
+            </StackLayout>
+            
         </StackLayout>
 
         <busyindicator:SfBusyIndicator AnimationType="Globe" 

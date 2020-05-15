@@ -6,6 +6,7 @@
              xmlns:badge ="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
              xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:carousel="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms"
              x:Class="RollingPlaces.Prism.Views.PlaceDetailPage"
              ios:Page.UseSafeArea="true"
              prism:ViewModelLocator.AutowireViewModel="True"
@@ -32,8 +33,10 @@
                         Text="{Binding ShowMapButtonText}"/>
         </StackLayout>
 
-        <StackLayout IsVisible="{Binding ActivateDetails}">
-            <Label Text="Descripción" FontAttributes="Bold"/>
+        <ScrollView IsVisible="{Binding ActivateDetails}">
+        <StackLayout>
+            <Label></Label>
+            <Label Text="Descripción" FontAttributes="Bold" FontSize="Medium"/>
             <Label Text="{Binding Place.Description}"/>
 
             <Grid>
@@ -105,7 +108,7 @@
 
             </Grid>
 
-            <CollectionView ItemsSource="{Binding Place.Qualifications}">
+            <CollectionView ItemsSource="{Binding Place.Qualifications}" HeightRequest="200">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"/>
                 </CollectionView.ItemsLayout>
@@ -119,18 +122,25 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Column="0"
-                                    Text="{Binding User.FullName}"/>
+                        Text="{Binding User.FullName}"/>
                             <Label Grid.Column="1"
-                                    Text="{Binding Value}"/>
+                        Text="{Binding Value}"/>
                             <Label Grid.Column="2"
-                                    LineBreakMode="TailTruncation"
-                                    MaxLines="5"
-                                    Text="{Binding Comment}"/>
+                        LineBreakMode="TailTruncation"
+                        MaxLines="5"
+                        Text="{Binding Comment}"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </StackLayout>
+
+            <StackLayout>
+                <Label Text="Imágenes del Lugar" FontAttributes="Bold" FontSize="Medium"></Label>
+                <carousel:SfCarousel x:Name="carousel" HeightRequest="350" WidthRequest="400"/>
+            </StackLayout>
+            <Label></Label>
+            </StackLayout>
+        </ScrollView>
 
         <maps:Map x:Name="MyMap" MapType="Street" IsVisible="{Binding ActivateMap}" />
 
