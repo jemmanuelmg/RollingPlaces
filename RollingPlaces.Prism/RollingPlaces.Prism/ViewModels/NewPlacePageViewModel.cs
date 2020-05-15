@@ -64,7 +64,7 @@ namespace RollingPlaces.Prism.ViewModels
 
         public string Source
         {
-            get => _buttonLabel ;
+            get => _buttonLabel;
             set => SetProperty(ref _buttonLabel, value);
         }
 
