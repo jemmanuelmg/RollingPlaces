@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using RollingPlaces.Common.Helpers;
 using RollingPlaces.Common.Services;
+using Xamarin.Forms.PlatformConfiguration;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace RollingPlaces.Prism
@@ -29,7 +30,6 @@ namespace RollingPlaces.Prism
             InitializeComponent();
             await NavigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/HomePage");
             SyncfusionLicenseProvider.RegisterLicense("MjU0NjcyQDMxMzgyZTMxMmUzMGJ1T1hnaWw4dzJJODVuZm1PaFJYTlIxLy9uNHg4cEh3NCtCRzBJSjd2ZkE9");
-            CrossCurrentActivity.Current.Activity.Window.SetStatusBarColor(androidColor);
 
         }
 

@@ -22,6 +22,7 @@ namespace RollingPlaces.Prism.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             CrossCurrentActivity.Current.Init(this, bundle);
+            CrossCurrentActivity.Current.Activity.Window.SetStatusBarColor(Android.Graphics.Color.DarkOrange);
 
             base.OnCreate(bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);

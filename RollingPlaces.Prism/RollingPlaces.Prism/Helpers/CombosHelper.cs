@@ -11,6 +11,7 @@ namespace RollingPlaces.Prism.Helpers
         {
             return new List<PlaceCategory>
             {
+                new PlaceCategory { Id = 777, Name = "Todas las categorías" },
                 new PlaceCategory { Id = 1, Name = "Turístico" },
                 new PlaceCategory { Id = 2, Name = "Restaurante" },
                 new PlaceCategory { Id = 3, Name = "Almacén" },

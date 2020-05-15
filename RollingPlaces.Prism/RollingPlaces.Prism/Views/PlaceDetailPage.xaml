@@ -5,114 +5,135 @@
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              xmlns:badge ="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
              xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              x:Class="RollingPlaces.Prism.Views.PlaceDetailPage"
              ios:Page.UseSafeArea="true"
              prism:ViewModelLocator.AutowireViewModel="True"
              BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
-    <ScrollView>
+
     <StackLayout Margin="15">
 
-        <Label Text="{Binding Place.Name}" FontSize="40" FontAttributes="Italic"></Label>
-
-        <rating:SfRating HorizontalOptions="Center" 
-                             IsEnabled="False"
-                             Margin="0,5"
-                             Precision="Exact"
-                             Value="{Binding Place.AverageScore}">
-            <rating:SfRating.RatingSettings>
-                <rating:SfRatingSettings RatedFill="{StaticResource ColorDanger}"/>
-            </rating:SfRating.RatingSettings>
-        </rating:SfRating>
-
-        <Label Text="Descripción" FontAttributes="Bold"/>
-        <Label Text="{Binding Place.Description}"/>
-
-        <Label Text="Ciudad" FontAttributes="Bold"/>
-        <Label Text="{Binding Place.City.Name}"/>
-
-        <Label Text="Categoría" FontAttributes="Bold"/>
-        <Label Text="{Binding Place.Category.Name}"/>
-
-
-        <Label Text="Comentarios" FontSize="Medium" FontAttributes="Bold"></Label>
-        <badge:SfBadgeView>
-            <badge:SfBadgeView BadgeText="{Binding Place.QualificationCount, StringFormat='Calificaciones: {0}'}" HorizontalOptions="Start" />
-        </badge:SfBadgeView>
-
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="4*" />
-            </Grid.ColumnDefinitions>
-
-            <Label Grid.Column="0"
-                       FontAttributes="Bold"
-                       Text="Usuario"/>
-
-            <Label Grid.Column="1"
-                       FontAttributes="Bold"
-                       Text="Puntaje"/>
-
-            <Label Grid.Column="2"
-                       FontAttributes="Bold"
-                       Text="Comentario"/>
-
-        </Grid>
-
-        <CollectionView ItemsSource="{Binding Places.Qualifications}">
-            <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="2*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="4*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Column="0"
-                                   Text="{Binding User.Name}"/>
-                        <Label Grid.Column="1"
-                                   Text="{Binding Value}"/>
-                        <Label Grid.Column="2"
-                                   LineBreakMode="TailTruncation"
-                                   MaxLines="3"
-                                   Text="{Binding Comment}"/>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-            <CollectionView.EmptyView>
-                <StackLayout>
-                    <Label Text="No hay comentarios"
-                       Margin="10,25,10,10"
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       HorizontalOptions="Fill"
-                       HorizontalTextAlignment="Center" />
-                    <Label Text="Se el primero en añadir un comentario a este lugar!"
-                       FontAttributes="Italic"
-                       FontSize="12"
-                       HorizontalOptions="Fill"
-                       HorizontalTextAlignment="Center" />
-                </StackLayout>
-            </CollectionView.EmptyView>
-        </CollectionView>
-
         <StackLayout>
-            <Button Command="{Binding GoToAddQualificationCommand}" 
-                        Text="Agregar nuevo comentario"/>
+            <Label Text="{Binding Place.Name}" FontSize="35" FontAttributes="Italic"></Label>
+
+            <rating:SfRating HorizontalOptions="Center" 
+                            IsEnabled="False"
+                            Margin="0,5"
+                            Precision="Exact"
+                            Value="{Binding Place.AverageScore}">
+                <rating:SfRating.RatingSettings>
+                    <rating:SfRatingSettings RatedFill="{StaticResource ColorDanger}"/>
+                </rating:SfRating.RatingSettings>
+            </rating:SfRating>
+
+            <Label></Label>
+            <Button Command="{Binding ShowMapCommand}" 
+                        Text="{Binding ShowMapButtonText}"/>
         </StackLayout>
 
+        <StackLayout IsVisible="{Binding ActivateDetails}">
+            <Label Text="Descripción" FontAttributes="Bold"/>
+            <Label Text="{Binding Place.Description}"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                    FontAttributes="Bold"
+                    Text="Ciudad"/>
+
+                <Label Grid.Column="1"
+                    FontAttributes="Bold"
+                    Text="Categría"/>
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                    Text="{Binding Place.City.Name}"/>
+
+                <Label Grid.Column="1"
+                    Text="{Binding Place.Category.Name}"/>
+            </Grid>
+
+            <Label></Label>
+
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <badge:SfBadgeView>
+                    <badge:SfBadgeView BadgeText="{Binding Place.QualificationCount, StringFormat='Comentarios y calificaciones: {0}'}" HorizontalOptions="Start" />
+                </badge:SfBadgeView>
+            </StackLayout>
+
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                        FontAttributes="Bold"
+                        Text="Usuario"/>
+
+                <Label Grid.Column="1"
+                        FontAttributes="Bold"
+                        Text="Puntaje"/>
+
+                <Label Grid.Column="2"
+                        FontAttributes="Bold"
+                        Text="Comentario"/>
+
+            </Grid>
+
+            <CollectionView ItemsSource="{Binding Place.Qualifications}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0"
+                                    Text="{Binding User.FullName}"/>
+                            <Label Grid.Column="1"
+                                    Text="{Binding Value}"/>
+                            <Label Grid.Column="2"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="5"
+                                    Text="{Binding Comment}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+
+        <maps:Map x:Name="MyMap" MapType="Street" IsVisible="{Binding ActivateMap}" />
 
     </StackLayout>
-    </ScrollView>
 
 </ContentPage>
