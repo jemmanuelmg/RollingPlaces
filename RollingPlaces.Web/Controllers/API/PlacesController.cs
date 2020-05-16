@@ -65,22 +65,6 @@ namespace RollingPlaces.Web.Controllers.API
             return NoContent();
         }
 
-        /*UserEntity userEntity = await _userHelper.GetUserAsync(qualificationsRequest.Qualifications.UserId);
-        List<PlaceEntity> auxPlaceList = await _context.Places.Where(t => t.Id == qualificationsRequest.PlaceId).ToListAsync();
-        QualificationEntity qualificationEntity = new QualificationEntity
-        {
-            Place = auxPlaceList[0],
-            User = userEntity,
-            Value = qualificationsRequest.Value,
-            Comment=qualificationsRequest.Comment,
-            CreatedDate = DateTime.UtcNow
-        };
-
-        _context.Qualifications.Add(qualificationEntity);
-        await _context.SaveChangesAsync();
-        return Ok(_converterHelper.ToQualificationResponse(qualificationEntity));
-    }*/
-
         [HttpGet("{name}")]
         public async Task<IActionResult> GetPlaceEntity([FromRoute] string name)
         {
