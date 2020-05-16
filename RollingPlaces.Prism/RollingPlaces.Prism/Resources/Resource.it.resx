@@ -398,4 +398,40 @@
   <data name="Value" xml:space="preserve">
     <value>Valore</value>
   </data>
+  <data name="Comment1" xml:space="preserve">
+    <value>Mi è piaciuto troppo questo posto, attenzione e la buona qualità dei suoi prodotti, lo consiglio vivamente.!</value>
+  </data>
+  <data name="Comment10" xml:space="preserve">
+    <value>Dovrebbero migliorare i programmi!</value>
+  </data>
+  <data name="Comment2" xml:space="preserve">
+    <value>Servizio eccellente, ma devono migliorare la qualità dei prodotti!</value>
+  </data>
+  <data name="Comment3" xml:space="preserve">
+    <value>Insoddisfatto, servizio scadente e bassissima qualità dei prodotti!</value>
+  </data>
+  <data name="Comment4" xml:space="preserve">
+    <value>Altamente raccomandato dai migliori della città!</value>
+  </data>
+  <data name="Comment5" xml:space="preserve">
+    <value>Mi è piaciuta molto la gentilezza con cui servono, la varietà di prodotti che ci sono, ma è un po &amp;#39;lontana!</value>
+  </data>
+  <data name="Comment6" xml:space="preserve">
+    <value>Sito molto regolare poco spazio e troppe persone!</value>
+  </data>
+  <data name="Comment7" xml:space="preserve">
+    <value>Ottimo consigliato.!</value>
+  </data>
+  <data name="Comment8" xml:space="preserve">
+    <value>Non te lo consiglio.!</value>
+  </data>
+  <data name="Comment9" xml:space="preserve">
+    <value>Non è mai aperto!</value>
+  </data>
+  <data name="CommnetPlaceHolder" xml:space="preserve">
+    <value>Seleziona un commento ....!</value>
+  </data>
+  <data name="GenericComment" xml:space="preserve">
+    <value>Commento generico!</value>
+  </data>
 </root>

@@ -151,6 +151,105 @@ namespace RollingPlaces.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to dirty and filthy place.
+        /// </summary>
+        public static string Comment1 {
+            get {
+                return ResourceManager.GetString("Comment1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to They should improve schedules.
+        /// </summary>
+        public static string Comment10 {
+            get {
+                return ResourceManager.GetString("Comment10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Excellent Service.
+        /// </summary>
+        public static string Comment2 {
+            get {
+                return ResourceManager.GetString("Comment2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dissatisfied, poor service and very low quality of products.
+        /// </summary>
+        public static string Comment3 {
+            get {
+                return ResourceManager.GetString("Comment3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Highly recommended of the best in the City.
+        /// </summary>
+        public static string Comment4 {
+            get {
+                return ResourceManager.GetString("Comment4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Very expensive.
+        /// </summary>
+        public static string Comment5 {
+            get {
+                return ResourceManager.GetString("Comment5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Very regular site little space and too many people.
+        /// </summary>
+        public static string Comment6 {
+            get {
+                return ResourceManager.GetString("Comment6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Very good recommended..
+        /// </summary>
+        public static string Comment7 {
+            get {
+                return ResourceManager.GetString("Comment7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I do not recommend it..
+        /// </summary>
+        public static string Comment8 {
+            get {
+                return ResourceManager.GetString("Comment8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It is never open.
+        /// </summary>
+        public static string Comment9 {
+            get {
+                return ResourceManager.GetString("Comment9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a comment.....
+        /// </summary>
+        public static string CommnetPlaceHolder {
+            get {
+                return ResourceManager.GetString("CommnetPlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm.
         /// </summary>
         public static string Confirm {
@@ -408,6 +507,15 @@ namespace RollingPlaces.Prism.Resources {
         public static string FromGallery {
             get {
                 return ResourceManager.GetString("FromGallery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generic comment.
+        /// </summary>
+        public static string GenericComment {
+            get {
+                return ResourceManager.GetString("GenericComment", resourceCulture);
             }
         }
         

@@ -17,7 +17,7 @@
                 <StackLayout>
                     <rating:SfRating HorizontalOptions="Center" 
                                      Margin="0,5"
-                                     Precision="Half"
+                                     Precision="Standard"
                                      Value="{Binding Qualification}">
                         <rating:SfRating.RatingSettings>
                             <rating:SfRatingSettings RatedFill="{StaticResource ColorDanger}"/>
@@ -30,7 +30,7 @@
                                Text="{i18n:Translate Qualification}"/>
                         <Label FontAttributes="Bold" 
                                FontSize="Large"
-                               Text="{Binding Qualification, StringFormat='{0:N2}'}"/>
+                               Text="{Binding Qualification }"/>
                     </StackLayout>
                     <Grid>
                         <Grid.RowDefinitions>
@@ -46,15 +46,18 @@
                         </Grid.ColumnDefinitions>
                         <Label Grid.Row="0"
                                Grid.Column="0" 
-                               Text="{i18n:Translate Comment}"
+                               Text="{i18n:Translate GenericComment}"
                                VerticalOptions="Center"/>
-                        <Picker Grid.Row="0"
+                        
+                        <Picker
+                                Grid.Row="0"
                                 Grid.Column="1" 
                                 ItemDisplayBinding="{Binding Name}"
                                 ItemsSource="{Binding Comments}"
                                 SelectedItem="{Binding Comment}"
-                                Title="{i18n:Translate Comment}"/>
-
+                                Title="{i18n:Translate CommnetPlaceHolder}"
+                             BackgroundColor="{StaticResource ColorFontInverse}"/>
+                        
                         <Label Grid.Row="1"
                                Grid.Column="0" 
                                Text="{i18n:Translate Comment}"
@@ -62,25 +65,13 @@
                         <Editor Grid.Row="1"
                                 Grid.Column="1"
                                 HeightRequest="150"
-                                Text="{Binding Comment}"/>
+                                Text="{Binding Remark}"
+                                 BackgroundColor="{StaticResource ColorFontInverse}"/>
 
-                        
-                       
-
-                        <Label Grid.Row="4"
-                               Grid.Column="0" 
-                               Text="ApproximateValue"
-                               VerticalOptions="Center"/>
-                        <Label Grid.Row="4"
-                               Grid.Column="1"
-                               FontSize="Medium"
-                               FontAttributes="Bold"
-                               Text="{Binding Value}"
-                               VerticalTextAlignment="Center"/>
                     </Grid>
                 </StackLayout>
             </ScrollView>
-            <Button Command="{Binding SaveQualification}"
+            <Button Command="{Binding SaveQualificationCommand}"
                     IsEnabled="{Binding IsEnabled}"
                     Text="{i18n:Translate Save}"
                     VerticalOptions="EndAndExpand"/>

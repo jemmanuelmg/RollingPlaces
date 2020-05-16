@@ -147,6 +147,39 @@
   <data name="Comment" xml:space="preserve">
     <value>Comment</value>
   </data>
+  <data name="Comment1" xml:space="preserve">
+    <value>dirty and filthy place</value>
+  </data>
+  <data name="Comment10" xml:space="preserve">
+    <value>They should improve schedules</value>
+  </data>
+  <data name="Comment2" xml:space="preserve">
+    <value>Excellent Service</value>
+  </data>
+  <data name="Comment3" xml:space="preserve">
+    <value>Dissatisfied, poor service and very low quality of products</value>
+  </data>
+  <data name="Comment4" xml:space="preserve">
+    <value>Highly recommended of the best in the City</value>
+  </data>
+  <data name="Comment5" xml:space="preserve">
+    <value>Very expensive</value>
+  </data>
+  <data name="Comment6" xml:space="preserve">
+    <value>Very regular site little space and too many people</value>
+  </data>
+  <data name="Comment7" xml:space="preserve">
+    <value>Very good recommended.</value>
+  </data>
+  <data name="Comment8" xml:space="preserve">
+    <value>I do not recommend it.</value>
+  </data>
+  <data name="Comment9" xml:space="preserve">
+    <value>It is never open</value>
+  </data>
+  <data name="CommnetPlaceHolder" xml:space="preserve">
+    <value>Select a comment....</value>
+  </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
   </data>
@@ -233,6 +266,9 @@
   </data>
   <data name="FromGallery" xml:space="preserve">
     <value>From gallery</value>
+  </data>
+  <data name="GenericComment" xml:space="preserve">
+    <value>Generic comment</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
