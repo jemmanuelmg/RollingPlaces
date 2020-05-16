@@ -108,6 +108,8 @@ namespace RollingPlaces.Prism.Helpers
         public static string PlaceError2 => Resource.PlaceError2;
         public static string PlacePlaceHolder => Resource.PlacePlaceHolder;
         public static string Home => Resource.Home;
+        public static string Value => Resource.Value;
+        public static string Comment => Resource.Comment;
 
     }
 }

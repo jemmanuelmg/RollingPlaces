@@ -87,5 +87,22 @@ namespace RollingPlaces.Web.Helpers
                 Name = city.Name
             };
         }
+
+        public QualificationResponse ToQualificationResponse(QualificationEntity qualification)
+        {
+            if (qualification == null)
+            {
+                return null;
+            }
+
+            return new QualificationResponse
+            {
+                Id = qualification.Id,
+                Value = qualification.Value,
+                Comment = qualification.Comment,
+                CreatedDate = qualification.CreatedDate,
+                User = ToUserResponse(qualification.User)
+            };
+        }
     }
 }

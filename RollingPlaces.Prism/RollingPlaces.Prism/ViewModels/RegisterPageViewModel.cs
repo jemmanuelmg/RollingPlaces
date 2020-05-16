@@ -32,7 +32,7 @@ namespace RollingPlaces.Prism.ViewModels
             _regexHelper = regexHelper;
             _apiService = apiService;
             _filesHelper = filesHelper;
-            Title = "Registrarse";
+            Title = Languages.RegisterNewUser;
             Image = App.Current.Resources["UrlNoImage"].ToString();
             IsEnabled = true;
             User = new UserRequest();

@@ -133,11 +133,20 @@ namespace RollingPlaces.Prism.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Comentary.
+        ///   Looks up a localized string similar to Comment.
         /// </summary>
         public static string Comentary {
             get {
                 return ResourceManager.GetString("Comentary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comment.
+        /// </summary>
+        public static string Comment {
+            get {
+                return ResourceManager.GetString("Comment", resourceCulture);
             }
         }
         
@@ -858,6 +867,15 @@ namespace RollingPlaces.Prism.Resources {
         public static string UserUpdated {
             get {
                 return ResourceManager.GetString("UserUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string Value {
+            get {
+                return ResourceManager.GetString("Value", resourceCulture);
             }
         }
         

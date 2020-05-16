@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -53,6 +53,7 @@
     value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
+
     mimetype: application/x-microsoft.net.object.bytearray.base64
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
@@ -141,7 +142,10 @@
     <value>City</value>
   </data>
   <data name="Comentary" xml:space="preserve">
-    <value>Comentary</value>
+    <value>Comment</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
   </data>
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
@@ -382,6 +386,9 @@
   </data>
   <data name="UserUpdated" xml:space="preserve">
     <value>User updated succesfully.</value>
+  </data>
+  <data name="Value" xml:space="preserve">
+    <value>Value</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome to Rolling Places</value>
