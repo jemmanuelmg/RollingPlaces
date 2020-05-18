@@ -10,12 +10,31 @@ namespace RollingPlaces.Prism.Views
     public partial class NewPlacePage : ContentPage
     {
         private readonly IGeolocatorService _geolocatorService;
+        private static NewPlacePage _instance;
 
         public NewPlacePage(IGeolocatorService geolocatorService)
         {
             InitializeComponent();
             _geolocatorService = geolocatorService;
+            _instance = this;
         }
+
+        public static NewPlacePage GetInstance()
+        {
+            return _instance;
+        }
+
+        public void AddPin(Position position, string address, string label, PinType pinType)
+        {
+            MyMap.Pins.Add(new Pin
+            {
+                Address = address,
+                Label = label,
+                Position = position,
+                Type = pinType
+            });
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

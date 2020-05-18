@@ -52,12 +52,8 @@
                         MapType="Street"/>
             <StackLayout Orientation="Horizontal">
                 <Button Command="{Binding StartTripCommand}" 
-                        IsEnabled="{Binding IsEnabled}"
-                        Text="{Binding ButtonLabel}"/>
-                <Button Command="{Binding CancelTripCommand}" 
-                        IsVisible="{Binding IsSecondButtonVisible}"
-                        Style="{StaticResource DangerButton}"
-                        Text="{i18n:Translate Cancel}"/>
+                        Text="Add Place"/>
+                
             </StackLayout>
         </StackLayout>
         <busyindicator:SfBusyIndicator AnimationType="Gear" 
