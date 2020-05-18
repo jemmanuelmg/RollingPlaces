@@ -65,15 +65,7 @@ namespace RollingPlaces.Web.Controllers.API
                 Longitude = placeRequest.Longitude,
                 Name = placeRequest.Name,
                 User = userEntity
-                /*TripDetails = new List<TripDetailsEntity>
-                {
-                     new TripDetailsEntity
-                    {
-                        Origin = tripRequest.Origin,
-                        Description= tripRequest.Description,
-
-                    }
-                }*/
+               
             };
 
             _context.Places.Add(placeEntity);

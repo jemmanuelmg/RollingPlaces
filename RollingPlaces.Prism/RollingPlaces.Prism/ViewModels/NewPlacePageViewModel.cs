@@ -147,15 +147,18 @@ namespace RollingPlaces.Prism.ViewModels
                     Languages.Accept);
                 return;
             }
-            Position _position = new Position(_geolocatorService.Latitude, _geolocatorService.Longitude);
+            /*Position _position = new Position(_geolocatorService.Latitude, _geolocatorService.Longitude);
             _placeResponse = (PlaceResponse)response.Result;
             //IsSecondButtonVisible = true;
             ButtonLabel = "Regresar";
             NewPlacePage.GetInstance().AddPin(_position, Source, "", PinType.Place);
+            */
+           
+
             IsRunning = false;
             IsEnabled = true;
             await App.Current.MainPage.DisplayAlert("Ok", "Nuevo Lugar agregado correctamente", "Aceptar");
-
+            await _navigationService.NavigateAsync(nameof(HomePage));
         }
 
         private async Task<bool> ValidateDataAsync()
@@ -172,4 +175,8 @@ namespace RollingPlaces.Prism.ViewModels
             return true;
         }
     }
+
+
+
+
 }

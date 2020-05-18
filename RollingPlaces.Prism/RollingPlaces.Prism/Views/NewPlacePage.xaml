@@ -50,6 +50,7 @@
             </Grid>
             <maps:Map x:Name="MyMap"
                         MapType="Street"/>
+                    
             <StackLayout Orientation="Horizontal">
                 <Button Command="{Binding StartTripCommand}" 
                         Text="Add Place"/>
