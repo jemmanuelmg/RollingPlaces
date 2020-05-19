@@ -101,15 +101,6 @@ namespace RollingPlaces.Prism.ViewModels
                 Title = Languages.ReportanIncident
             });
 
-            menus.Add(new Menu
-            {
-                Icon = "NoImage",
-                PageName = "QualificationPage",
-                Title = Languages.Qualification
-            });
-
-
-
             Menus = new ObservableCollection<MenuItemViewModel>(
                 menus.Select(m => new MenuItemViewModel(_navigationService)
                 {

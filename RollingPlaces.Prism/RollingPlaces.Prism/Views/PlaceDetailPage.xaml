@@ -30,7 +30,7 @@
 
             <Label></Label>
             <Button Command="{Binding ShowMapCommand}" 
-                        Text="{Binding ShowMapButtonText}"/>
+                    Text="{Binding ShowMapButtonText}"/>
         </StackLayout>
 
         <ScrollView IsVisible="{Binding ActivateDetails}">
@@ -139,6 +139,10 @@
                 <carousel:SfCarousel x:Name="carousel" HeightRequest="350" WidthRequest="400"/>
             </StackLayout>
             <Label></Label>
+
+            <Button Command="{Binding GoToAddQualificationCommand}" 
+                    Text="Añadir comentario"/>
+
             </StackLayout>
         </ScrollView>
 

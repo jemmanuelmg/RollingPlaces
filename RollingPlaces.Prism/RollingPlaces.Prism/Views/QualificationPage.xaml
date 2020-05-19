@@ -68,10 +68,16 @@
                     </Grid>
                 </StackLayout>
             </ScrollView>
-            <Button Command="{Binding SaveQualificationCommand}"
-                    IsEnabled="{Binding IsEnabled}"
-                    Text="{i18n:Translate Save}"
-                    VerticalOptions="EndAndExpand"/>
+            <StackLayout Orientation="Horizontal"
+                         VerticalOptions="EndAndExpand">
+                <Button Command="{Binding SaveQualificationCommand}"
+                        IsEnabled="{Binding IsEnabled}"
+                         Text="{i18n:Translate Save}"/>
+                <Button Command="{Binding CancelCommand}"
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="Cancel"
+                        Style="{StaticResource DangerButton}"/>
+            </StackLayout>
         </StackLayout>
         <busyindicator:SfBusyIndicator AnimationType="Globe" 
                                        AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"

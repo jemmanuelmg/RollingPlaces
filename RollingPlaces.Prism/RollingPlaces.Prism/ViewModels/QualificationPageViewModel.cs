@@ -20,7 +20,7 @@ namespace RollingPlaces.Prism.ViewModels
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
         private readonly IGeolocatorService _geolocatorService;
-        private readonly int _placeId;
+        private PlaceResponse _place;
         private bool _isRunning;
         private bool _isEnabled;
         private int _qualification;
@@ -30,6 +30,7 @@ namespace RollingPlaces.Prism.ViewModels
         private string _remark;
         private int _value;
         private DelegateCommand _saveQualificationCommand;
+        private DelegateCommand _cancelCommand;
 
         public QualificationPageViewModel(INavigationService navigationService, IApiService apiService, IGeolocatorService geolocatorService)
             : base(navigationService)
@@ -43,6 +44,7 @@ namespace RollingPlaces.Prism.ViewModels
             Comments = new ObservableCollection<Comment>(CombosHelper.GetComments());
         }
         public DelegateCommand SaveQualificationCommand => _saveQualificationCommand ?? (_saveQualificationCommand = new DelegateCommand(SaveQualificationAsync));
+        public DelegateCommand CancelCommand => _cancelCommand ?? (_cancelCommand = new DelegateCommand(CancelAsync));
 
 
         public bool IsRunning
@@ -91,7 +93,21 @@ namespace RollingPlaces.Prism.ViewModels
             set => SetProperty(ref _isEnabled, value);
         }
 
+        public PlaceResponse Place
+        {
+            get => _place;
+            set => SetProperty(ref _place, value);
+        }
+        private async void CancelAsync()
+        {
+        
+        NavigationParameters parameters = new NavigationParameters
+            {
+                { "place", _place}
+            };
+        await _navigationService.NavigateAsync(nameof(PlaceDetailPage), parameters);
 
+        }
 
         private async void SaveQualificationAsync()
         {
@@ -121,7 +137,7 @@ namespace RollingPlaces.Prism.ViewModels
             qualificationRequest.Value = Qualification;
             qualificationRequest.Comment = Remark;
             qualificationRequest.UserId = Guid.Parse(user.Id);
-            qualificationRequest.PlaceId = 1;
+            qualificationRequest.PlaceId = Place.Id;
             qualificationRequest.CreatedDate = DateTime.Now;
             qualificationsRequest.Qualifications = new List<QualificationRequest>();
             qualificationsRequest.Qualifications.Add(qualificationRequest);
@@ -137,7 +153,7 @@ namespace RollingPlaces.Prism.ViewModels
             }
 
             await App.Current.MainPage.DisplayAlert(Languages.Ok, "New added Qualification", Languages.Accept);
-            await _navigationService.NavigateAsync(nameof(HomePage));
+            await _navigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/HomePage");
         }
 
         private async Task<bool> ValidateDataAsync()
@@ -155,6 +171,17 @@ namespace RollingPlaces.Prism.ViewModels
             }
 
             return true;
+        }
+
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+            Place = parameters.GetValue<PlaceResponse>("place");
+            if (!Settings.IsLogin)
+            {
+                App.Current.MainPage.DisplayAlert(Languages.Error, "Inicia sesión o registrate para dejar comentarios", Languages.Accept);
+                _navigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/HomePage");
+            }
         }
     }
 

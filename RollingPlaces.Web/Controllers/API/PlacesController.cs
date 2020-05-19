@@ -15,7 +15,6 @@ using System.Linq;
 namespace RollingPlaces.Web.Controllers.API
 {
     [Route("api/[controller]")]
-   [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class PlacesController : ControllerBase
     {
@@ -32,6 +31,7 @@ namespace RollingPlaces.Web.Controllers.API
             _imageHelper = imageHelper;
         }
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("AddQualification")]
         public async Task<IActionResult> AddQualification([FromBody] QualificationsRequest qualificationsRequest)
         {
@@ -68,7 +68,7 @@ namespace RollingPlaces.Web.Controllers.API
 
         [HttpPost]
         [Route("GetPlaces")]
-        public async Task<IActionResult> GetPlaceEntity([FromBody] PlaceRequest placeRequest)
+        public async Task<IActionResult> GetPlaces([FromBody] PlaceRequest placeRequest)
         {
             if (!ModelState.IsValid)
             {

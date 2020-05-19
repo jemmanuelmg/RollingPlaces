@@ -25,7 +25,7 @@ namespace RollingPlaces.Prism.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            MoveMapToCurrentPositionAsync();
+            //MoveMapToCurrentPositionAsync();
         }
 
 
@@ -45,24 +45,17 @@ namespace RollingPlaces.Prism.Views
             });
         }
 
-        private async void MoveMapToCurrentPositionAsync()
+        public async void MoveMapToCurrentPositionAsync(double latitude, double longitude)
         {
             bool isLocationPermision = await CheckLocationPermisionsAsync();
 
             if (isLocationPermision)
             {
                 MyMap.IsShowingUser = true;
-
-                await _geolocatorService.GetLocationAsync();
-                if (_geolocatorService.Latitude != 0 && _geolocatorService.Longitude != 0)
-                {
-                    Position position = new Position(
-                        _geolocatorService.Latitude,
-                        _geolocatorService.Longitude);
-                    MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(
-                        position,
-                        Distance.FromKilometers(.5)));
-                }
+                
+                Position position = new Position(latitude, longitude);
+                MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(.5)));
+                
             }
         }
 

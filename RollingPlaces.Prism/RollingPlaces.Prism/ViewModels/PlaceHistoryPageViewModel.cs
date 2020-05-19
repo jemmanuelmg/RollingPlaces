@@ -106,14 +106,14 @@ namespace RollingPlaces.Prism.ViewModels
                 return;
             }
 
-            PlaceRequest placeRequest = new PlaceRequest() 
+            PlaceRequest placeRequest = new PlaceRequest()
             {
                 Keywords = Keywords,
                 CategoryId = Category.Id,
                 CityId = City.Id
             };
 
-            Response response = await _apiService.GetPlacesAsync(url, "api", "/Places/GetPlaces", placeRequest);
+            Response response = await _apiService.GetPlacesAsync(url, "api", "/places/GetPlaces", placeRequest);
             IsRunning = false;
 
             if (!response.IsSuccess)
@@ -147,5 +147,6 @@ namespace RollingPlaces.Prism.ViewModels
                 City = t.City
             }).ToList();
         }
+
     }
 }

@@ -1,25 +1,9 @@
 ﻿using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
 using RollingPlaces.Common.Models;
-using Newtonsoft.Json;
-using Prism.Commands;
-using Prism.Navigation;
-using System;
+using RollingPlaces.Prism.Views;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Timers;
-using RollingPlaces.Common.Helpers;
-using RollingPlaces.Common.Models;
-using RollingPlaces.Common.Services;
-using RollingPlaces.Prism.Helpers;
-using RollingPlaces.Prism.Views;
-using Xamarin.Essentials;
-using Xamarin.Forms;
 using Xamarin.Forms.Maps;
-using RollingPlaces.Prism.Views;
 
 namespace RollingPlaces.Prism.ViewModels
 {
@@ -48,7 +32,7 @@ namespace RollingPlaces.Prism.ViewModels
 
         public DelegateCommand GoToAddQualificationCommand => _goToAddQualificationCommand ?? (_goToAddQualificationCommand = new DelegateCommand(GoToAddQualification));
 
-        public DelegateCommand ShowMapCommand => _showMapCommand ?? (_goToAddQualificationCommand = new DelegateCommand(ShowMap));
+        public DelegateCommand ShowMapCommand => _showMapCommand ?? (_showMapCommand = new DelegateCommand(ShowMap));
 
         public PlaceResponse Place
         {
@@ -94,6 +78,7 @@ namespace RollingPlaces.Prism.ViewModels
             Position placePosition = new Position(Place.Latitude, Place.Longitude);
             PlaceDetailPage.GetInstance().AddPin(placePosition, "Calle 54 #86A-35", Place.Name, PinType.Place);
             PlaceDetailPage.GetInstance().PopulateImagesToCarousel();
+            PlaceDetailPage.GetInstance().MoveMapToCurrentPositionAsync(Place.Latitude, Place.Longitude);
         }
 
         public async void GoToAddQualification()
@@ -103,33 +88,18 @@ namespace RollingPlaces.Prism.ViewModels
                 { "place", _place}
             };
 
-            await _navigationService.NavigateAsync(nameof(HomePage), parameters);
+            await _navigationService.NavigateAsync(nameof(QualificationPage), parameters);
         }
-
-        /*public void PopulateImagesOfPlace()
-        {
-            ImageCollection.Add(new CarouselModel("photo1.png"));
-            ImageCollection.Add(new CarouselModel("photo2.png"));
-            ImageCollection.Add(new CarouselModel("photo3.png"));
-            ImageCollection.Add(new CarouselModel("photo4.png"));
-            ImageCollection.Add(new CarouselModel("photo5.png"));
-            ImageCollection.Add(new CarouselModel("photo6.png"));
-
-            foreach (PhotoResponse photo in Place.Photos)
-            {
-                ImageCollection.Add(new CarouselModel(photo.PhotoPath));
-            }
-        }*/
 
         public void ShowMap()
         {
-            if (ActivateDetails) 
+            if (ActivateDetails)
             {
                 ActivateDetails = false;
                 ActivateMap = true;
                 ShowMapButtonText = "Ver Detalles";
-            } 
-            else 
+            }
+            else
             {
                 ActivateDetails = true;
                 ActivateMap = false;
