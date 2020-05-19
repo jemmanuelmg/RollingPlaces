@@ -37,11 +37,9 @@ namespace RollingPlaces.Common.Services
                     BaseAddress = new Uri(urlBase)
                 };
 
-                
 
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
                 string url = $"{servicePrefix}{controller}";
-                string todoElUrl = urlBase + url;
                 HttpResponseMessage response = await client.PostAsync(url, content);
                 string answer = await response.Content.ReadAsStringAsync();
                 if (!response.IsSuccessStatusCode)
@@ -70,17 +68,19 @@ namespace RollingPlaces.Common.Services
 
 
 
-        public async Task<Response> GetPlaceAsync(string name, string urlBase, string servicePrefix, string controller)
+        public async Task<Response> GetPlacesAsync(string urlBase, string servicePrefix, string controller, PlaceRequest placeRequest)
         {
             try
             {
+                string request = JsonConvert.SerializeObject(placeRequest);
+                StringContent content = new StringContent(request, Encoding.UTF8, "application/json");
                 HttpClient client = new HttpClient
                 {
-                    BaseAddress = new Uri(urlBase),
+                    BaseAddress = new Uri(urlBase)
                 };
 
-                string url = $"{servicePrefix}{controller}/{name}";
-                HttpResponseMessage response = await client.GetAsync(url);
+                string url = $"{servicePrefix}{controller}";
+                HttpResponseMessage response = await client.PostAsync(url, content);
                 string result = await response.Content.ReadAsStringAsync();
 
                 if (!response.IsSuccessStatusCode)
@@ -92,11 +92,11 @@ namespace RollingPlaces.Common.Services
                     };
                 }
 
-                PlaceResponse model = JsonConvert.DeserializeObject<PlaceResponse>(result);
+                List<PlaceResponse> places = JsonConvert.DeserializeObject<List<PlaceResponse>>(result);
                 return new Response
                 {
                     IsSuccess = true,
-                    Result = model
+                    Result = places
                 };
             }
             catch (Exception ex)
@@ -108,7 +108,7 @@ namespace RollingPlaces.Common.Services
                 };
             }
         }
-        
+
         public async Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, TokenRequest request)
         {
             try

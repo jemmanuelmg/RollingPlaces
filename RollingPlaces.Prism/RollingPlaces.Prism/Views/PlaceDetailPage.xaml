@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:badge ="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+             xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:carousel="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms"
+             x:Class="RollingPlaces.Prism.Views.PlaceDetailPage"
+             ios:Page.UseSafeArea="true"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             BackgroundColor="{StaticResource ColorBackgroud}"
+             Title="{Binding Title}">
+
+    <StackLayout Margin="15">
+
+        <StackLayout>
+            <Label Text="{Binding Place.Name}" FontSize="35" FontAttributes="Italic"></Label>
+
+            <rating:SfRating HorizontalOptions="Center" 
+                            IsEnabled="False"
+                            Margin="0,5"
+                            Precision="Exact"
+                            Value="{Binding Place.AverageScore}">
+                <rating:SfRating.RatingSettings>
+                    <rating:SfRatingSettings RatedFill="{StaticResource ColorDanger}"/>
+                </rating:SfRating.RatingSettings>
+            </rating:SfRating>
+
+            <Label></Label>
+            <Button Command="{Binding ShowMapCommand}" 
+                        Text="{Binding ShowMapButtonText}"/>
+        </StackLayout>
+
+        <ScrollView IsVisible="{Binding ActivateDetails}">
+        <StackLayout>
+            <Label></Label>
+            <Label Text="Descripción" FontAttributes="Bold" FontSize="Medium"/>
+            <Label Text="{Binding Place.Description}"/>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                    FontAttributes="Bold"
+                    Text="Ciudad"/>
+
+                <Label Grid.Column="1"
+                    FontAttributes="Bold"
+                    Text="Categría"/>
+            </Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                    Text="{Binding Place.City.Name}"/>
+
+                <Label Grid.Column="1"
+                    Text="{Binding Place.Category.Name}"/>
+            </Grid>
+
+            <Label></Label>
+
+            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                <badge:SfBadgeView>
+                    <badge:SfBadgeView BadgeText="{Binding Place.QualificationCount, StringFormat='Comentarios y calificaciones: {0}'}" HorizontalOptions="Start" />
+                </badge:SfBadgeView>
+            </StackLayout>
+
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="4*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                        FontAttributes="Bold"
+                        Text="Usuario"/>
+
+                <Label Grid.Column="1"
+                        FontAttributes="Bold"
+                        Text="Puntaje"/>
+
+                <Label Grid.Column="2"
+                        FontAttributes="Bold"
+                        Text="Comentario"/>
+
+            </Grid>
+
+            <CollectionView ItemsSource="{Binding Place.Qualifications}" HeightRequest="200">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0"
+                        Text="{Binding User.FullName}"/>
+                            <Label Grid.Column="1"
+                        Text="{Binding Value}"/>
+                            <Label Grid.Column="2"
+                        LineBreakMode="TailTruncation"
+                        MaxLines="5"
+                        Text="{Binding Comment}"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <StackLayout>
+                <Label Text="Imágenes del Lugar" FontAttributes="Bold" FontSize="Medium"></Label>
+                <carousel:SfCarousel x:Name="carousel" HeightRequest="350" WidthRequest="400"/>
+            </StackLayout>
+            <Label></Label>
+            </StackLayout>
+        </ScrollView>
+
+        <maps:Map x:Name="MyMap" MapType="Street" IsVisible="{Binding ActivateMap}" />
+
+    </StackLayout>
+
+</ContentPage>

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 
+
 namespace RollingPlaces.Web.Controllers.API
 {
     [Route("api/[controller]")]
@@ -65,23 +66,75 @@ namespace RollingPlaces.Web.Controllers.API
             return NoContent();
         }
 
-        [HttpGet("{name}")]
-        public async Task<IActionResult> GetPlaceEntity([FromRoute] string name)
+        [HttpPost]
+        [Route("GetPlaces")]
+        public async Task<IActionResult> GetPlaceEntity([FromBody] PlaceRequest placeRequest)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            PlaceEntity placeEntity = await _context.Places
+
+            var placeEntities = await _context.Places.ToListAsync();
+
+            if (string.IsNullOrEmpty(placeRequest.Keywords) && placeRequest.CategoryId == 777)
+            {
+                placeEntities = await _context.Places
+                .Where(t => t.City.Id == placeRequest.CityId)
                 .Include(t => t.User)
                 .Include(t => t.City)
                 .Include(t => t.Category)
-                .Include(t => t.Photos).
-                //FirstOrDefaultAsync(t => t.Name == name);
-                FirstOrDefaultAsync(t => t.Name.Contains(name) == true);
+                .Include(t => t.Qualifications)
+                .Include(t => t.Photos)
+                .ToListAsync();
 
-            return Ok(placeEntity);
+            }
+            else if (!string.IsNullOrEmpty(placeRequest.Keywords) && placeRequest.CategoryId != 777)
+            {
+                placeEntities = await _context.Places
+               .Where(t => t.City.Id == placeRequest.CityId)
+               .Where(t => t.Category.Id == placeRequest.CategoryId)
+               .Where(t => t.Name.Contains(placeRequest.Keywords) == true)
+               .Include(t => t.User)
+               .Include(t => t.City)
+               .Include(t => t.Category)
+               .Include(t => t.Qualifications)
+               .Include(t => t.Photos)
+               .ToListAsync();
+            }
+            else if (string.IsNullOrEmpty(placeRequest.Keywords) && placeRequest.CategoryId != 777)
+            {
+                placeEntities = await _context.Places
+               .Where(t => t.City.Id == placeRequest.CityId)
+               .Where(t => t.Category.Id == placeRequest.CategoryId)
+               .Include(t => t.User)
+               .Include(t => t.City)
+               .Include(t => t.Category)
+               .Include(t => t.Qualifications)
+               .Include(t => t.Photos)
+               .ToListAsync();
+            }
+            else if (!string.IsNullOrEmpty(placeRequest.Keywords) && placeRequest.CategoryId == 777)
+            {
+                placeEntities = await _context.Places
+               .Where(t => t.City.Id == placeRequest.CityId)
+               .Where(t => t.Name.Contains(placeRequest.Keywords) == true)
+               .Include(t => t.User)
+               .Include(t => t.City)
+               .Include(t => t.Category)
+               .Include(t => t.Qualifications)
+               .Include(t => t.Photos)
+               .ToListAsync();
+            }
+
+            List<PlaceResponse> placesList = new List<PlaceResponse>();
+            foreach (PlaceEntity element in placeEntities)
+            {
+                placesList.Add(_converterHelper.ToPlaceResponse(element));
+            }
+
+            return Ok(placesList);
         }
     }
 }

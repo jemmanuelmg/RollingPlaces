@@ -8,9 +8,10 @@ namespace RollingPlaces.Common.Services
     {
         Task<bool> CheckConnectionAsync(string url);
 
+
         Task<Response> AddQualificationAsync(string urlBase, string servicePrefix, string controller, QualificationsRequest model,string tokenType, string accessToken);
 
-        Task<Response> GetPlaceAsync(string name, string urlBase, string servicePrefix, string controller);
+        Task<Response> GetPlacesAsync(string urlBase, string servicePrefix, string controller, PlaceRequest placeRequest);
 
         Task<Response> GetTokenAsync(string urlBase, string servicePrefix, string controller, TokenRequest request);
 

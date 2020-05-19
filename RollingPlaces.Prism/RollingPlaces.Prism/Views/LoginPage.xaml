@@ -9,7 +9,7 @@
              Title="{Binding Title}">
 
     <ScrollView>
-    <AbsoluteLayout>
+    <AbsoluteLayout >
 
         <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
                      AbsoluteLayout.LayoutFlags="All" 
@@ -91,4 +91,5 @@
 
     </AbsoluteLayout>
     </ScrollView>
+    
 </ContentPage>
