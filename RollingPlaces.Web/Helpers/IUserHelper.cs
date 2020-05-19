@@ -11,7 +11,7 @@ namespace RollingPlaces.Web.Helpers
     public interface IUserHelper
     {
         Task<UserEntity> GetUserByEmailAsync(string email);
-
+        Task<UserEntity> GetUserByEmailAsync(Guid user);
         Task<IdentityResult> AddUserAsync(UserEntity user, string password);
 
         Task CheckRoleAsync(string roleName);

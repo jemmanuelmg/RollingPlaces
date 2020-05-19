@@ -29,6 +29,7 @@ namespace RollingPlaces.Prism.Droid
 
             new SfBusyIndicatorRenderer();
             new SfRatingRenderer();
+            Xamarin.FormsMaps.Init(this, bundle);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
             LoadApplication(new App(new AndroidInitializer()));
         }

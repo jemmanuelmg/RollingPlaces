@@ -136,5 +136,37 @@ namespace RollingPlaces.Web.Controllers.API
 
             return Ok(placesList);
         }
+
+        // POST: api/Travels
+        [HttpPost]
+        public async Task<IActionResult> PostPlaceEntity([FromBody] PlaceRequest placeRequest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            UserEntity userEntity = await _userHelper.GetUserByEmailAsync(placeRequest.User);
+            if (userEntity == null)
+            {
+                return BadRequest("User doesn't exists.");
+            }
+
+            PlaceEntity placeEntity = new PlaceEntity
+            {
+                Description = placeRequest.Description,
+                Latitude = placeRequest.Latitude,
+                Longitude = placeRequest.Longitude,
+                Name = placeRequest.Name,
+                User = userEntity
+               
+            };
+
+            _context.Places.Add(placeEntity);
+            await _context.SaveChangesAsync();
+
+            return Ok(_converterHelper.ToPlaceResponse(placeEntity)); ;
+        }
+
     }
 }

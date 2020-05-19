@@ -1,6 +1,5 @@
 ﻿using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using RollingPlaces.Common.Services;
 using Xamarin.Forms;
@@ -8,14 +7,32 @@ using Xamarin.Forms.Maps;
 
 namespace RollingPlaces.Prism.Views
 {
-    public partial class HomePage : ContentPage
+    public partial class NewPlacePage : ContentPage
     {
         private readonly IGeolocatorService _geolocatorService;
+        private static NewPlacePage _instance;
 
-        public HomePage(IGeolocatorService geolocatorService)
+        public NewPlacePage(IGeolocatorService geolocatorService)
         {
             InitializeComponent();
             _geolocatorService = geolocatorService;
+            _instance = this;
+        }
+
+        public static NewPlacePage GetInstance()
+        {
+            return _instance;
+        }
+
+        public void AddPin(Position position, string address, string label, PinType pinType)
+        {
+            MyMap.Pins.Add(new Pin
+            {
+                Address = address,
+                Label = label,
+                Position = position,
+                Type = pinType
+            });
         }
 
         protected override void OnAppearing()
@@ -23,6 +40,29 @@ namespace RollingPlaces.Prism.Views
             base.OnAppearing();
             MoveMapToCurrentPositionAsync();
         }
+
+        /*public void DrawLine(Position a, Position b)
+        {
+            if (Device.RuntimePlatform == Device.Android)
+            {
+                Polygon polygon = new Polygon
+                {
+                    StrokeWidth = 10,
+                    StrokeColor = Color.FromHex("#8D07F6"),
+                    FillColor = Color.FromHex("#8D07F6"),
+                    Geopath = { a, b }
+                };
+
+                MyMap.MapElements.Add(polygon);
+            }
+            else
+            {
+                AddPin(b, string.Empty, string.Empty, PinType.SavedPin);
+            }
+
+            MoveMap(b);
+        }*/
+
 
         private async void MoveMapToCurrentPositionAsync()
         {
@@ -38,11 +78,8 @@ namespace RollingPlaces.Prism.Views
                     Position position = new Position(
                         _geolocatorService.Latitude,
                         _geolocatorService.Longitude);
-                    /*MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(
-                        position,
-                        Distance.FromKilometers(.5)));*/
-                    MoveMap(position);
-
+                  MoveMap(position);
+                   
                 }
             }
         }
