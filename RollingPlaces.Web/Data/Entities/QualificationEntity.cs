@@ -19,7 +19,7 @@ namespace RollingPlaces.Web.Data.Entities
         [Required(ErrorMessage = "The field {0} is mandatory.")]
         public string Comment { get; set; }
 
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         [Display(Name = "Created Date")]
         [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = false)]
         public DateTime CreatedDate { get; set; }

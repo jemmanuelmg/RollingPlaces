@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json;
 using Prism.Commands;
-using Prism.Mvvm;
 using Prism.Navigation;
 using RollingPlaces.Common.Helpers;
 using RollingPlaces.Common.Models;
 using RollingPlaces.Common.Services;
 using RollingPlaces.Prism.Helpers;
+using RollingPlaces.Prism.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,15 +16,17 @@ namespace RollingPlaces.Prism.ViewModels
 {
     public class QualificationPageViewModel : ViewModelBase
     {
+
         private readonly INavigationService _navigationService;
         private readonly IApiService _apiService;
         private readonly IGeolocatorService _geolocatorService;
-        private int _placeId;
+        private readonly int _placeId;
         private bool _isRunning;
         private bool _isEnabled;
         private int _qualification;
         private Comment _comment;
         private ObservableCollection<Comment> _comments;
+        private QualificationsRequest _qualificationsRequest;
         private string _remark;
         private int _value;
         private DelegateCommand _saveQualificationCommand;
@@ -35,6 +37,7 @@ namespace RollingPlaces.Prism.ViewModels
             _navigationService = navigationService;
             _apiService = apiService;
             _geolocatorService = geolocatorService;
+            _qualificationsRequest = new QualificationsRequest { Qualifications = new List<QualificationRequest>() };
             Title = Languages.Qualification;
             IsEnabled = true;
             Comments = new ObservableCollection<Comment>(CombosHelper.GetComments());
@@ -90,7 +93,6 @@ namespace RollingPlaces.Prism.ViewModels
 
 
 
-        
         private async void SaveQualificationAsync()
         {
             bool isValid = await ValidateDataAsync();
@@ -98,13 +100,10 @@ namespace RollingPlaces.Prism.ViewModels
             {
                 return;
             }
-
-           
-
             IsRunning = true;
             IsEnabled = false;
             string url = App.Current.Resources["UrlAPI"].ToString();
-            var connection = await _apiService.CheckConnectionAsync(url);
+            bool connection = await _apiService.CheckConnectionAsync(url);
             if (!connection)
             {
                 IsRunning = false;
@@ -115,18 +114,19 @@ namespace RollingPlaces.Prism.ViewModels
 
                 return;
             }
-            UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
             TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
-            QualificationRequest QualificationRequest = new QualificationRequest
-            {
-                Value = Qualification,
-                Comment = Remark,
-                UserId= Guid.Parse("e2a7b8dc-a117-4b1a-a3f6-e51f49314cf4"/*user.Id*/),
-                PlaceId=1,
-                CreatedDate = DateTime.Now
-            };
+            UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
+            QualificationsRequest qualificationsRequest = new QualificationsRequest();
+            QualificationRequest qualificationRequest = new QualificationRequest();
+            qualificationRequest.Value = Qualification;
+            qualificationRequest.Comment = Remark;
+            qualificationRequest.UserId = Guid.Parse(user.Id);
+            qualificationRequest.PlaceId = 1;
+            qualificationRequest.CreatedDate = DateTime.Now;
+            qualificationsRequest.Qualifications = new List<QualificationRequest>();
+            qualificationsRequest.Qualifications.Add(qualificationRequest);
 
-            var response = await _apiService.AddQualification(url, "/api", "/places/AddQualification", "bearer", token.Token,QualificationRequest);
+            Response response = await _apiService.AddQualificationAsync(url, "api", "/places/AddQualification", qualificationsRequest, "bearer", token.Token);
             IsRunning = false;
             IsEnabled = true;
 
@@ -137,7 +137,7 @@ namespace RollingPlaces.Prism.ViewModels
             }
 
             await App.Current.MainPage.DisplayAlert(Languages.Ok, "New added Qualification", Languages.Accept);
-            await _navigationService.NavigateAsync("/RollingPlacesMasterDetailPageViewModel/NavigationPage/HomePage");
+            await _navigationService.NavigateAsync(nameof(HomePage));
         }
 
         private async Task<bool> ValidateDataAsync()

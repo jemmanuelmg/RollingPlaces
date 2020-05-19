@@ -30,13 +30,10 @@
                                Text="{i18n:Translate Qualification}"/>
                         <Label FontAttributes="Bold" 
                                FontSize="Large"
-                               Text="{Binding Qualification }"/>
+                               Text="{Binding Qualification}"/>
                     </StackLayout>
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
@@ -48,7 +45,7 @@
                                Grid.Column="0" 
                                Text="{i18n:Translate GenericComment}"
                                VerticalOptions="Center"/>
-                        
+
                         <Picker
                                 Grid.Row="0"
                                 Grid.Column="1" 
@@ -57,7 +54,7 @@
                                 SelectedItem="{Binding Comment}"
                                 Title="{i18n:Translate CommnetPlaceHolder}"
                              BackgroundColor="{StaticResource ColorFontInverse}"/>
-                        
+
                         <Label Grid.Row="1"
                                Grid.Column="0" 
                                Text="{i18n:Translate Comment}"
