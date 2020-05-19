@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RollingPlaces.Common.Models
 {
-    public class PlaceRequest
+    public class PlaceRequest2
     {
 
         public int Id { get; set; }

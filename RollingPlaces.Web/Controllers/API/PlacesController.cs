@@ -139,14 +139,14 @@ namespace RollingPlaces.Web.Controllers.API
 
         // POST: api/Travels
         [HttpPost]
-        public async Task<IActionResult> PostPlaceEntity([FromBody] PlaceRequest placeRequest)
+        public async Task<IActionResult> PostPlaceEntity([FromBody] PlaceRequest2 placeRequest2)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            UserEntity userEntity = await _userHelper.GetUserByEmailAsync(placeRequest.User);
+            UserEntity userEntity = await _userHelper.GetUserByEmailAsync(placeRequest2.User);
             if (userEntity == null)
             {
                 return BadRequest("User doesn't exists.");
@@ -154,10 +154,10 @@ namespace RollingPlaces.Web.Controllers.API
 
             PlaceEntity placeEntity = new PlaceEntity
             {
-                Description = placeRequest.Description,
-                Latitude = placeRequest.Latitude,
-                Longitude = placeRequest.Longitude,
-                Name = placeRequest.Name,
+                Description = placeRequest2.Description,
+                Latitude = placeRequest2.Latitude,
+                Longitude = placeRequest2.Longitude,
+                Name = placeRequest2.Name,
                 User = userEntity
                
             };

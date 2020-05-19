@@ -317,7 +317,7 @@ namespace RollingPlaces.Common.Services
             }
         }
 
-        public async Task<Response> NewPlaceAsync(string urlBase, string servicePrefix, string controller, PlaceRequest model, string tokenType, string accessToken)
+        public async Task<Response> NewPlaceAsync(string urlBase, string servicePrefix, string controller, PlaceRequest2 model, string tokenType, string accessToken)
         {
             try
             {

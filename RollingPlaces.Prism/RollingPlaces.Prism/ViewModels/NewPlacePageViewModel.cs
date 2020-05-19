@@ -126,7 +126,7 @@ namespace RollingPlaces.Prism.ViewModels
             UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
             TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
 
-            PlaceRequest placeRequest = new PlaceRequest
+            PlaceRequest2 placeRequest2 = new PlaceRequest2
             {
                 Description = Source,
                 Latitude = _geolocatorService.Latitude,
@@ -135,7 +135,7 @@ namespace RollingPlaces.Prism.ViewModels
                 User = Guid.Parse(user.Id)
             };
 
-            Response response = await _apiService.NewPlaceAsync(url, "/api", "/Places", placeRequest, "bearer", token.Token);
+            Response response = await _apiService.NewPlaceAsync(url, "/api", "/Places", placeRequest2, "bearer", token.Token);
 
             if (!response.IsSuccess)
             {
