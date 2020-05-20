@@ -32,6 +32,7 @@ namespace RollingPlaces.Prism.Views
                 Label = label,
                 Position = position,
                 Type = pinType
+
             });
         }
 
@@ -75,7 +76,7 @@ namespace RollingPlaces.Prism.Views
                 await _geolocatorService.GetLocationAsync();
                 if (_geolocatorService.Latitude != 0 && _geolocatorService.Longitude != 0)
                 {
-                    Position position = new Position(
+                    Position position = new Position(                       
                         _geolocatorService.Latitude,
                         _geolocatorService.Longitude);
                   MoveMap(position);

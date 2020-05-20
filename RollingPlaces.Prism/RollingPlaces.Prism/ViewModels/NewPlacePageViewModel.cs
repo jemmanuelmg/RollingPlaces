@@ -151,9 +151,9 @@ namespace RollingPlaces.Prism.ViewModels
             _placeResponse = (PlaceResponse)response.Result;
             //IsSecondButtonVisible = true;
             ButtonLabel = "Regresar";
-            NewPlacePage.GetInstance().AddPin(_position, Source, "", PinType.Place);
-            */
-           
+            NewPlacePage.GetInstance().AddPin(_position, Source, "", PinType.Place);*/
+
+
 
             IsRunning = false;
             IsEnabled = true;

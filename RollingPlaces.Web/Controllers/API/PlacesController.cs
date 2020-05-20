@@ -158,8 +158,11 @@ namespace RollingPlaces.Web.Controllers.API
                 Latitude = placeRequest2.Latitude,
                 Longitude = placeRequest2.Longitude,
                 Name = placeRequest2.Name,
-                User = userEntity
-               
+                User = userEntity,
+                City = new CityEntity
+                {                 
+                        Id = 1
+                }
             };
 
             _context.Places.Add(placeEntity);
