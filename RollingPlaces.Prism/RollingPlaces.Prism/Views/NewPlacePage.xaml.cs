@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using RollingPlaces.Common.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace RollingPlaces.Prism.Views
 {
@@ -24,6 +26,21 @@ namespace RollingPlaces.Prism.Views
             return _instance;
         }
 
+        public Pin GetSelectedPosition()
+        {
+            return MyMap.Pins[0];
+        }
+
+        public async void OnMapClicked(object sender, MapClickedEventArgs e)
+        {
+            clearAllPins();
+            Position position = new Position(e.Position.Latitude, e.Position.Longitude);
+            Geocoder geoCoder = new Geocoder();
+            IEnumerable<string> sources = await geoCoder.GetAddressesForPositionAsync(position);
+            List<string> addresses = new List<string>(sources);
+            AddPin(position, addresses[0], "Nuevo lugar", PinType.Place);
+        }
+
         public void AddPin(Position position, string address, string label, PinType pinType)
         {
             MyMap.Pins.Add(new Pin
@@ -41,29 +58,6 @@ namespace RollingPlaces.Prism.Views
             base.OnAppearing();
             MoveMapToCurrentPositionAsync();
         }
-
-        /*public void DrawLine(Position a, Position b)
-        {
-            if (Device.RuntimePlatform == Device.Android)
-            {
-                Polygon polygon = new Polygon
-                {
-                    StrokeWidth = 10,
-                    StrokeColor = Color.FromHex("#8D07F6"),
-                    FillColor = Color.FromHex("#8D07F6"),
-                    Geopath = { a, b }
-                };
-
-                MyMap.MapElements.Add(polygon);
-            }
-            else
-            {
-                AddPin(b, string.Empty, string.Empty, PinType.SavedPin);
-            }
-
-            MoveMap(b);
-        }*/
-
 
         private async void MoveMapToCurrentPositionAsync()
         {
@@ -92,6 +86,11 @@ namespace RollingPlaces.Prism.Views
                 Distance.FromKilometers(.2)));
         }
 
+
+        public void clearAllPins()
+        {
+            MyMap.Pins.Clear();
+        }
 
         private async Task<bool> CheckLocationPermisionsAsync()
         {

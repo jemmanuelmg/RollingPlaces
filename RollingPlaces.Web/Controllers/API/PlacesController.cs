@@ -38,7 +38,7 @@ namespace RollingPlaces.Web.Controllers.API
            
             PlaceEntity place = await _context.Places
                 .Include(t => t.Qualifications)
-            .FirstOrDefaultAsync(t => t.Id == qualificationsRequest.Qualifications.FirstOrDefault().PlaceId);
+                .FirstOrDefaultAsync(t => t.Id == qualificationsRequest.Qualifications.FirstOrDefault().PlaceId);
 
             if (place == null)  
             {
@@ -137,7 +137,6 @@ namespace RollingPlaces.Web.Controllers.API
             return Ok(placesList);
         }
 
-        // POST: api/Travels
         [HttpPost]
         public async Task<IActionResult> PostPlaceEntity([FromBody] PlaceRequest2 placeRequest2)
         {
@@ -152,6 +151,8 @@ namespace RollingPlaces.Web.Controllers.API
                 return BadRequest("User doesn't exists.");
             }
 
+            CityEntity city = await _context.Cities.FirstOrDefaultAsync(t => t.Id == placeRequest2.CityId);
+            CategoryEntity category = await _context.Categories.FirstOrDefaultAsync(t => t.Id == placeRequest2.CategoryId);
             PlaceEntity placeEntity = new PlaceEntity
             {
                 Description = placeRequest2.Description,
@@ -159,10 +160,8 @@ namespace RollingPlaces.Web.Controllers.API
                 Longitude = placeRequest2.Longitude,
                 Name = placeRequest2.Name,
                 User = userEntity,
-                City = new CityEntity
-                {                 
-                        Id = 1
-                }
+                City = city,
+                Category = category
             };
 
             _context.Places.Add(placeEntity);

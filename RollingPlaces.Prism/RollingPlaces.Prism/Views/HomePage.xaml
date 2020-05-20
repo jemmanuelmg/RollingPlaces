@@ -9,15 +9,15 @@
              Title="{Binding Title}"
              BackgroundColor="{StaticResource ColorBackgroud}">
     
-    <StackLayout>
+    <StackLayout Padding="15">
         <maps:Map x:Name="MyMap"
                   MapType="Street"/>
-        <StackLayout Padding="15">
+        <StackLayout>
             <Button Command="{Binding FindPlaceCommand}" 
                     Margin="10,0"
                     Text="{i18n:Translate FindASpecificPlace}"/>
         </StackLayout>
-        <StackLayout Padding="15">
+        <StackLayout>
             <Button Command="{Binding NewPlaceCommand}" 
                     Margin="10,0"
                     Text="Add New Place"/>

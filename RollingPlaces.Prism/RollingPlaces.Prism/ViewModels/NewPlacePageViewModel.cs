@@ -1,7 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Navigation;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using RollingPlaces.Common.Services;
 using RollingPlaces.Prism.Helpers;
@@ -9,9 +8,12 @@ using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using RollingPlaces.Common.Models;
 using RollingPlaces.Common.Helpers;
-using Newtonsoft.Json;
-using System;
 using RollingPlaces.Prism.Views;
+using Newtonsoft.Json;
+using System.Collections.ObjectModel;
+using System;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
 
 namespace RollingPlaces.Prism.ViewModels
 {
@@ -22,12 +24,21 @@ namespace RollingPlaces.Prism.ViewModels
         private readonly IGeolocatorService _geolocatorService;
         private string _source;
         private string _buttonLabel;
-        //private bool _isSecondButtonVisible;
         private bool _isRunning;
         private bool _isEnabled;
-        private DelegateCommand _getAddressCommand;
-        private DelegateCommand _startTripCommand;
+        private bool _activateMap;
+        private bool _activateDetails;
+        private string _showMapButtonText;
+        private ObservableCollection<PlaceCategory> _categories;
+        private ObservableCollection<PlaceCity> _cities;
+        private PlaceCategory _category;
+        private PlaceCity _city;
+        private ImageSource _image;
+        private MediaFile _file;
         private PlaceResponse _placeResponse;
+        private DelegateCommand _addNewPlaceCommand;
+        private DelegateCommand _showMapCommand;
+        private DelegateCommand _changeImageCommand;
 
         public NewPlacePageViewModel(INavigationService navigationService, IGeolocatorService geolocatorService, IApiService apiService)
             : base(navigationService)
@@ -35,9 +46,15 @@ namespace RollingPlaces.Prism.ViewModels
             _apiService = apiService;
             _navigationService = navigationService;
             _geolocatorService = geolocatorService;
-            Title = "Add New Place";
-            ButtonLabel = "Add Place";
-            LoadSourceAsync();
+            Categories = new ObservableCollection<PlaceCategory>(CombosHelper.GetPlaceCategories2());
+            Cities = new ObservableCollection<PlaceCity>(CombosHelper.GetPlaceCities());
+            Category = null;
+            City = null;
+            ActivateDetails = false;
+            ActivateMap = true;
+            Image = App.Current.Resources["UrlNoImage"].ToString();
+            ShowMapButtonText = "Añadir Detalles";
+            Title = "Añadir nuevo lugar";
         }
 
         public PlaceResponse PlaceResponse
@@ -46,22 +63,44 @@ namespace RollingPlaces.Prism.ViewModels
             set => SetProperty(ref _placeResponse, value);
         }
 
-        public DelegateCommand GetAddressCommand => _getAddressCommand ?? (_getAddressCommand = new DelegateCommand(LoadSourceAsync));
+        public DelegateCommand AddNewPlaceCommand => _addNewPlaceCommand ?? (_addNewPlaceCommand = new DelegateCommand(AddNewPlace));
 
-        public DelegateCommand StartTripCommand => _startTripCommand ?? (_startTripCommand = new DelegateCommand(StartTripAsync));
+        public DelegateCommand ShowMapCommand => _showMapCommand ?? (_showMapCommand = new DelegateCommand(ShowMap));
+
+        public DelegateCommand ChangeImageCommand => _changeImageCommand ?? (_changeImageCommand = new DelegateCommand(ChangeImageAsync));
 
         public string Name { get; set; }
 
-        /*public bool IsSecondButtonVisible
+        public string Description { get; set; }
+
+        public PlaceCategory Category
         {
-            get => _isSecondButtonVisible;
-            set => SetProperty(ref _isSecondButtonVisible, value);
+            get => _category;
+            set => SetProperty(ref _category, value);
         }
-        */
-        public string ButtonLabel
+
+        public ObservableCollection<PlaceCategory> Categories
         {
-            get => _source;
-            set => SetProperty(ref _source, value);
+            get => _categories;
+            set => SetProperty(ref _categories, value);
+        }
+
+        public PlaceCity City
+        {
+            get => _city;
+            set => SetProperty(ref _city, value);
+        }
+
+        public ObservableCollection<PlaceCity> Cities
+        {
+            get => _cities;
+            set => SetProperty(ref _cities, value);
+        }
+
+        public ImageSource Image
+        {
+            get => _image;
+            set => SetProperty(ref _image, value);
         }
 
         public bool IsRunning
@@ -82,24 +121,25 @@ namespace RollingPlaces.Prism.ViewModels
             set => SetProperty(ref _buttonLabel, value);
         }
 
-        private async void LoadSourceAsync()
+        public bool ActivateMap
         {
-            await _geolocatorService.GetLocationAsync();
-            if (_geolocatorService.Latitude != 0 && _geolocatorService.Longitude != 0)
-            {
-                Position position = new Position(_geolocatorService.Latitude, _geolocatorService.Longitude);
-                Geocoder geoCoder = new Geocoder();
-                IEnumerable<string> sources = await geoCoder.GetAddressesForPositionAsync(position);
-                List<string> addresses = new List<string>(sources);
-
-                if (addresses.Count > 0)
-                {
-                    Source = addresses[0];
-                }
-            }
+            get => _activateMap;
+            set => SetProperty(ref _activateMap, value);
         }
 
-        private async void StartTripAsync()
+        public bool ActivateDetails
+        {
+            get => _activateDetails;
+            set => SetProperty(ref _activateDetails, value);
+        }
+
+        public string ShowMapButtonText
+        {
+            get => _showMapButtonText;
+            set => SetProperty(ref _showMapButtonText, value);
+        }
+
+        private async void AddNewPlace()
         {
             bool isValid = await ValidateDataAsync();
             if (!isValid)
@@ -125,13 +165,15 @@ namespace RollingPlaces.Prism.ViewModels
 
             UserResponse user = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
             TokenResponse token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
-
+            Pin pin = NewPlacePage.GetInstance().GetSelectedPosition();
             PlaceRequest2 placeRequest2 = new PlaceRequest2
             {
-                Description = Source,
-                Latitude = _geolocatorService.Latitude,
-                Longitude = _geolocatorService.Longitude,
+                Description = Description,
+                Latitude = pin.Position.Latitude,
+                Longitude = pin.Position.Longitude,
                 Name = Name,
+                CategoryId = Category.Id,
+                CityId = City.Id,
                 User = Guid.Parse(user.Id)
             };
 
@@ -147,13 +189,6 @@ namespace RollingPlaces.Prism.ViewModels
                     Languages.Accept);
                 return;
             }
-            /*Position _position = new Position(_geolocatorService.Latitude, _geolocatorService.Longitude);
-            _placeResponse = (PlaceResponse)response.Result;
-            //IsSecondButtonVisible = true;
-            ButtonLabel = "Regresar";
-            NewPlacePage.GetInstance().AddPin(_position, Source, "", PinType.Place);*/
-
-
 
             IsRunning = false;
             IsEnabled = true;
@@ -167,12 +202,107 @@ namespace RollingPlaces.Prism.ViewModels
             {
                 await App.Current.MainPage.DisplayAlert(
                     Languages.Error,
-                    "Enter a Name",
+                    "Ingrese un nombre para el lugar",
+                    Languages.Accept);
+                return false;
+            }
+
+            if (string.IsNullOrEmpty(Description))
+            {
+                await App.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    "Ingrese una descripcion para el lugar",
+                    Languages.Accept);
+                return false;
+            }
+
+            if (City == null)
+            {
+                await App.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    "Seleccione una ciudad",
+                    Languages.Accept);
+                return false;
+            }
+
+            if (Category == null)
+            {
+                await App.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    "Seleccione una categoría",
+                    Languages.Accept);
+                return false;
+            }
+
+            if (NewPlacePage.GetInstance().GetSelectedPosition() == null)
+            {
+                await App.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    "Seleccione un punto en el mapa para continuar",
                     Languages.Accept);
                 return false;
             }
 
             return true;
+        }
+
+        public void ShowMap()
+        {
+            if (ActivateDetails)
+            {
+                ActivateDetails = false;
+                ActivateMap = true;
+                ShowMapButtonText = "Añadir Detalles";
+            }
+            else
+            {
+                ActivateDetails = true;
+                ActivateMap = false;
+                ShowMapButtonText = "Ver Ubicación";
+            }
+        }
+
+        private async void ChangeImageAsync()
+        {
+            await CrossMedia.Current.Initialize();
+
+            string source = await Application.Current.MainPage.DisplayActionSheet(
+                "Obtener imagen de:",
+                "Cancelar",
+                null,
+                "Galeria",
+                "Camara");
+
+            if (source == "Cancelar")
+            {
+                _file = null;
+                return;
+            }
+
+            if (source == "Camara")
+            {
+                _file = await CrossMedia.Current.TakePhotoAsync(
+                    new StoreCameraMediaOptions
+                    {
+                        Directory = "Sample",
+                        Name = "test.jpg",
+                        PhotoSize = PhotoSize.Small,
+                    }
+                );
+            }
+            else
+            {
+                _file = await CrossMedia.Current.PickPhotoAsync();
+            }
+
+            if (_file != null)
+            {
+                Image = ImageSource.FromStream(() =>
+                {
+                    System.IO.Stream stream = _file.GetStream();
+                    return stream;
+                });
+            }
         }
     }
 

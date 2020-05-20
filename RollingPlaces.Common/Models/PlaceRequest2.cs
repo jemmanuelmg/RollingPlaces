@@ -9,8 +9,6 @@ namespace RollingPlaces.Common.Models
 
         public int Id { get; set; }
 
-        public DateTime CreatedDate { get; set; }
-
         public string Name { get; set; }
 
         public string Description { get; set; }
@@ -19,15 +17,13 @@ namespace RollingPlaces.Common.Models
 
         public double Longitude { get; set; }
 
-        public ICollection<QualificationResponse> Qualifications { get; set; }
-
-        public ICollection<PhotoResponse> Photos { get; set; }
-
         public Guid User { get; set; }
 
-        public CategoryResponse Category { get; set; }
+        public int CategoryId { get; set; }
 
-        public CityResponse City { get; set; }
+        public int CityId { get; set; }
+
+        public List<string> PhotoPaths { get; set; }
 
     }
 }

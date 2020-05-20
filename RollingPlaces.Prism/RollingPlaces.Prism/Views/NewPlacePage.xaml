@@ -5,68 +5,187 @@
          	 xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"    
            	 xmlns:i18n="clr-namespace:RollingPlaces.Prism.Helpers"
          	 xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RollingPlaces.Prism.Views.NewPlacePage"
              BackgroundColor="{StaticResource ColorBackgroud}"
              Title="{Binding Title}">
 
-    <AbsoluteLayout>
-        <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
-                     AbsoluteLayout.LayoutFlags="All" 
-                     Padding="5">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" 
-                       Grid.Column="0"
-                       Text="Name"
-                       VerticalOptions="Center"/>
-                <Entry Grid.Row="0" 
-                       Grid.Column="1"
-                       FontSize="48" 
-                       HorizontalOptions="FillAndExpand"
-                       Placeholder="Enter a name" 
-                       Text="{Binding Name}"/>
-                <Label Grid.Row="1" 
-                       Grid.Column="0"
-                       HorizontalOptions="FillAndExpand" 
-                       Text="Source"
-                       VerticalOptions="Center"/>
-                <StackLayout Grid.Row="1" 
-                             Grid.Column="1"
-                             Orientation="Horizontal">
-                    <Entry HorizontalOptions="FillAndExpand" 
-                           Placeholder="Address"
-                           Text="{Binding Source}"/>
-                    <ImageButton Command="{Binding GetAddressCommand}"
-                                 Source="ic_airport_shuttle"/>
-                </StackLayout>
-            </Grid>
-            <maps:Map x:Name="MyMap"
-                        MapType="Street"/>
-                    
-            <StackLayout Orientation="Horizontal">
-                <Button Command="{Binding StartTripCommand}" 
-                        Text="Add Place"/>
-                
+        <StackLayout Padding="15">
+
+            <StackLayout>
+                <Button Command="{Binding ShowMapCommand}" Text="{Binding ShowMapButtonText}"/>
             </StackLayout>
-        </StackLayout>
-        <busyindicator:SfBusyIndicator AnimationType="Gear" 
-                                       AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
-                	                   AbsoluteLayout.LayoutFlags="All"
-                	                   BackgroundColor="{StaticResource ColorAccent}"
-                	                   HorizontalOptions="Center"
-                	                   TextColor="{StaticResource ColorFontInverse}"
-                	                   IsVisible="{Binding IsRunning}"
-                	                   Title="{i18n:Translate Loading}"
-                	                   VerticalOptions="Center"
-                	                   ViewBoxWidth="80"
-                	                   ViewBoxHeight="80" />
-    </AbsoluteLayout>
+
+            <maps:Map x:Name="MyMap" MapType="Street" IsVisible="{Binding ActivateMap}" MapClicked="OnMapClicked"/>
+
+            <ScrollView IsVisible="{Binding ActivateDetails}">
+                <AbsoluteLayout>
+                    <StackLayout AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                 AbsoluteLayout.LayoutFlags="All">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Row="0" 
+                                   Grid.Column="0"
+                                   Text="Nombre"
+                                   VerticalOptions="Center"/>
+                            <Entry Grid.Row="0" 
+                                   Grid.Column="1" 
+                                   HorizontalOptions="FillAndExpand"
+                                   Placeholder="Nombre del lugar" 
+                                   Text="{Binding Name}"/>
+                            <Label Grid.Row="1" 
+                                    Grid.Column="0"
+                                    HorizontalOptions="FillAndExpand" 
+                                    Text="Categoría"
+                                    VerticalOptions="Center"/>
+                            <Picker Grid.Row="1"
+                                    Grid.Column="1"
+                                    ItemDisplayBinding="{Binding Name}"
+                                    ItemsSource="{Binding Categories}"
+                                    SelectedItem="{Binding Category}"
+                                    Title="Ciudad"/>
+                            <Label Grid.Row="2" 
+                                    Grid.Column="0"
+                                    HorizontalOptions="FillAndExpand" 
+                                    Text="Ciudad"
+                                    VerticalOptions="Center"/>
+                            <Picker Grid.Row="2"
+                                    Grid.Column="1"
+                                    ItemDisplayBinding="{Binding Name}"
+                                    ItemsSource="{Binding Cities}"
+                                    SelectedItem="{Binding City}"
+                                    Title="Ciudad"/>
+                            <Label Grid.Row="3" 
+                                    Grid.Column="0"
+                                    HorizontalOptions="FillAndExpand" 
+                                    Text="Descripcion"
+                                    VerticalOptions="Center"/>
+                            <Editor Grid.Row="3"  
+                                    Grid.Column="1"  
+                                    Text="{Binding Description}"  
+                                    VerticalOptions="FillAndExpand" 
+                                    Keyboard="Chat"  
+                                    HeightRequest="120" 
+                                    Placeholder="Descipción del lugar"/>
+                        </Grid>
+                        
+                        <Label></Label>
+                        <Label Text="Fotos del lugar" FontAttributes="Bold" FontSize="Medium"></Label>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                        <StackLayout Grid.Row="0" Grid.Column="0">
+                            <ffimageloading:CachedImage Aspect="AspectFit"
+                                          Source="{Binding Image}"
+                                          CacheDuration= "50"
+                                          HeightRequest="150"
+                                          Margin="5"
+                                          RetryCount= "3"
+                                          RetryDelay= "600">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:CircleTransformation />
+                                </ffimageloading:CachedImage.Transformations>
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="0" Grid.Column="1">
+                            <ffimageloading:CachedImage Aspect="AspectFit"
+                                          Source="{Binding Image}"
+                                          CacheDuration= "50"
+                                          HeightRequest="150"
+                                          Margin="5"
+                                          RetryCount= "3"
+                                          RetryDelay= "600">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:CircleTransformation />
+                                </ffimageloading:CachedImage.Transformations>
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1" Grid.Column="0">
+                            <ffimageloading:CachedImage Aspect="AspectFit"
+                                          Source="{Binding Image}"
+                                          CacheDuration= "50"
+                                          HeightRequest="150"
+                                          Margin="5"
+                                          RetryCount= "3"
+                                          RetryDelay= "600">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:CircleTransformation />
+                                </ffimageloading:CachedImage.Transformations>
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1" Grid.Column="1">
+                            <ffimageloading:CachedImage Aspect="AspectFit"
+                                          Source="{Binding Image}"
+                                          CacheDuration= "50"
+                                          HeightRequest="150"
+                                          Margin="5"
+                                          RetryCount= "3"
+                                          RetryDelay= "600">
+                                <ffimageloading:CachedImage.Transformations>
+                                    <fftransformations:CircleTransformation />
+                                </ffimageloading:CachedImage.Transformations>
+                                <ffimageloading:CachedImage.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                                </ffimageloading:CachedImage.GestureRecognizers>
+                            </ffimageloading:CachedImage>
+                        </StackLayout>
+
+                    </Grid>
+
+
+                    <Button Command="{Binding AddNewPlaceCommand}" Text="Add Place"/>
+                    
+                    </StackLayout>
+                    <busyindicator:SfBusyIndicator AnimationType="Gear" 
+                                                    AbsoluteLayout.LayoutBounds=".5,.5,.5,.5"
+                	                                AbsoluteLayout.LayoutFlags="All"
+                	                                BackgroundColor="{StaticResource ColorAccent}"
+                	                                HorizontalOptions="Center"
+                	                                TextColor="{StaticResource ColorFontInverse}"
+                	                                IsVisible="{Binding IsRunning}"
+                	                                Title="{i18n:Translate Loading}"
+                	                                VerticalOptions="Center"
+                	                                ViewBoxWidth="80"
+                	                                ViewBoxHeight="80" />
+                </AbsoluteLayout>
+            </ScrollView>
+                
+            
+
+
+    </StackLayout>
+
+        <!---->
 </ContentPage>
