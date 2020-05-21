@@ -132,12 +132,48 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-            </CollectionView>
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label Text="No hay comentarios"
+                    Margin="10,25,10,10"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center" />
+                        <Label Text="Se el primero en añadir un comentario!"
+                    FontAttributes="Italic"
+                    FontSize="12"
+                    HorizontalOptions="Fill"
+                    HorizontalTextAlignment="Center" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+                </CollectionView>
 
-            <StackLayout>
+            <StackLayout Orientation="Horizontal">
                 <Label Text="Imágenes del Lugar" FontAttributes="Bold" FontSize="Medium"></Label>
-                <carousel:SfCarousel x:Name="carousel" HeightRequest="350" WidthRequest="400"/>
+                <Label Text="{Binding NoPhotosMessage}"></Label>
             </StackLayout>
+            <!--<StackLayout>
+                <carousel:SfCarousel x:Name="carousel" HeightRequest="350" WidthRequest="400"/>
+            </StackLayout>-->
+            <StackLayout>
+                    <Image x:Name="Img1" 
+                           HorizontalOptions="Center"
+                           HeightRequest="150"
+                           Source="{Binding Image1}"/>
+                    <Image x:Name="Img2" 
+                           HorizontalOptions="Center"
+                           HeightRequest="150"
+                           Source="{Binding Image2}"/>
+                    <Image x:Name="Img3" 
+                           HorizontalOptions="Center"
+                           HeightRequest="150"
+                           Source="{Binding Image3}"/>
+                    <Image x:Name="Img4" 
+                           HorizontalOptions="Center"
+                           HeightRequest="150"
+                           Source="{Binding Image4}"/>
+                </StackLayout>
             <Label></Label>
 
             <Button Command="{Binding GoToAddQualificationCommand}" 

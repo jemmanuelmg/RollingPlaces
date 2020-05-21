@@ -175,6 +175,53 @@ namespace RollingPlaces.Web.Controllers.API
             _context.Places.Add(placeEntity);
             await _context.SaveChangesAsync();
 
+            List<PlaceEntity> auxPlaceList = await _context.Places
+                .Where(t => t.Name.Contains(placeRequest2.Name) == true)
+                .Where(t => t.User.Id == placeRequest2.User.ToString())
+                .ToListAsync();
+
+            string photoPath1 = string.Empty;
+            if (placeRequest2.PictureArray1 != null && placeRequest2.PictureArray1.Length > 0)
+            {
+                photoPath1 = _imageHelper.UploadImage(placeRequest2.PictureArray1, "Places");
+                PhotoEntity photo1 = new PhotoEntity();
+                photo1.PhotoPath = photoPath1;
+                photo1.Place = auxPlaceList[0];
+                _context.Photos.Add(photo1);
+            }
+
+            string photoPath2 = string.Empty;
+            if (placeRequest2.PictureArray2 != null && placeRequest2.PictureArray2.Length > 0)
+            {
+                photoPath2 = _imageHelper.UploadImage(placeRequest2.PictureArray2, "Places");
+                PhotoEntity photo2 = new PhotoEntity();
+                photo2.PhotoPath = photoPath2;
+                photo2.Place = auxPlaceList[0];
+                _context.Photos.Add(photo2);
+            }
+
+            string photoPath3 = string.Empty;
+            if (placeRequest2.PictureArray3 != null && placeRequest2.PictureArray3.Length > 0)
+            {
+                photoPath3 = _imageHelper.UploadImage(placeRequest2.PictureArray3, "Places");
+                PhotoEntity photo3 = new PhotoEntity();
+                photo3.PhotoPath = photoPath3;
+                photo3.Place = auxPlaceList[0];
+                _context.Photos.Add(photo3);
+            }
+
+            string photoPath4 = string.Empty;
+            if (placeRequest2.PictureArray4 != null && placeRequest2.PictureArray4.Length > 0)
+            {
+                photoPath4 = _imageHelper.UploadImage(placeRequest2.PictureArray4, "Places");
+                PhotoEntity photo4 = new PhotoEntity();
+                photo4.PhotoPath = photoPath4;
+                photo4.Place = auxPlaceList[0];
+                _context.Photos.Add(photo4);
+            }
+
+            await _context.SaveChangesAsync();
+
             return Ok(_converterHelper.ToPlaceResponse(placeEntity));
         }
 

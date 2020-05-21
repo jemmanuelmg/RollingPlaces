@@ -6,7 +6,9 @@ using RollingPlaces.Common.Services;
 using Xamarin.Forms.Maps;
 using Syncfusion.SfCarousel.XForms;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Xamarin.Forms;
+using RollingPlaces.Common.Models;
 
 namespace RollingPlaces.Prism.Views
 {
@@ -58,9 +60,17 @@ namespace RollingPlaces.Prism.Views
             }
         }
 
-        public void PopulateImagesToCarousel()
+        /*public void PopulateImagesToCarousel(ICollection<PhotoResponse> photos)
         {
             ObservableCollection<SfCarouselItem> carouselItems = new ObservableCollection<SfCarouselItem>();
+
+            foreach(PhotoResponse photo in photos)
+            {
+                carouselItems.Add(new SfCarouselItem() { ImageName = photo.PhotoPath });
+            }
+
+            carousel.ItemsSource = carouselItems;
+
             carouselItems.Add(new SfCarouselItem() { ImageName = "photo1.png" });
             carouselItems.Add(new SfCarouselItem() { ImageName = "photo2.png" });
             carouselItems.Add(new SfCarouselItem() { ImageName = "photo3.png" });
@@ -69,6 +79,13 @@ namespace RollingPlaces.Prism.Views
             carouselItems.Add(new SfCarouselItem() { ImageName = "photo6.png" });
             carousel.ItemsSource = carouselItems;
         }
+
+        public void SetNoImageInCarousel(string photoRoute)
+        {
+            ObservableCollection<SfCarouselItem> carouselItems = new ObservableCollection<SfCarouselItem>();
+
+            carouselItems.Add(new SfCarouselItem() { ImageName = photoRoute });
+        }*/
 
         private async Task<bool> CheckLocationPermisionsAsync()
         {

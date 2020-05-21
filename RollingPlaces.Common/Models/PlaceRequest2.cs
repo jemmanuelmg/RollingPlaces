@@ -21,7 +21,13 @@ namespace RollingPlaces.Common.Models
 
         public int CityId { get; set; }
 
-        public List<string> PhotoPaths { get; set; }
+        public byte[] PictureArray1 { get; set; }
+
+        public byte[] PictureArray2 { get; set; }
+
+        public byte[] PictureArray3 { get; set; }
+
+        public byte[] PictureArray4 { get; set; }
 
     }
 }
