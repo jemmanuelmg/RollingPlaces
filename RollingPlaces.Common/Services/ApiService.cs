@@ -7,7 +7,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using RollingPlaces.Common.Models;
-using Plugin.Connectivity;
 
 namespace RollingPlaces.Common.Services
 {
@@ -82,6 +81,12 @@ namespace RollingPlaces.Common.Services
                 string url = $"{servicePrefix}{controller}";
                 HttpResponseMessage response = await client.PostAsync(url, content);
                 string result = await response.Content.ReadAsStringAsync();
+                if (!result.EndsWith("]"))
+                {
+
+                    result += "}]";
+                }
+                int a = 1;
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -93,6 +98,8 @@ namespace RollingPlaces.Common.Services
                 }
 
                 List<PlaceResponse> places = JsonConvert.DeserializeObject<List<PlaceResponse>>(result);
+                a = 1;
+                int b = 2;
                 return new Response
                 {
                     IsSuccess = true,

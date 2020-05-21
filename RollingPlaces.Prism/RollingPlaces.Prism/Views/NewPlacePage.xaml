@@ -54,7 +54,7 @@
                                     ItemDisplayBinding="{Binding Name}"
                                     ItemsSource="{Binding Categories}"
                                     SelectedItem="{Binding Category}"
-                                    Title="Ciudad"/>
+                                    Title="Categoria"/>
                             <Label Grid.Row="2" 
                                     Grid.Column="0"
                                     HorizontalOptions="FillAndExpand" 

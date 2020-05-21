@@ -55,7 +55,7 @@ namespace RollingPlaces.Prism.ViewModels
 
             menus.Add(new Menu
             {
-                Icon = "ic_airport_shuttle",
+                Icon = "ic_home",
                 PageName = "HomePage",
                 Title = Languages.Home
             });
@@ -76,6 +76,13 @@ namespace RollingPlaces.Prism.ViewModels
                     PageName = "ModifyUserPage",
                     Title = Languages.ModifyUser
                 });
+
+                menus.Add(new Menu
+                {
+                    Icon = "ic_add",
+                    PageName = "NewPlacePage",
+                    Title = "Agregar un lugar"
+                });
             } 
             else
             {
@@ -92,13 +99,6 @@ namespace RollingPlaces.Prism.ViewModels
                 Icon = "ic_place",
                 PageName = "PlaceHistoryPage",
                 Title = "Buscar Lugares"
-            });
-
-            menus.Add(new Menu
-            {
-                Icon = "ic_report",
-                PageName = "ReportPage",
-                Title = Languages.ReportanIncident
             });
 
             Menus = new ObservableCollection<MenuItemViewModel>(

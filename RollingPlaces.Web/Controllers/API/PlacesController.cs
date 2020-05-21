@@ -30,6 +30,7 @@ namespace RollingPlaces.Web.Controllers.API
             _converterHelper = converterHelper;
             _imageHelper = imageHelper;
         }
+
         [HttpPost]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [Route("AddQualification")]
@@ -74,7 +75,6 @@ namespace RollingPlaces.Web.Controllers.API
             {
                 return BadRequest(ModelState);
             }
-
 
             var placeEntities = await _context.Places.ToListAsync();
 
@@ -138,36 +138,44 @@ namespace RollingPlaces.Web.Controllers.API
         }
 
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> PostPlaceEntity([FromBody] PlaceRequest2 placeRequest2)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = "Bad request",
+                    Result = ModelState
+                });
             }
 
-            UserEntity userEntity = await _userHelper.GetUserByEmailAsync(placeRequest2.User);
+            UserEntity userEntity = await _userHelper.GetUserAsync(placeRequest2.User);
             if (userEntity == null)
             {
                 return BadRequest("User doesn't exists.");
             }
 
-            CityEntity city = await _context.Cities.FirstOrDefaultAsync(t => t.Id == placeRequest2.CityId);
-            CategoryEntity category = await _context.Categories.FirstOrDefaultAsync(t => t.Id == placeRequest2.CategoryId);
+            List<CityEntity> auxCityList = await _context.Cities.Where(t => t.Id == placeRequest2.CityId).ToListAsync();
+            List<CategoryEntity> auxCategoryList = await _context.Categories.Where(t => t.Id == placeRequest2.CategoryId).ToListAsync();
+
             PlaceEntity placeEntity = new PlaceEntity
             {
                 Description = placeRequest2.Description,
-                Latitude = placeRequest2.Latitude,
-                Longitude = placeRequest2.Longitude,
+                Latitude = Math.Round((Double)placeRequest2.Latitude, 6),
+                Longitude = Math.Round((Double)placeRequest2.Longitude, 6),
                 Name = placeRequest2.Name,
                 User = userEntity,
-                City = city,
-                Category = category
+                City = auxCityList[0],
+                Category = auxCategoryList[0],
+                CreatedDate = DateTime.Now
             };
 
             _context.Places.Add(placeEntity);
             await _context.SaveChangesAsync();
 
-            return Ok(_converterHelper.ToPlaceResponse(placeEntity)); ;
+            return Ok(_converterHelper.ToPlaceResponse(placeEntity));
         }
 
     }

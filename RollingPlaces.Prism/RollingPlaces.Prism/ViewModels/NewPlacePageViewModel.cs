@@ -141,6 +141,12 @@ namespace RollingPlaces.Prism.ViewModels
 
         private async void AddNewPlace()
         {
+            if (!Settings.IsLogin)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, "Inicia sesión o registrate para agregar lugares", Languages.Accept);
+                await _navigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/HomePage");
+            }
+
             bool isValid = await ValidateDataAsync();
             if (!isValid)
             {

@@ -100,13 +100,7 @@ namespace RollingPlaces.Prism.ViewModels
         }
         private async void CancelAsync()
         {
-        
-        NavigationParameters parameters = new NavigationParameters
-            {
-                { "place", _place}
-            };
-        await _navigationService.NavigateAsync(nameof(PlaceDetailPage), parameters);
-
+            await _navigationService.NavigateAsync(nameof(PlaceDetailPage));
         }
 
         private async void SaveQualificationAsync()

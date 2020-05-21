@@ -132,6 +132,7 @@ namespace RollingPlaces.Prism.ViewModels
                 NoItemsTitle = "Sin resultados";
                 NoItemsMessage = "No se encontraron resultados. Introduce otros criterios de búsqueda diferentes.";
             }
+
             Places = places.Select(t => new PlaceItemViewModel(_navigationService)
             {
                 Id = t.Id,
