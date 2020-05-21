@@ -1,11 +1,10 @@
 ﻿using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
-using System.Threading.Tasks;
 using RollingPlaces.Common.Services;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
 
 namespace RollingPlaces.Prism.Views
 {
@@ -70,11 +69,11 @@ namespace RollingPlaces.Prism.Views
                 await _geolocatorService.GetLocationAsync();
                 if (_geolocatorService.Latitude != 0 && _geolocatorService.Longitude != 0)
                 {
-                    Position position = new Position(                       
+                    Position position = new Position(
                         _geolocatorService.Latitude,
                         _geolocatorService.Longitude);
-                  MoveMap(position);
-                   
+                    MoveMap(position);
+
                 }
             }
         }

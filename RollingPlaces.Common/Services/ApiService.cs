@@ -83,10 +83,8 @@ namespace RollingPlaces.Common.Services
                 string result = await response.Content.ReadAsStringAsync();
                 if (!result.EndsWith("]"))
                 {
-
                     result += "}]";
                 }
-                int a = 1;
 
                 if (!response.IsSuccessStatusCode)
                 {
@@ -98,8 +96,7 @@ namespace RollingPlaces.Common.Services
                 }
 
                 List<PlaceResponse> places = JsonConvert.DeserializeObject<List<PlaceResponse>>(result);
-                a = 1;
-                int b = 2;
+
                 return new Response
                 {
                     IsSuccess = true,

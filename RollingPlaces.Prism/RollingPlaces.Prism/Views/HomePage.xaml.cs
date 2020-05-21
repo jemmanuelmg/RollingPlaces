@@ -11,10 +11,12 @@ namespace RollingPlaces.Prism.Views
     public partial class HomePage : ContentPage
     {
         private readonly IGeolocatorService _geolocatorService;
+        public static HomePage _instance;
 
         public HomePage(IGeolocatorService geolocatorService)
         {
             InitializeComponent();
+            _instance = this;
             _geolocatorService = geolocatorService;
         }
 
@@ -22,6 +24,22 @@ namespace RollingPlaces.Prism.Views
         {
             base.OnAppearing();
             MoveMapToCurrentPositionAsync();
+        }
+
+        public static HomePage GetInstance()
+        {
+            return _instance;
+        }
+
+        public void AddPin(Position position, string address, string label, PinType pinType)
+        {
+            MyMap.Pins.Add(new Pin
+            {
+                Address = address,
+                Label = label,
+                Position = position,
+                Type = pinType
+            });
         }
 
         private async void MoveMapToCurrentPositionAsync()
@@ -38,9 +56,6 @@ namespace RollingPlaces.Prism.Views
                     Position position = new Position(
                         _geolocatorService.Latitude,
                         _geolocatorService.Longitude);
-                    /*MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(
-                        position,
-                        Distance.FromKilometers(.5)));*/
                     MoveMap(position);
 
                 }

@@ -25,7 +25,6 @@ namespace RollingPlaces.Prism.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            //MoveMapToCurrentPositionAsync();
         }
 
 
