@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="http://prismlibrary.com"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="RollingPlaces.Prism.Views.HelpPage"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="#EDF2F5" Grid.Row="1">
+            <StackLayout Margin="20">
+
+
+                <syncfusion:SfExpander IsExpanded="True">
+                    <syncfusion:SfExpander.Header>
+                        <Grid>
+                            <Label TextColor="#495F6E" Text="Que es Rolling Places" VerticalTextAlignment="Center" />
+                        </Grid>
+                    </syncfusion:SfExpander.Header>
+                    <syncfusion:SfExpander.Content>
+                        <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF">
+                            <Label TextColor="#303030" Text="Rolling Places es una aplicación que permite encontrar lugares cercanos facilmente ommodo et vulputate ut, luctus fermentum diam. Aliquam quis gravida dolor. Sed ex arcu, euismod dignissim sollicitudin eu, sollicitudin vitae mi. " HeightRequest="50" VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+
+
+                <syncfusion:SfExpander>
+                    <syncfusion:SfExpander.Header>
+                        <Grid>
+                            <Label TextColor="#495F6E" Text="¿Como puedo acceder?" VerticalTextAlignment="Center" />
+                        </Grid>
+                    </syncfusion:SfExpander.Header>
+                    <syncfusion:SfExpander.Content>
+                        <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF">
+                            <Label TextColor="#303030" Text="Para poder agregar nuevos lugares debes registrarte en Rolling Places. Puedes hacerlo accediendo al menú lateral de opciones
+                                   y entrando en le menú 'Registrarse' y completando tus datos" HeightRequest="50" VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+
+
+                <syncfusion:SfExpander>
+                    <syncfusion:SfExpander.Header>
+                        <Grid>
+                            <Label TextColor="#495F6E" Text="Agregar lugares" VerticalTextAlignment="Center" />
+                        </Grid>
+                    </syncfusion:SfExpander.Header>
+                    <syncfusion:SfExpander.Content>
+                        <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF">
+                            <Label TextColor="#303030" Text="Pellentesque gravida augue nec nisl porttitor, ut congue neque rutrum. Sed a lacus eget sapien dapibus lacinia. Nam vel libero quam. Nulla facilisi.
+                                   Aenean maximus lobortis felis id porttitor" HeightRequest="50" VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+
+
+                <syncfusion:SfExpander>
+                    <syncfusion:SfExpander.Header>
+                        <Grid>
+                            <Label TextColor="#495F6E" Text="Agregar comentarios" VerticalTextAlignment="Center" />
+                        </Grid>
+                    </syncfusion:SfExpander.Header>
+                    <syncfusion:SfExpander.Content>
+                        <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF">
+                            <Label TextColor="#303030" Text="In consequat metus tellus, et feugiat justo tincidunt vitae. Cras accumsan scelerisque lorem nec dictum.
+                                   Nam volutpat ante ac elit efficitur" HeightRequest="50" VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+
+                <syncfusion:SfExpander>
+                    <syncfusion:SfExpander.Header>
+                        <Grid>
+                            <Label TextColor="#495F6E" Text="No puedo tomar fotos" VerticalTextAlignment="Center" />
+                        </Grid>
+                    </syncfusion:SfExpander.Header>
+                    <syncfusion:SfExpander.Content>
+                        <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF">
+                            <Label TextColor="#303030" Text="Aenean metus arcu, eleifend finibus turpis mollis, pharetra imperdiet tellus. Morbi vestibulum purus ac ipsum dictum, quis iaculis dui scelerisque. Aenean venenatis nibh odio, a 
+                                   tincidunt erat auctor in. Integer justo ipsum," HeightRequest="50" VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+
+                <syncfusion:SfExpander>
+                    <syncfusion:SfExpander.Header>
+                        <Grid>
+                            <Label TextColor="#495F6E" Text="He olvidado mi contraseña" VerticalTextAlignment="Center" />
+                        </Grid>
+                    </syncfusion:SfExpander.Header>
+                    <syncfusion:SfExpander.Content>
+                        <Grid Padding="10,10,10,10" BackgroundColor="#FFFFFF">
+                            <Label TextColor="#303030" Text="Pharetra imperdiet tellus. Morbi vestibulum purus ac ipsum dictum, quis iaculis dui scelerisque. Aenean venenatis nibh odio, a 
+                                   tincidunt erat  vestibulum purus ac ipsum dictum, quis, Aenean metus arcu, eleifend finibus turpis mollis, pharetra imperdiet tellus. Morbi vestibulum purus ac ipsum dictum, quis iaculis dui scelerisque. Aenean venenatis nibh odio, a 
+                                   tincidunt erat auctor in. Integer justo ipsum," HeightRequest="50" VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </syncfusion:SfExpander.Content>
+                </syncfusion:SfExpander>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</ContentPage>

@@ -53,6 +53,7 @@ namespace RollingPlaces.Prism
             containerRegistry.RegisterForNavigation<QualificationPage, QualificationPageViewModel>();
             containerRegistry.RegisterForNavigation<PlaceDetailPage, PlaceDetailPageViewModel>();
             containerRegistry.RegisterForNavigation<NewPlacePage, NewPlacePageViewModel>();
+            containerRegistry.RegisterForNavigation<HelpPage, HelpPageViewModel>();
         }
     }
 }

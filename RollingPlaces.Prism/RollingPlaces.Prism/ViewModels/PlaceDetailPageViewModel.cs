@@ -123,16 +123,6 @@ namespace RollingPlaces.Prism.ViewModels
                 }
                 i++;
             }
-
-            /*if (!(Place.Photos.Count > 0))
-            {
-                PlaceDetailPage.GetInstance().PopulateImagesToCarousel(Place.Photos);
-            }
-            else
-            {
-                NoPhotosMessage = "No se han encontrado imágenes de este lugar";
-                PlaceDetailPage.GetInstance().SetNoImageInCarousel(App.Current.Resources["UrlNoImage"].ToString());
-            }*/
         }
 
         public async void GoToAddQualification()

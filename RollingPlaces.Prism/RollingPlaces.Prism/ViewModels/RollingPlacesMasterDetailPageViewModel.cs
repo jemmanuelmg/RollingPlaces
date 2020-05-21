@@ -83,7 +83,7 @@ namespace RollingPlaces.Prism.ViewModels
                     PageName = "NewPlacePage",
                     Title = "Agregar un lugar"
                 });
-            } 
+            }
             else
             {
                 menus.Add(new Menu
@@ -99,6 +99,13 @@ namespace RollingPlaces.Prism.ViewModels
                 Icon = "ic_place",
                 PageName = "PlaceHistoryPage",
                 Title = "Buscar Lugares"
+            });
+
+            menus.Add(new Menu
+            {
+                Icon = "ic_info_outline",
+                PageName = "HelpPage",
+                Title = "Acerca de"
             });
 
             Menus = new ObservableCollection<MenuItemViewModel>(

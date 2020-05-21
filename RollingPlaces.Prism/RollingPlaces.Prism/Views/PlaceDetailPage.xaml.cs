@@ -60,33 +60,6 @@ namespace RollingPlaces.Prism.Views
             }
         }
 
-        /*public void PopulateImagesToCarousel(ICollection<PhotoResponse> photos)
-        {
-            ObservableCollection<SfCarouselItem> carouselItems = new ObservableCollection<SfCarouselItem>();
-
-            foreach(PhotoResponse photo in photos)
-            {
-                carouselItems.Add(new SfCarouselItem() { ImageName = photo.PhotoPath });
-            }
-
-            carousel.ItemsSource = carouselItems;
-
-            carouselItems.Add(new SfCarouselItem() { ImageName = "photo1.png" });
-            carouselItems.Add(new SfCarouselItem() { ImageName = "photo2.png" });
-            carouselItems.Add(new SfCarouselItem() { ImageName = "photo3.png" });
-            carouselItems.Add(new SfCarouselItem() { ImageName = "photo4.png" });
-            carouselItems.Add(new SfCarouselItem() { ImageName = "photo5.png" });
-            carouselItems.Add(new SfCarouselItem() { ImageName = "photo6.png" });
-            carousel.ItemsSource = carouselItems;
-        }
-
-        public void SetNoImageInCarousel(string photoRoute)
-        {
-            ObservableCollection<SfCarouselItem> carouselItems = new ObservableCollection<SfCarouselItem>();
-
-            carouselItems.Add(new SfCarouselItem() { ImageName = photoRoute });
-        }*/
-
         private async Task<bool> CheckLocationPermisionsAsync()
         {
             PermissionStatus permissionLocation = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);

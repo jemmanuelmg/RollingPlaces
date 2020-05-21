@@ -6,7 +6,7 @@
              xmlns:badge ="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
              xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
-             xmlns:carousel="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms"
+             xmlns:cards="clr-namespace:Syncfusion.XForms.Cards;assembly=Syncfusion.Cards.XForms"
              x:Class="RollingPlaces.Prism.Views.PlaceDetailPage"
              ios:Page.UseSafeArea="true"
              prism:ViewModelLocator.AutowireViewModel="True"
@@ -149,30 +149,40 @@
                 </CollectionView.EmptyView>
                 </CollectionView>
 
-            <StackLayout Orientation="Horizontal">
-                <Label Text="Imágenes del Lugar" FontAttributes="Bold" FontSize="Medium"></Label>
-                <Label Text="{Binding NoPhotosMessage}"></Label>
-            </StackLayout>
-            <!--<StackLayout>
-                <carousel:SfCarousel x:Name="carousel" HeightRequest="350" WidthRequest="400"/>
-            </StackLayout>-->
-            <StackLayout>
-                    <Image x:Name="Img1" 
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Imágenes del Lugar" FontAttributes="Bold" FontSize="Medium"></Label>
+                    <Label Text="{Binding NoPhotosMessage}"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <cards:SfCardLayout SwipeDirection="Left" HeightRequest="500" BackgroundColor="#F0F0F0">
+                        <cards:SfCardView>
+                            <Image x:Name="Img1" 
                            HorizontalOptions="Center"
                            HeightRequest="150"
                            Source="{Binding Image1}"/>
-                    <Image x:Name="Img2" 
+                        </cards:SfCardView>
+
+                        <cards:SfCardView>
+                            <Image x:Name="Img2" 
                            HorizontalOptions="Center"
                            HeightRequest="150"
                            Source="{Binding Image2}"/>
-                    <Image x:Name="Img3" 
+                        </cards:SfCardView>
+
+                        <cards:SfCardView>
+                            <Image x:Name="Img3" 
                            HorizontalOptions="Center"
                            HeightRequest="150"
                            Source="{Binding Image3}"/>
-                    <Image x:Name="Img4" 
+                        </cards:SfCardView>
+
+                        <cards:SfCardView>
+                            <Image x:Name="Img4" 
                            HorizontalOptions="Center"
                            HeightRequest="150"
                            Source="{Binding Image4}"/>
+                        </cards:SfCardView>
+                    </cards:SfCardLayout>
                 </StackLayout>
             <Label></Label>
 
