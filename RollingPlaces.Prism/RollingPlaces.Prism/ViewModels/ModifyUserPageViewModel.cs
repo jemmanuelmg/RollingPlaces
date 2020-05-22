@@ -37,9 +37,9 @@ namespace RollingPlaces.Prism.ViewModels
             Title = Languages.ModifyUser;
             IsEnabled = true;
             User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
-            //Image = string.IsNullOrEmpty(User.PictureFullPath) ? App.Current.Resources["UrlNoImage"].ToString() : User.PictureFullPath;
-            //Image = User.PictureFullPath;
-            Image = App.Current.Resources["UrlNoImage"].ToString();
+            Image = string.IsNullOrEmpty(User.PictureFullPath) ? App.Current.Resources["UrlNoImage"].ToString() : User.PictureFullPath;
+            int a = 1;
+            int b = 1;
         }
 
         public DelegateCommand ChangeImageCommand => _changeImageCommand ?? (_changeImageCommand = new DelegateCommand(ChangeImageAsync));

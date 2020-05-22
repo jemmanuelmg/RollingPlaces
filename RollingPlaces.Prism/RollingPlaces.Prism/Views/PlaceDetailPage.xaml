@@ -155,18 +155,12 @@
                 </StackLayout>
                 <StackLayout>
                     <cards:SfCardLayout SwipeDirection="Left" HeightRequest="500" BackgroundColor="#F0F0F0">
-                        <cards:SfCardView>
-                            <Image x:Name="Img1" 
-                           HorizontalOptions="Center"
-                           HeightRequest="150"
-                           Source="{Binding Image1}"/>
-                        </cards:SfCardView>
 
                         <cards:SfCardView>
-                            <Image x:Name="Img2" 
+                            <Image x:Name="Img4" 
                            HorizontalOptions="Center"
                            HeightRequest="150"
-                           Source="{Binding Image2}"/>
+                           Source="{Binding Image4}"/>
                         </cards:SfCardView>
 
                         <cards:SfCardView>
@@ -177,11 +171,19 @@
                         </cards:SfCardView>
 
                         <cards:SfCardView>
-                            <Image x:Name="Img4" 
+                            <Image x:Name="Img2" 
                            HorizontalOptions="Center"
                            HeightRequest="150"
-                           Source="{Binding Image4}"/>
+                           Source="{Binding Image2}"/>
                         </cards:SfCardView>
+
+                        <cards:SfCardView>
+                            <Image x:Name="Img1" 
+                           HorizontalOptions="Center"
+                           HeightRequest="150"
+                           Source="{Binding Image1}"/>
+                        </cards:SfCardView>
+
                     </cards:SfCardLayout>
                 </StackLayout>
             <Label></Label>

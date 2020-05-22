@@ -41,7 +41,8 @@ namespace RollingPlaces.Web.Helpers
 				return string.Empty;
 			}
 
-			return $"~/images/{folder}/{file}";
+			//return $"~/images/{folder}/{file}";
+			return "https://rollingplaces.azurewebsites.net/images/Places/" + file;
 		}
 	}
 }
