@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using RollingPlaces.Web.Data;
 using RollingPlaces.Web.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Taxi.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class PlacesController : Controller
     {
         private readonly DataContext _context;
@@ -29,7 +31,12 @@ namespace Taxi.Web.Controllers
             }
 
             var model = await _context.Places
-                .FirstOrDefaultAsync(m => m.Id == id);
+                  .Include(m => m.User)
+                  .Include(m => m.Category)
+                  .Include(m => m.City)
+                  .Include(m => m.Qualifications)
+                  .Include(m => m.Photos)
+                 .FirstOrDefaultAsync(m => m.Id == id);
             if (model == null)
             {
                 return NotFound();
