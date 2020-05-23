@@ -144,11 +144,11 @@ namespace RollingPlaces.Web.Data
                     {
                         new PhotoEntity
                         {
-                            PhotoPath = "/wwwroot/images/place-photos/120924993.jpg"
+                            PhotoPath = "images/place-photos/120924993.jpg"
                         },
                         new PhotoEntity
                         {
-                            PhotoPath = "/wwwroot/images/place-photos/120924993.jpg"
+                            PhotoPath = "images/place-photos/120924993.jpg"
                         }
                     }
 
@@ -185,11 +185,11 @@ namespace RollingPlaces.Web.Data
                     {
                         new PhotoEntity
                         {
-                            PhotoPath = "/wwwroot/images/place-photos/120924993.jpg"
+                            PhotoPath = "images/place-photos/120924993.jpg"
                         },
                         new PhotoEntity
                         {
-                            PhotoPath = "/wwwroot/images/place-photos/120924993.jpg"
+                            PhotoPath = "images/place-photos/120924993.jpg"
                         }
                     }
 
@@ -226,11 +226,11 @@ namespace RollingPlaces.Web.Data
                     {
                         new PhotoEntity
                         {
-                            PhotoPath = "/wwwroot/images/place-photos/120924993.jpg"
+                            PhotoPath = "images/place-photos/120924993.jpg"
                         },
                         new PhotoEntity
                         {
-                            PhotoPath = "/wwwroot/images/place-photos/120924993.jpg"
+                            PhotoPath = "images/place-photos/120924993.jpg"
                         }
                     }
 
@@ -267,11 +267,11 @@ namespace RollingPlaces.Web.Data
                     {
                         new PhotoEntity
                         {
-                            PhotoPath = "/wwwroot/images/place-photos/120924993.jpg"
+                            PhotoPath = "images/place-photos/120924993.jpg"
                         },
                         new PhotoEntity
                         {
-                            PhotoPath = "/wwwroot/images/place-photos/120924993.jpg"
+                            PhotoPath = "images/place-photos/120924993.jpg"
                         }
                     }
 
@@ -308,11 +308,11 @@ namespace RollingPlaces.Web.Data
                     {
                         new PhotoEntity
                         {
-                            PhotoPath = "/wwwroot/images/place-photos/120924993.jpg"
+                            PhotoPath = "images/place-photos/120924993.jpg"
                         },
                         new PhotoEntity
                         {
-                            PhotoPath = "/wwwroot/images/place-photos/120924993.jpg"
+                            PhotoPath = "images/place-photos/120924993.jpg"
                         }
                     }
 
