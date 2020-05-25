@@ -4,9 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using RollingPlaces.Web.Data;
 using RollingPlaces.Web.Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Taxi.Web.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class PlacesController : Controller
     {
         private readonly DataContext _context;
@@ -29,7 +31,12 @@ namespace Taxi.Web.Controllers
             }
 
             var model = await _context.Places
-                .FirstOrDefaultAsync(m => m.Id == id);
+                  .Include(m => m.User)
+                  .Include(m => m.Category)
+                  .Include(m => m.City)
+                  .Include(m => m.Qualifications)
+                  .Include(m => m.Photos)
+                 .FirstOrDefaultAsync(m => m.Id == id);
             if (model == null)
             {
                 return NotFound();
@@ -37,7 +44,7 @@ namespace Taxi.Web.Controllers
 
             return View(model);
         }
-
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -49,7 +56,7 @@ namespace Taxi.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
                 _context.Add(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -85,7 +92,7 @@ namespace Taxi.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                
+
                 _context.Update(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -94,7 +101,7 @@ namespace Taxi.Web.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        /*public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -109,6 +116,19 @@ namespace Taxi.Web.Controllers
             }
 
             _context.Places.Remove(model);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }*/
+
+        // GET: Travels/Delete/5
+        public async Task<IActionResult> Delete(int id)
+        {
+            var placeEntity = await _context.Places
+                                .Include(t => t.Qualifications)
+                                .Include(t => t.Photos)
+                                .FirstOrDefaultAsync(t => t.Id == id);
+
+            _context.Places.Remove(placeEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
