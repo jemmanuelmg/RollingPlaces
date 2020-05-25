@@ -44,7 +44,7 @@ namespace Taxi.Web.Controllers
 
             return View(model);
         }
-
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -56,7 +56,7 @@ namespace Taxi.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
                 _context.Add(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -92,7 +92,7 @@ namespace Taxi.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                
+
                 _context.Update(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -101,7 +101,7 @@ namespace Taxi.Web.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        /*public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -116,6 +116,19 @@ namespace Taxi.Web.Controllers
             }
 
             _context.Places.Remove(model);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }*/
+
+        // GET: Travels/Delete/5
+        public async Task<IActionResult> Delete(int id)
+        {
+            var placeEntity = await _context.Places
+                                .Include(t => t.Qualifications)
+                                .Include(t => t.Photos)
+                                .FirstOrDefaultAsync(t => t.Id == id);
+
+            _context.Places.Remove(placeEntity);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
