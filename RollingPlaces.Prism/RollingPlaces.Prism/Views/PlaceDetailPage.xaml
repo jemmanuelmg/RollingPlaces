@@ -36,7 +36,7 @@
         <ScrollView IsVisible="{Binding ActivateDetails}">
         <StackLayout>
             <Label></Label>
-            <Label Text="Descripción" FontAttributes="Bold" FontSize="Medium"/>
+            <Label Text="Descripción" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center"/>
             <Label Text="{Binding Place.Description}"/>
 
             <Grid>
@@ -76,12 +76,20 @@
 
             <Label></Label>
 
-            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <!--<StackLayout VerticalOptions="Center" HorizontalOptions="Center">
                 <badge:SfBadgeView>
                     <badge:SfBadgeView BadgeText="{Binding Place.QualificationCount, StringFormat='Comentarios y calificaciones: {0}'}" HorizontalOptions="Start" />
                 </badge:SfBadgeView>
-            </StackLayout>
+            </StackLayout>-->
 
+            <badge:SfBadgeView HorizontalOptions="Center" VerticalOptions="Center" BadgeText="{Binding Place.QualificationCount}">
+                <badge:SfBadgeView.Content>
+                    <Label Text="Comentarios   " FontAttributes="Bold" FontSize="Medium"/>
+                </badge:SfBadgeView.Content>
+                <!--<badge:SfBadgeView.BadgeSettings>
+                    <badge:BadgeSetting   BadgePosition="TopRight"/>
+                </badge:SfBadgeView.BadgeSettings>-->
+            </badge:SfBadgeView>
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -103,8 +111,8 @@
                         Text="Puntaje"/>
 
                 <Label Grid.Column="2"
-                        FontAttributes="Bold"
-                        Text="Comentario"/>
+                    FontAttributes="Bold"
+                    Text="Comentario"/>
 
             </Grid>
 

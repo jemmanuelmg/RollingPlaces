@@ -61,6 +61,9 @@
     <PackageReference Include="Syncfusion.Xamarin.Cards">
       <Version>18.1.0.53</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.Core">
+      <Version>18.1.0.53</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Expander">
       <Version>18.1.0.52</Version>
     </PackageReference>

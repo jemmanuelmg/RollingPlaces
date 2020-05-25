@@ -5,12 +5,16 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="RollingPlaces.Prism.Views.HelpPage"
              xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              Title="{Binding Title}">
 
     <ContentPage.Content>
         <ScrollView BackgroundColor="#EDF2F5" Grid.Row="1">
             <StackLayout Margin="20">
 
+                <border:SfBorder x:Name="border" BorderColor = "Orange"  CornerRadius="20" BorderWidth="3" HorizontalOptions ="Center">
+                    <Label Text="   Preguntas Frecuentes   " TextColor="Black"/>
+                </border:SfBorder>
 
                 <syncfusion:SfExpander IsExpanded="True">
                     <syncfusion:SfExpander.Header>

@@ -94,7 +94,7 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                        <StackLayout Grid.Row="0" Grid.Column="0" Margin="30, 0, 0, 0">
+                        <StackLayout Grid.Row="0" Grid.Column="0" Margin="35, 0, 0, 0">
                             <ffimageloading:CachedImage Aspect="AspectFit"
                                           Source="{Binding Image1}"
                                           CacheDuration= "50"
@@ -111,7 +111,7 @@
                             </ffimageloading:CachedImage>
                         </StackLayout>
 
-                        <StackLayout Grid.Row="0" Grid.Column="1" Margin="30, 0, 0, 0">
+                        <StackLayout Grid.Row="0" Grid.Column="1" Margin="35, 0, 0, 0">
                             <ffimageloading:CachedImage Aspect="AspectFit"
                                           Source="{Binding Image2}"
                                           CacheDuration= "50"
@@ -128,7 +128,7 @@
                             </ffimageloading:CachedImage>
                         </StackLayout>
 
-                        <StackLayout Grid.Row="1" Grid.Column="0" Margin="30, 0, 0, 0">
+                        <StackLayout Grid.Row="1" Grid.Column="0" Margin="35, 0, 0, 0">
                             <ffimageloading:CachedImage Aspect="AspectFit"
                                           Source="{Binding Image3}"
                                           CacheDuration= "50"
@@ -145,7 +145,7 @@
                             </ffimageloading:CachedImage>
                         </StackLayout>
 
-                        <StackLayout Grid.Row="1" Grid.Column="1" Margin="30, 0, 0, 0">
+                        <StackLayout Grid.Row="1" Grid.Column="1" Margin="35, 0, 0, 0">
                             <ffimageloading:CachedImage Aspect="AspectFit"
                                           Source="{Binding Image4}"
                                           CacheDuration= "50"
