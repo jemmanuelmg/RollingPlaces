@@ -15,9 +15,9 @@
 
     <!-- Custom styles for this template -->
     <link href="~/css/landing-page.min.css" rel="stylesheet">
-
+    <link href="~/css/modern-business.css" rel="stylesheet">
     <environment include="Development">
-    <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
     </environment>
 </head>
 <body>
@@ -34,19 +34,19 @@
                     <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Places" asp-action="Index">Places</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Places" asp-action="Index">Places</a></li>
                     }
                 </ul>
                 <ul class="navbar-nav ml-auto">
                     @if (User.Identity.IsAuthenticated)
                     {
 
-                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="ChangeUser">@User.Identity.Name</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="ChangeUser">@User.Identity.Name</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a></li>
                     }
                     else
                     {
-                        <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Account" asp-action="Login">Login</a></li>
                     }
                 </ul>
             </div>
@@ -56,8 +56,6 @@
     <br />
     <br />
     <br />
-
-    <partial name="_CookieConsentPartial" />
 
     <div class="container body-content">
         @RenderBody()
