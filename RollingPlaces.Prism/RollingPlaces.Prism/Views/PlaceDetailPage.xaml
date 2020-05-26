@@ -16,7 +16,7 @@
     <StackLayout Margin="15">
 
         <StackLayout>
-            <Label Text="{Binding Place.Name}" FontSize="35" FontAttributes="Italic"></Label>
+            <Label Text="{Binding Place.Name}" FontSize="25" FontAttributes="Italic"></Label>
 
             <rating:SfRating HorizontalOptions="Center" 
                             IsEnabled="False"

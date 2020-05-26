@@ -77,7 +77,7 @@
                                     VerticalOptions="FillAndExpand" 
                                     Keyboard="Chat"  
                                     HeightRequest="120" 
-                                    Placeholder="Descipción del lugar"/>
+                                    Placeholder="Descripción del lugar"/>
                         </Grid>
                         
                         <Label></Label>
