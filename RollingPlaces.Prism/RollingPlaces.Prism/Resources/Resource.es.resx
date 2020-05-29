@@ -434,4 +434,10 @@
   <data name="GenericComment" xml:space="preserve">
     <value>Comentario genérico!</value>
   </data>
+  <data name="about" xml:space="preserve">
+    <value>Acerca de</value>
+  </data>
+  <data name="searchplaces" xml:space="preserve">
+    <value>buscar lugares</value>
+  </data>
 </root>

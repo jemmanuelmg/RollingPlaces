@@ -81,7 +81,7 @@ namespace RollingPlaces.Prism.ViewModels
                 {
                     Icon = "ic_add",
                     PageName = "NewPlacePage",
-                    Title = "Agregar un lugar"
+                    Title = Languages.NewPlace
                 });
             }
             else
@@ -90,7 +90,7 @@ namespace RollingPlaces.Prism.ViewModels
                 {
                     Icon = "ic_account_circle",
                     PageName = "RegisterPage",
-                    Title = "Registrarse"
+                    Title = Languages.Register
                 });
             }
 
@@ -98,14 +98,14 @@ namespace RollingPlaces.Prism.ViewModels
             {
                 Icon = "ic_place",
                 PageName = "PlaceHistoryPage",
-                Title = "Buscar Lugares"
+                Title = Languages.searchplaces
             });
 
             menus.Add(new Menu
             {
                 Icon = "ic_info_outline",
                 PageName = "HelpPage",
-                Title = "Acerca de"
+                Title = Languages.about
             });
 
             Menus = new ObservableCollection<MenuItemViewModel>(

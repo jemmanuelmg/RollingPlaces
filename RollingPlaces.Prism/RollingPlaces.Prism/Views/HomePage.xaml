@@ -20,7 +20,7 @@
         <StackLayout>
             <Button Command="{Binding NewPlaceCommand}" 
                     Margin="10,0"
-                    Text="Add New Place"/>
+                    Text="{i18n:Translate NewPlace}"/>
         </StackLayout>
     </StackLayout>
 

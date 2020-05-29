@@ -61,6 +61,15 @@ namespace RollingPlaces.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About It...
+        /// </summary>
+        public static string about {
+            get {
+                return ResourceManager.GetString("about", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accept.
         /// </summary>
         public static string Accept {
@@ -921,6 +930,15 @@ namespace RollingPlaces.Prism.Resources {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Places.
+        /// </summary>
+        public static string searchplaces {
+            get {
+                return ResourceManager.GetString("searchplaces", resourceCulture);
             }
         }
         

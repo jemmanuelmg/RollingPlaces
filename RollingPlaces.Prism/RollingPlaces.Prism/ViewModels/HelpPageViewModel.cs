@@ -11,7 +11,7 @@ namespace RollingPlaces.Prism.ViewModels
     {
         public HelpPageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            Title = "FAQ";
+            Title = "Frequent Questions";
         }
     }
 }

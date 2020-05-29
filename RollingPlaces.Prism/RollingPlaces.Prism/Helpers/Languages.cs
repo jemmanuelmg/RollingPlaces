@@ -122,6 +122,8 @@ namespace RollingPlaces.Prism.Helpers
         public static string Comment10 => Resource.Comment10;
         public static string GenericComment => Resource.GenericComment;
         public static string CommnetPlaceHolder => Resource.CommnetPlaceHolder;
+        public static string searchplaces => Resource.searchplaces;
+        public static string about => Resource.about;
 
     }
 }
