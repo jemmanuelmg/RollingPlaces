@@ -2,4 +2,8 @@
 <resources>
 	<string name="hello">Hello World, Click Me!</string>
 	<string name="app_name">RollingPlaces.Prism.Droid</string>
+  <string name="facebook_app_name">Rolling Places</string>
+  <string name="facebook_app_id">658127431585111</string>
+  <string name="fb_login_protocol_scheme">fb658127431585111</string>
+
 </resources>

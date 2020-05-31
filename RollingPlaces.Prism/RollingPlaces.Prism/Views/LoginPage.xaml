@@ -69,7 +69,15 @@
                 <Button Command="{Binding LoginCommand}" 
                         IsEnabled="{Binding IsEnabled}"
                         Text="Iniciar Sesión"/>
-                <Button Command="{Binding RegisterCommand}" 
+                    <Button BackgroundColor="#4768AD" 
+                        Command="{Binding LoginFacebookCommand}"
+                        HeightRequest="45"
+                        IsEnabled="{Binding IsEnabled}"
+                        ImageSource="ic_fb"
+                        Text="Login with Facebook"
+                        TextColor="#FFFFFF"/>
+
+                    <Button Command="{Binding RegisterCommand}" 
                         IsEnabled="{Binding IsEnabled}"
                         Text="Registrarse"
                         Style="{StaticResource DangerButton}"/>
