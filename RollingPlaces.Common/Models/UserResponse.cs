@@ -25,6 +25,11 @@ namespace RollingPlaces.Common.Models
 
         public string FullNameWithDocument => $"{FirstName} {LastName}";
 
-        public string PictureFullPath => string.IsNullOrEmpty(PicturePath) ? "https://rollingplacesweb.azurewebsites.net//images/noimage.png" : $"https://rollingplacesweb.azurewebsites.net{PicturePath.Substring(1)}";
+        public LoginType LoginType { get; set; }
+
+        public string PictureFullPath => string.IsNullOrEmpty(PicturePath)
+        ? "https://rollingplacesweb.azurewebsites.net//images/noimage.png"
+        //public string PictureFullPath => string.IsNullOrEmpty(PicturePath) ? "https://rollingplacesweb.azurewebsites.net//images/noimage.png" : $"https://rollingplacesweb.azurewebsites.net{PicturePath.Substring(1)}";
+        : LoginType == LoginType.RollingPlaces? $"https://rollingplacesweb.azurewebsites.net{PicturePath.Substring(1)}" : PicturePath;
     }
 }
