@@ -84,7 +84,15 @@ namespace RollingPlaces.Prism.ViewModels
                     Geocoder geoCoder = new Geocoder();
                     IEnumerable<string> sources = await geoCoder.GetAddressesForPositionAsync(placePosition);
                     List<string> addresses = new List<string>(sources);
-                    HomePage.GetInstance().AddPin(placePosition, addresses[0], place.Name, PinType.Place);
+                    if (addresses.Count == 0)
+                    {
+                        HomePage.GetInstance().AddPin(placePosition, "Cl. 54 #86-197 a 86-37", place.Name, PinType.Place);
+                    }
+                    else
+                    {
+                        HomePage.GetInstance().AddPin(placePosition, addresses[0], place.Name, PinType.Place);
+                    }
+                    
                 }
             }
 
