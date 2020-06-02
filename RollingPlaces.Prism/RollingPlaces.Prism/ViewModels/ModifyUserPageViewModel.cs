@@ -11,12 +11,13 @@ using RollingPlaces.Common.Services;
 using RollingPlaces.Prism.Helpers;
 using RollingPlaces.Prism.Views;
 using Xamarin.Forms;
-
+using RollingPlaces.Common.Enums;
 
 namespace RollingPlaces.Prism.ViewModels
 {
     public class ModifyUserPageViewModel : ViewModelBase
     {
+        private bool _isRollingPlacesUser;
         private readonly INavigationService _navigationService;
         private readonly IFilesHelper _filesHelper;
         private readonly IApiService _apiService;
@@ -38,8 +39,8 @@ namespace RollingPlaces.Prism.ViewModels
             IsEnabled = true;
             User = JsonConvert.DeserializeObject<UserResponse>(Settings.User);
             Image = string.IsNullOrEmpty(User.PictureFullPath) ? App.Current.Resources["UrlNoImage"].ToString() : User.PictureFullPath;
-            int a = 1;
-            int b = 1;
+            IsRollingPlacesUser = User.LoginType == LoginType.RollingPlaces;
+
         }
 
         public DelegateCommand ChangeImageCommand => _changeImageCommand ?? (_changeImageCommand = new DelegateCommand(ChangeImageAsync));
@@ -48,6 +49,11 @@ namespace RollingPlaces.Prism.ViewModels
 
         public DelegateCommand ChangePasswordCommand => _changePasswordCommand ?? (_changePasswordCommand = new DelegateCommand(ChangePasswordAsync));
 
+        public bool IsRollingPlacesUser
+        {
+            get => _isRollingPlacesUser;
+            set => SetProperty(ref _isRollingPlacesUser, value);
+        }
 
         public ImageSource Image
         {
@@ -153,6 +159,12 @@ namespace RollingPlaces.Prism.ViewModels
 
         private async void ChangeImageAsync()
         {
+            if (!IsRollingPlacesUser)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ChangePhotoNoRollingPlacesUser, Languages.Accept);
+                return;
+            }
+
             await CrossMedia.Current.Initialize();
 
             string source = await Application.Current.MainPage.DisplayActionSheet(
@@ -196,6 +208,13 @@ namespace RollingPlaces.Prism.ViewModels
 
         private async void ChangePasswordAsync()
         {
+            
+           if (!IsRollingPlacesUser)
+            {
+                await App.Current.MainPage.DisplayAlert(Languages.Error, Languages.ChangePhotoNoRollingPlacesUser, Languages.Accept);
+                return;
+            }
+
             await _navigationService.NavigateAsync(nameof(ChangePasswordPage));
         }
 

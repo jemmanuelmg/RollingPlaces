@@ -30,6 +30,8 @@ namespace RollingPlaces.Web.Data.Entities
 
         public ICollection<QualificationEntity> Qualifications { get; set; }
 
+        [Display(Name = "Login Type")]
+        public LoginType LoginType { get; set; }
     }
 }
 

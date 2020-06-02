@@ -68,7 +68,8 @@ namespace RollingPlaces.Web.Data
                     Email = email,
                     UserName = email,
                     PhoneNumber = phone,
-                    UserType = userType
+                    UserType = userType,
+                    LoginType = LoginType.RollingPlaces
                 };
 
                 await _userHelper.AddUserAsync(user, "123456");

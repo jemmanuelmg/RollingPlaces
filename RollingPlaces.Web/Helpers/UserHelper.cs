@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using RollingPlaces.Web.Data.Entities;
 using RollingPlaces.Web.Models;
 using RollingPlaces.Common.Enums;
-
+using RollingPlaces.Common.Models;
 
 namespace RollingPlaces.Web.Helpers
 {
@@ -27,6 +27,34 @@ namespace RollingPlaces.Web.Helpers
             _signInManager = signInManager;
 
         }
+
+        public async Task<UserEntity> AddUserAsync(FacebookProfile model)
+        {
+            UserEntity userEntity = new UserEntity
+            {
+                //Address = "...",
+                //Document = "...",
+                Email = model.Email,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                PicturePath = model.Picture?.Data?.Url,
+                PhoneNumber = "...",
+                UserName = model.Email,
+                UserType = UserType.User,
+                LoginType = LoginType.Facebook
+            };
+
+            IdentityResult result = await _userManager.CreateAsync(userEntity, model.Id);
+            if (result != IdentityResult.Success)
+            {
+                return null;
+            }
+
+            UserEntity newUser = await GetUserAsync(model.Email);
+            await AddUserToRoleAsync(newUser, userEntity.UserType.ToString());
+            return newUser;
+        }
+
         public async Task<IdentityResult> AddUserAsync(UserEntity user, string password)
         {
             return await _userManager.CreateAsync(user, password);

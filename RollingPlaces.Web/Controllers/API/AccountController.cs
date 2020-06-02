@@ -11,6 +11,13 @@ using RollingPlaces.Web.Resources;
 using System.Globalization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using RollingPlaces.Web.Models;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using System;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace RollingPlaces.Web.Controllers.API
 {
@@ -22,15 +29,89 @@ namespace RollingPlaces.Web.Controllers.API
         private readonly IMailHelper _mailHelper;
         private readonly IImageHelper _imageHelper;
         private readonly IConverterHelper _converterHelper;
-
-        public AccountController(DataContext dataContext, IUserHelper userHelper, IMailHelper mailHelper, IImageHelper imageHelper, IConverterHelper converterHelper)
+        private readonly IConfiguration _configuration;
+        public AccountController(DataContext dataContext, IUserHelper userHelper, IMailHelper mailHelper, IImageHelper imageHelper, IConverterHelper converterHelper, IConfiguration configuration)
         {
             _dataContext = dataContext;
             _userHelper = userHelper;
             _mailHelper = mailHelper;
             _imageHelper = imageHelper;
             _converterHelper = converterHelper;
+            _configuration = configuration;
         }
+
+        [HttpPost]
+        [Route("LoginFacebook")]
+        public async Task<IActionResult> LoginFacebook([FromBody] FacebookProfile model)
+        {
+            if (ModelState.IsValid)
+            {
+                UserEntity user = await _userHelper.GetUserAsync(model.Email);
+                if (user == null)
+                {
+                    await _userHelper.AddUserAsync(model);
+                }
+                else
+                {
+                    user.PicturePath = model.Picture.Data.Url;
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    await _userHelper.UpdateUserAsync(user);
+                }
+
+                object results = GetToken(model.Email);
+                return Created(string.Empty, results);
+            }
+
+            return BadRequest();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateToken([FromBody] LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                UserEntity user = await _userHelper.GetUserAsync(model.Username);
+                if (user != null)
+                {
+                    Microsoft.AspNetCore.Identity.SignInResult result = await _userHelper.ValidatePasswordAsync(user, model.Password);
+
+                    if (result.Succeeded)
+                    {
+                        object results = GetToken(user.Email);
+                        return Created(string.Empty, results);
+                    }
+                }
+            }
+
+            return BadRequest();
+        }
+
+
+
+        private object GetToken(string email)
+        {
+            Claim[] claims = new[]
+            {
+        new Claim(JwtRegisteredClaimNames.Sub, email),
+        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+    };
+
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Tokens:Key"]));
+            SigningCredentials credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            JwtSecurityToken token = new JwtSecurityToken(
+                _configuration["Tokens:Issuer"],
+                _configuration["Tokens:Audience"],
+                claims,
+                expires: DateTime.UtcNow.AddDays(15),
+                signingCredentials: credentials);
+            return new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                expiration = token.ValidTo
+            };
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> PostUser([FromBody] UserRequest request)

@@ -125,5 +125,6 @@ namespace RollingPlaces.Prism.Helpers
         public static string searchplaces => Resource.searchplaces;
         public static string about => Resource.about;
         public static string LoginFacebook => Resource.LoginFacebook;
+        public static string ChangePhotoNoRollingPlacesUser => Resource.ChangePhotoNoRollingPlacesUser;
     }
 }

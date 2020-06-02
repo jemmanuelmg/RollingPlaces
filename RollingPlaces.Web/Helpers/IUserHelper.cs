@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using RollingPlaces.Common.Models;
 using RollingPlaces.Web.Data.Entities;
 using RollingPlaces.Web.Models;
 
@@ -43,8 +44,7 @@ namespace RollingPlaces.Web.Helpers
         Task<IdentityResult> ResetPasswordAsync(UserEntity user, string token, string password);
 
         Task LogoutAsync();
-
-
+        Task<UserEntity> AddUserAsync(FacebookProfile model);
     }
 }
 

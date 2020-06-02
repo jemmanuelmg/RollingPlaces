@@ -52,6 +52,7 @@
                    VerticalOptions="Center"/>
             <Entry Grid.Row="0"
                    Grid.Column="1"
+                   IsEnabled="{Binding IsRollingPlacesUser}"
                    Placeholder="Ingrese aquí sus nombres"
                    Text="{Binding User.FirstName}"/>
 
@@ -61,6 +62,7 @@
                    VerticalOptions="Center"/>
             <Entry Grid.Row="1"
                    Grid.Column="1"
+                   IsEnabled="{Binding IsRollingPlacesUser}"
                    Placeholder="Ingrese aquí sus apellidos"
                    Text="{Binding User.LastName}"/>
 

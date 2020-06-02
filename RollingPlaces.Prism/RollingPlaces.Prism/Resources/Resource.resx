@@ -445,4 +445,9 @@
   <data name="LoginFacebook" xml:space="preserve">
     <value>Login into your Facebook Account</value>
   </data>
+  
+  <data name="ChangePhotoNoRollingPlacesUser" xml:space="preserve">
+    <value>Change Photo</value>
+  </data>
+
 </root>

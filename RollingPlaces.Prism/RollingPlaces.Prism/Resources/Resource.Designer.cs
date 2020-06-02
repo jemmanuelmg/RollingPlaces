@@ -124,6 +124,15 @@ namespace RollingPlaces.Prism.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change Photo.
+        /// </summary>
+        public static string ChangePhotoNoRollingPlacesUser {
+            get {
+                return ResourceManager.GetString("ChangePhotoNoRollingPlacesUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check Name.
         /// </summary>
         public static string CheckName {
