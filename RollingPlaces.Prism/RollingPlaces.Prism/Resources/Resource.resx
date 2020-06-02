@@ -447,7 +447,7 @@
   </data>
   
   <data name="ChangePhotoNoRollingPlacesUser" xml:space="preserve">
-    <value>Change Photo</value>
+    <value>Facebook User has to change the photo directly in facebook app</value>
   </data>
 
 </root>

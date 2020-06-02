@@ -94,7 +94,7 @@ namespace RollingPlaces.Prism.ViewModels
 
             string url = App.Current.Resources["UrlAPI"].ToString();
 
-            Response response = await _apiService.GetTokenAsync(url, "api", "Account/LoginFacebook", facebookProfile);
+            Response response = await _apiService.GetTokenAsync(url, "api", "/Account/LoginFacebook", facebookProfile);
 
             if (!response.IsSuccess)
             {
@@ -122,7 +122,7 @@ namespace RollingPlaces.Prism.ViewModels
             IsRunning = false;
             IsEnabled = true;
 
-            await _navigationService.NavigateAsync(nameof(RollingPlacesMasterDetailPage));
+            await _navigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/HomePage");
             Password = string.Empty;
         }
 

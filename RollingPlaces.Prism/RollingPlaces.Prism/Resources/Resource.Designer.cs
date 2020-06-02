@@ -124,7 +124,7 @@ namespace RollingPlaces.Prism.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change Photo.
+        ///   Looks up a localized string similar to Facebook User has to change the photo directly in facebook app.
         /// </summary>
         public static string ChangePhotoNoRollingPlacesUser {
             get {
