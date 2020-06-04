@@ -31,26 +31,12 @@ namespace RollingPlaces.Prism.ViewModels
 
         private async void NewPlaceAsync()
         {
-            if (Settings.IsLogin)
-            {
-                await _navigationService.NavigateAsync(nameof(NewPlacePage));
-            }
-            else
-            {
-                await _navigationService.NavigateAsync(nameof(LoginPage));
-            }
+          await _navigationService.NavigateAsync(nameof(NewPlacePage));  
         }
 
         private async void GetPlaceAsync()
         {
-            if (Settings.IsLogin)
-            {
-                await _navigationService.NavigateAsync(nameof(PlaceHistoryPage));
-            }
-            else
-            {
-                await _navigationService.NavigateAsync(nameof(LoginPage));
-            }
+            await _navigationService.NavigateAsync(nameof(PlaceHistoryPage));
         }
 
         public async void LoadAllPlacesOnMap()

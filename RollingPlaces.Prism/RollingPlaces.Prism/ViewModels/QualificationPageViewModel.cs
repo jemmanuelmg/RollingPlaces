@@ -174,7 +174,7 @@ namespace RollingPlaces.Prism.ViewModels
             if (!Settings.IsLogin)
             {
                 App.Current.MainPage.DisplayAlert(Languages.Error, "Inicia sesión o registrate para dejar comentarios", Languages.Accept);
-                _navigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/HomePage");
+                _navigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/LoginPage");
             }
         }
     }

@@ -174,6 +174,16 @@ namespace RollingPlaces.Prism.ViewModels
             set => SetProperty(ref _showMapButtonText, value);
         }
 
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+            if (!Settings.IsLogin)
+            {
+                App.Current.MainPage.DisplayAlert(Languages.Error, "Inicia sesión o registrate para agregar nuevos lugares", Languages.Accept);
+                _navigationService.NavigateAsync("/RollingPlacesMasterDetailPage/NavigationPage/LoginPage");
+            }
+        }
+
         private async void AddNewPlace()
         {
             if (!Settings.IsLogin)
